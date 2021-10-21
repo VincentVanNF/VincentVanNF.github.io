@@ -1,0 +1,564 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>X86_ASM | VincentVan</title><meta name="keywords" content="X86/ASM/汇编"><meta name="author" content="VincentVan,3080167665@qq.com"><meta name="copyright" content="VincentVan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="X86单片机汇编实现几个简单的功能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="X86_ASM">
+<meta property="og:url" content="https://vincentvannf.github.io/2021/07/08/X86-ASM/index.html">
+<meta property="og:site_name" content="VincentVan">
+<meta property="og:description" content="X86单片机汇编实现几个简单的功能">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vincentvannf.github.io/img/X86_ASM.jpg">
+<meta property="article:published_time" content="2021-07-08T13:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-21T08:50:25.847Z">
+<meta property="article:author" content="VincentVan">
+<meta property="article:tag" content="X86">
+<meta property="article:tag" content="ASM">
+<meta property="article:tag" content="汇编">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vincentvannf.github.io/img/X86_ASM.jpg"><link rel="shortcut icon" href="/img/website.jpg"><link rel="canonical" href="https://vincentvannf.github.io/2021/07/08/X86-ASM/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: VincentVan","link":"链接: ","source":"来源: VincentVan","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'mediumZoom',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'X86_ASM',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-10-21 16:50:25'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/X86_ASM.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">VincentVan</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">X86_ASM</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-07-08T13:00:00.000Z" title="发表于 2021-07-08 21:00:00">2021-07-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-10-21T08:50:25.847Z" title="更新于 2021-10-21 16:50:25">2021-10-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/X86-ASM/">X86/ASM</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="X86_ASM"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="寻址方式在结构化数据访问中的应用"><a href="#寻址方式在结构化数据访问中的应用" class="headerlink" title="寻址方式在结构化数据访问中的应用"></a><strong>寻址方式在结构化数据访问中的应用</strong></h2><ul>
+<li><p>编程实现：将datasg段中的数据按如下格式写入到table表中，并计算21年中的人均收入（取整），结果也保存在table表中。</p>
+<p>datasg segment</p>
+<p>db ‘1975’ ‘1976’ ‘1977’ ‘1978’ ‘1979’ ‘1980’ ‘1981’ ‘1982’ ‘1983’ </p>
+<p>db ‘1984’ ‘1985’ ‘1986’ ‘1987’ ‘1988’ ‘1989’ ‘1990’ ‘1991’ ‘1992’ </p>
+<p>db ‘1993’ ‘1994’ ‘1995’ </p>
+<p>;以上是表示21年的21个字符串</p>
+<p>dd 16,22,382,1356,2390,8000,16000,24486,50065,97479,140417,197514</p>
+<p>dd 345980,590827,803530,1183000,1843000,2759000,3753000,4649000, 5937000</p>
+<p>;以上是表示21年公司总收的21个dword型数据</p>
+<p>dw 3,7,9,13,28,38,130,220,476,778,1001,1442,2258,2793,4037,5635,8226</p>
+<p>dw 11542,14430,45257,17800</p>
+<p>;以上是表示21年公司雇员人数的21个word型数据</p>
+<p>datasg ends</p>
+<p>table segment</p>
+<p>db 21 dup(‘year summ ne ?? ‘)</p>
+<p>table ends</p>
+<p>编程，将data段中的数据按照如下格式写入到table段中，并计算21年中的人均收入（取整），结果也按照下面的格式保存在table段中。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>年份  （4字节）</th>
+<th>空格</th>
+<th>收入  （4字节）</th>
+<th>空格</th>
+<th>雇员数  (2字节)</th>
+<th>空格</th>
+<th>人均收入  （2字节）</th>
+<th>空格</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>行内  地址     一年占  1行，每  行的起始地址</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+<td>D</td>
+<td>E</td>
+<td>F</td>
+</tr>
+<tr>
+<td>table:0</td>
+<td>‘1975’</td>
+<td></td>
+<td>16</td>
+<td></td>
+<td>3</td>
+<td></td>
+<td>?</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>……</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>table:140H</td>
+<td>‘1995’</td>
+<td></td>
+<td>5937000</td>
+<td></td>
+<td>17800</td>
+<td></td>
+<td>?</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+<li><p>源码：</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">assume cs:code,ds:data,es:table,ss:stack1</span><br><span class="line"></span><br><span class="line">data segment</span><br><span class="line">  db &#x27;1975&#x27;,&#x27;1976&#x27;,&#x27;1977&#x27;,&#x27;1978&#x27;,&#x27;1979&#x27;,&#x27;1980&#x27;,&#x27;1981&#x27;,&#x27;1982&#x27;,&#x27;1983&#x27;</span><br><span class="line">  db &#x27;1984&#x27;,&#x27;1985&#x27;,&#x27;1986&#x27;,&#x27;1987&#x27;,&#x27;1988&#x27;,&#x27;1989&#x27;,&#x27;1990&#x27;,&#x27;1991&#x27;,&#x27;1992&#x27;</span><br><span class="line">  db &#x27;1993&#x27;,&#x27;1994&#x27;,&#x27;1995&#x27;</span><br><span class="line">  ;以上是表示21年的21个字符串</span><br><span class="line"></span><br><span class="line">  dd 16,22,382,1356,2390,8000,16000,24486,50065,97479,140317,197514</span><br><span class="line">  dd 345980,590827,803530,1183000,1843000,2759000,3753000,4649000,5937000</span><br><span class="line">  ;以上表示21年公司总收入的21个dword型数据</span><br><span class="line"></span><br><span class="line">  dw 3,7,9,13,28,38,130,220,476,778,1001,1442,2258,2793,4037,5635,8226</span><br><span class="line">  dw 11542,14430,15257,17800</span><br><span class="line">  ;以上是表示21年公司雇员人数的21个word型数据</span><br><span class="line">data ends</span><br><span class="line"></span><br><span class="line">table segment</span><br><span class="line">  db 21 dup (&#x27;year summ ne ?? &#x27;)</span><br><span class="line">table ends</span><br><span class="line"></span><br><span class="line">stack1 segment para stack</span><br><span class="line">    db 20h dup(0)</span><br><span class="line">stack1 ends</span><br><span class="line"></span><br><span class="line">code segment</span><br><span class="line">start:</span><br><span class="line">    mov ax,data</span><br><span class="line">    mov ds,ax</span><br><span class="line"></span><br><span class="line">    mov ax,table</span><br><span class="line">    mov es,ax</span><br><span class="line">    ;初始化段寄存器</span><br><span class="line"></span><br><span class="line">    mov bx,0  ;bx用于定位数组中具体元素起始地址</span><br><span class="line">    mov bp,0  ;bp用于定位table结构中每个数组元素起始地址</span><br><span class="line">    mov cx,21</span><br><span class="line">   </span><br><span class="line">s:  </span><br><span class="line">    push 0[bx]                      ;找到第一个数组起始地址，按字进行数据传送处理。</span><br><span class="line">    pop es:[bp]</span><br><span class="line">    push 2[bx]</span><br><span class="line">    pop es:[bp].2</span><br><span class="line">    mov byte ptr es:[bp].4,&#x27; &#x27;  ;传入一个空格</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">    push 84[bx]</span><br><span class="line">    pop es:[bp].5</span><br><span class="line">    push 86[bx]</span><br><span class="line">    pop es:[bp].7</span><br><span class="line">    mov ax,es:[bp].5</span><br><span class="line">    mov dx,es:[bp].7</span><br><span class="line">    ;将被除数传入ax，dx中</span><br><span class="line">    ;传第二列四个字节的收入</span><br><span class="line"></span><br><span class="line">    mov byte ptr es:[bp].9,&#x27; &#x27;  ;传入一个空格</span><br><span class="line"></span><br><span class="line">    push ax</span><br><span class="line">    push dx</span><br><span class="line">    mov dx,0</span><br><span class="line">    mov ax,bx</span><br><span class="line">    push bx</span><br><span class="line">    mov bx,2</span><br><span class="line">    div bx</span><br><span class="line">    pop bx</span><br><span class="line">    mov si,ax       ;将bx除以2，每次循环bx加4，但是职员数组每个元素占两个字节</span><br><span class="line">    push 168[si]</span><br><span class="line">    pop es:[bp].0AH</span><br><span class="line">    ;传入两个字节的雇员数</span><br><span class="line">    pop dx</span><br><span class="line">    pop ax</span><br><span class="line"></span><br><span class="line">    mov byte ptr es:[bp].0CH,&#x27; &#x27;</span><br><span class="line">    ;传送一个空格</span><br><span class="line"></span><br><span class="line">    push ax</span><br><span class="line">    push dx</span><br><span class="line">    mov dx,0</span><br><span class="line">    mov ax,bx</span><br><span class="line">    push bx</span><br><span class="line">    mov bx,2</span><br><span class="line">    div bx</span><br><span class="line">    mov si,ax       ;将bx除以2，每次循环bx加4，但是职员数组每个元素占两个字节</span><br><span class="line">    </span><br><span class="line">    pop bx</span><br><span class="line">    pop dx</span><br><span class="line">    pop ax</span><br><span class="line">    div word ptr 168[si]</span><br><span class="line">    mov es:[bp].0DH,ax</span><br><span class="line">    ;传送两个字节的人均收入</span><br><span class="line"></span><br><span class="line">    mov byte ptr es:[bp].0FH,&#x27; &#x27;</span><br><span class="line">    ;传送一个空格</span><br><span class="line"></span><br><span class="line">    add bp,16</span><br><span class="line">    add bx,4</span><br><span class="line">    loop s</span><br><span class="line">    </span><br><span class="line">    mov ah,4ch</span><br><span class="line">    int 21h</span><br><span class="line">code ends</span><br><span class="line">end start</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="控制字符串在屏幕上的输出"><a href="#控制字符串在屏幕上的输出" class="headerlink" title="控制字符串在屏幕上的输出"></a><strong>控制字符串在屏幕上的输出</strong></h2><p>8086CPU支持80×25彩色字符模式，其显示缓冲区（以下简称为显示缓冲区）的结构如下：</p>
+<p>内存地址空间中，B8000H～BFFFFH共32KB的空间，为80×25 彩色字符模式的显示缓冲区。向这个地址空间写入数据，写入的内容将立即出现在显示器上。</p>
+<p>在80×25彩色字符模式下，显示器可以显示25行，每行80个字符，每个字符可以有256种属性（背景色、前景色、闪烁、高亮等组合信息）。这样，一个字符在显示缓冲区中就要占两个字节，分别存放字符的ASCII码和属性。80×25模式下，一屏的内容在显示缓冲区中共占4000个字节。显示缓冲区分为8页，每页4KB（≈4000B），显示器可以显示任意一页的内容。一般情况下，显示第0页的内容。也就是说通常情况下，B8000H～B8F9FH中的4000个字节的内容将出现在显示器上。</p>
+<p>在一页显示缓冲区中：</p>
+<p>偏移000～09F对应显示器上的第1行（80个字符占160个字节）；</p>
+<p>偏移0A0～13F对应显示器上的第2行；</p>
+<p>偏移140～lDF对应显示器上的第3行；</p>
+<p>依此类推，可知，偏移F00～F9F对应显示器上的第25行。</p>
+<p>在一行中，一个字符占两个字节的存储空间（一个字），低位字节存储字符的ASCII码，高位字节存储字符的属性。一行共有80个字符，占160个字节。</p>
+<p>即在一行中：</p>
+<p>00-01单元对应显示器上的第1列：</p>
+<p>02-03单元对应显示器上的第2列：</p>
+<p>04-05单元对应显示器上的第3列：</p>
+<p>依此类推，可知，9E～9F单元对应显示器上的第80列。</p>
+<p>可以看出，在显示缓冲区中，偶地址存放字符，奇地址存放字符的颜色属性。一个在屏幕上显示的字符，具有前景（字符色）和背景（底色）两种颜色， 符还可以以高亮度和闪烁的方式显示。前景色、背景色、闪烁、高亮等信息被记录在属性字节中。属性字符的含义如下：</p>
+<p><img src="https://ftp.bmp.ovh/imgs/2021/07/1585797f69a35579.png"></p>
+<p>可以按位设置属性字节，从而配出各种不同的前景色和背景色。</p>
+<p>比如：</p>
+<p>红底绿字，属性字节为：01000010B;</p>
+<p>红底闪烁绿字，属性字节为：11000010B;</p>
+<p>红底高亮绿字属性字节为：01001010B;</p>
+<p>黑底白字，属性字节为：00000111B;</p>
+<p>白底蓝字，属性字节为：011l0001B。</p>
+<ul>
+<li><p>实现效果图：</p>
+<p><img src="https://ftp.bmp.ovh/imgs/2021/07/909aca2e05405ce6.jpg"></p>
+</li>
+<li><p>源码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">data segment</span><br><span class="line">    db &#x27;welcome to masm!&#x27;</span><br><span class="line">data ends</span><br><span class="line"></span><br><span class="line">code segment</span><br><span class="line">assume cs:code,ds:data</span><br><span class="line">start:</span><br><span class="line">    mov dx,data</span><br><span class="line">    mov ds,dx</span><br><span class="line"></span><br><span class="line">    mov dx,0b800h</span><br><span class="line">    mov es,dx</span><br><span class="line"></span><br><span class="line">    mov cx,912         ;初始化第一行之前其他空白字符cx循环次数。</span><br><span class="line">    mov di,0</span><br><span class="line">bk1:</span><br><span class="line">    mov byte ptr es:[di],3</span><br><span class="line">    mov byte ptr es:[di+1],10010100b</span><br><span class="line">    inc di</span><br><span class="line">    inc di</span><br><span class="line">    loop bk1             ;第一次初始化空白字符</span><br><span class="line"></span><br><span class="line">    mov cx,16</span><br><span class="line">    mov bx,0</span><br><span class="line">main1:</span><br><span class="line">    mov al,[bx]</span><br><span class="line">    mov es:[di],al</span><br><span class="line">    mov byte ptr es:[di+1],00000010b  </span><br><span class="line">    inc di</span><br><span class="line">    inc di</span><br><span class="line">    inc bx</span><br><span class="line">    loop main1</span><br><span class="line"></span><br><span class="line">    mov cx,64        ;初始化第二行之前其他空白字符cx循环次数。</span><br><span class="line">bk2:</span><br><span class="line">    mov byte ptr es:[di],3</span><br><span class="line">    mov byte ptr es:[di+1],10010100b</span><br><span class="line">    inc di</span><br><span class="line">    inc di</span><br><span class="line">    loop bk2             ;第二次初始化空白字符</span><br><span class="line"></span><br><span class="line">    mov cx,16</span><br><span class="line">    mov bx,0</span><br><span class="line">main2:</span><br><span class="line">    mov al,[bx]</span><br><span class="line">    mov es:[di],al</span><br><span class="line">    mov byte ptr es:[di+1],00100100b  </span><br><span class="line">    inc di</span><br><span class="line">    inc di</span><br><span class="line">    inc bx</span><br><span class="line">    loop main2</span><br><span class="line"></span><br><span class="line">    mov cx,64        ;初始化第三行之前其他空白字符cx循环次数。</span><br><span class="line">bk3:</span><br><span class="line">    mov byte ptr es:[di],3</span><br><span class="line">    mov byte ptr es:[di+1],10010100b</span><br><span class="line">    inc di</span><br><span class="line">    inc di</span><br><span class="line">    loop bk3            ;第二次初始化空白字符</span><br><span class="line"></span><br><span class="line">    mov cx,16</span><br><span class="line">    mov bx,0</span><br><span class="line">main3:</span><br><span class="line">    mov al,[bx]</span><br><span class="line">    mov es:[di],al</span><br><span class="line">    mov byte ptr es:[di+1],01110001b  </span><br><span class="line">    inc di</span><br><span class="line">    inc di</span><br><span class="line">    inc bx</span><br><span class="line">    loop main3</span><br><span class="line"></span><br><span class="line">    mov cx,912        ;初始化其他空白字符cx循环次数。 </span><br><span class="line">bk4:</span><br><span class="line">    mov byte ptr es:[di],3</span><br><span class="line">    mov byte ptr es:[di+1],10100100b</span><br><span class="line">    inc di</span><br><span class="line">    inc di</span><br><span class="line">    loop bk4     ;初始化其他空白字符</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    mov ax,4c00h</span><br><span class="line">    int 21h</span><br><span class="line">code ends</span><br><span class="line">end start</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="编写子程序实现显示控制"><a href="#编写子程序实现显示控制" class="headerlink" title="编写子程序实现显示控制"></a><strong>编写子程序实现显示控制</strong></h2><p>编程实现：</p>
+<p>（1）子程序：show_str</p>
+<p>功能：在指定的位置，用指定的颜色，显示一个以0结束的字符串；</p>
+<p>参数：（dh）=行号（取值范围0～24)，(dl）＝列号（取值范围0～79),</p>
+<p>(cl）=颜色，ds:si指向字符串的首地址。</p>
+<p>返回：无</p>
+<p>（2）子程序：dtoc</p>
+<p>功能：将word型数据转变为表示十进制数的字符串，字符串以0为结尾符。参数：（ax）＝word型数据，ds:si指向字符串的首地址。</p>
+<p>返回： 无</p>
+<p>（3）编制程序通过调用上述子程序将数值12345在屏幕的8行3列进行显示。</p>
+<p>实现效果：</p>
+<p><img src="https://i.bmp.ovh/imgs/2021/07/87f63c1f0649d3c6.png"></p>
+<p><img src="https://ftp.bmp.ovh/imgs/2021/07/9b66548726f3a421.png"></p>
+<p>源码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">assume ds:data,cs:code</span><br><span class="line">data segment</span><br><span class="line">    db 10 dup(0)</span><br><span class="line">data ends</span><br><span class="line"></span><br><span class="line">code segment</span><br><span class="line">start:</span><br><span class="line">    mov ax,data</span><br><span class="line">    mov ds,ax</span><br><span class="line"></span><br><span class="line">    mov ax,12345</span><br><span class="line">    mov si,0</span><br><span class="line">    call dtoc</span><br><span class="line"></span><br><span class="line">    mov dh,8</span><br><span class="line">    mov dl,3</span><br><span class="line">    mov cl,2</span><br><span class="line">    call show_str</span><br><span class="line"></span><br><span class="line">    mov ax,4c00h</span><br><span class="line">    int 21h</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">;ax传递word型数据</span><br><span class="line">;ds:si指向字符串的首地址</span><br><span class="line">dtoc    PROC</span><br><span class="line">    push dx</span><br><span class="line">    push bx</span><br><span class="line">    push si</span><br><span class="line">    push cx</span><br><span class="line">    mov cx,0</span><br><span class="line">lp4:   </span><br><span class="line">    mov dx,0</span><br><span class="line">    mov bx,10</span><br><span class="line">    div bx      ;商在ax中，余数在dx中</span><br><span class="line"></span><br><span class="line">    add dx,30h  ;余数(低位)转化为字符串</span><br><span class="line">    push dx</span><br><span class="line">                    </span><br><span class="line">    inc cx</span><br><span class="line">    cmp ax,0    ;商等于0的说明最后一位</span><br><span class="line">    jnz lp4</span><br><span class="line"></span><br><span class="line">lp5:</span><br><span class="line">    pop dx</span><br><span class="line">    mov ds:[si],dx</span><br><span class="line">    inc si</span><br><span class="line">    loop lp5</span><br><span class="line"></span><br><span class="line">    mov byte ptr ds:[si],0</span><br><span class="line"></span><br><span class="line">    pop cx</span><br><span class="line">    pop si </span><br><span class="line">    pop bx </span><br><span class="line">    pop dx</span><br><span class="line">    ret</span><br><span class="line">dtoc    endp</span><br><span class="line"></span><br><span class="line">;用dh传递行数，0-24；dl传递列数0-79</span><br><span class="line">;cl传递字颜色形式，ds:si指向字符串首地址。show_str PROC</span><br><span class="line">show_str PROC</span><br><span class="line">    push ax</span><br><span class="line">    push es</span><br><span class="line">    push dx</span><br><span class="line">    push cx</span><br><span class="line">    push di</span><br><span class="line">    push si</span><br><span class="line">    push ds</span><br><span class="line">    push bx</span><br><span class="line">    </span><br><span class="line">    mov ax,0b800H</span><br><span class="line">    mov es,ax       ;显示缓冲区目的段地址</span><br><span class="line"></span><br><span class="line">    mov al,160</span><br><span class="line">    mul dh          ;前面行数的字节数</span><br><span class="line">    </span><br><span class="line">    add dl,dl       ;列数中跨越的字节数</span><br><span class="line"></span><br><span class="line">    mov dh,0</span><br><span class="line">    add dx,ax</span><br><span class="line">    mov di,dx      ;显示位置偏移量传给di</span><br><span class="line"></span><br><span class="line">    push di</span><br><span class="line">    mov di,0</span><br><span class="line">lp1:</span><br><span class="line">    cmp di,dx</span><br><span class="line">    jz exit1</span><br><span class="line">    mov byte ptr es:[di],0</span><br><span class="line">    mov byte ptr es:[di+1],00100000b</span><br><span class="line">    inc di</span><br><span class="line">    inc di</span><br><span class="line">    jmp lp1</span><br><span class="line">exit1:</span><br><span class="line">    pop di</span><br><span class="line">lp2:</span><br><span class="line">    cmp byte ptr ds:[si],0</span><br><span class="line">    jz  exit2</span><br><span class="line">                            ;字符不为空</span><br><span class="line">    mov al,ds:[si]          ;进行字符填充</span><br><span class="line">    mov es:[di],al</span><br><span class="line">    mov byte ptr es:[di+1],cl</span><br><span class="line">    inc di</span><br><span class="line">    inc di</span><br><span class="line">    inc si</span><br><span class="line">    jmp lp2</span><br><span class="line">exit2:</span><br><span class="line">lp3:</span><br><span class="line">        cmp di,4000</span><br><span class="line">        jz exit3</span><br><span class="line"></span><br><span class="line">        mov byte ptr es:[di],0</span><br><span class="line">        mov byte ptr es:[di+1],00100000b</span><br><span class="line">        inc di</span><br><span class="line">        inc di</span><br><span class="line">        jmp lp3</span><br><span class="line">exit3:</span><br><span class="line"></span><br><span class="line">    pop bx</span><br><span class="line">    pop ds</span><br><span class="line">    pop si</span><br><span class="line">    pop di</span><br><span class="line">    pop cx</span><br><span class="line">    pop dx</span><br><span class="line">    pop es</span><br><span class="line">    pop ax</span><br><span class="line">    ret</span><br><span class="line">show_str endp</span><br><span class="line"></span><br><span class="line">code ends</span><br><span class="line">end start</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="编写子程序实现字符串转换"><a href="#编写子程序实现字符串转换" class="headerlink" title="编写子程序实现字符串转换"></a><strong>编写子程序实现字符串转换</strong></h2><p>编写一个子程序，将包含任意字符，以0结尾的字符串中的小写字母转变为大写字母。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">assume cs:codesg</span><br><span class="line">  datasg segment</span><br><span class="line">  db &quot;Beginner&#x27;s All-purpose Symbolic Instruction Code.&quot;,0</span><br><span class="line">  datasg ends</span><br><span class="line">  codesg segment</span><br><span class="line">  begin:</span><br><span class="line">  mov ax,datasg</span><br><span class="line">  mov ds,ax</span><br><span class="line">  mov si,0</span><br><span class="line">  call letterc</span><br><span class="line">  mov ax,4c00h</span><br><span class="line">  int 21h</span><br><span class="line">  letterc: ;子程序部分[开始]</span><br><span class="line">  ret  ;子程序部分[结束]</span><br><span class="line">  codesg ends</span><br><span class="line">  end begin</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>实现效果：</p>
+<p><img src="https://ftp.bmp.ovh/imgs/2021/07/691eac3ce4c339d3.png"></p>
+<p>源码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">assume ds:data,cs:code</span><br><span class="line">data segment</span><br><span class="line">    db &quot;Beginner&#x27;s All-purpose Symbolic Instruction Code.&quot;,0</span><br><span class="line">data ends</span><br><span class="line"></span><br><span class="line">code segment</span><br><span class="line">start:</span><br><span class="line">    mov ax,data</span><br><span class="line">    mov ds,ax</span><br><span class="line">    mov si,0</span><br><span class="line">    call letterc</span><br><span class="line"></span><br><span class="line">    mov dh,13</span><br><span class="line">    mov dl,18</span><br><span class="line">    mov cl,00100100b</span><br><span class="line">    call show_str</span><br><span class="line"></span><br><span class="line">    mov ax,4c00h</span><br><span class="line">    int 21h</span><br><span class="line"></span><br><span class="line">;ds:si指向字符串首地址。</span><br><span class="line">letterc PROC</span><br><span class="line">    push ds</span><br><span class="line">    push si</span><br><span class="line"> </span><br><span class="line">lp4:</span><br><span class="line">    cmp byte ptr ds:[si],0</span><br><span class="line">    jz  exit4</span><br><span class="line">                            ;字符不为空</span><br><span class="line">   cmp byte ptr ds:[si],&#x27;a&#x27;</span><br><span class="line">   jb lp5</span><br><span class="line"></span><br><span class="line">   cmp byte ptr ds:[si],&#x27;z&#x27;</span><br><span class="line">   ja lp5</span><br><span class="line"></span><br><span class="line">   and byte ptr ds:[si],11011111b</span><br><span class="line">lp5:</span><br><span class="line">   inc si</span><br><span class="line">   jmp lp4</span><br><span class="line">exit4:</span><br><span class="line"></span><br><span class="line">    pop si</span><br><span class="line">    pop ds</span><br><span class="line">    </span><br><span class="line">    ret</span><br><span class="line">letterc endp</span><br><span class="line"></span><br><span class="line">show_str PROC</span><br><span class="line">    push ax</span><br><span class="line">    push es</span><br><span class="line">    push dx</span><br><span class="line">    push cx</span><br><span class="line">    push di</span><br><span class="line">    push si</span><br><span class="line">    push ds</span><br><span class="line">    push bx</span><br><span class="line">    </span><br><span class="line">    mov ax,0b800H</span><br><span class="line">    mov es,ax       ;显示缓冲区目的段地址</span><br><span class="line"></span><br><span class="line">    mov al,160</span><br><span class="line">    mul dh          ;前面行数的字节数</span><br><span class="line">    </span><br><span class="line">    add dl,dl       ;列数中跨越的字节数</span><br><span class="line"></span><br><span class="line">    mov dh,0</span><br><span class="line">    add dx,ax</span><br><span class="line">    mov di,dx      ;显示位置偏移量传给di</span><br><span class="line"></span><br><span class="line">    push di</span><br><span class="line">    mov di,0</span><br><span class="line">lp1:</span><br><span class="line">    cmp di,dx</span><br><span class="line">    jz exit1</span><br><span class="line">    mov byte ptr es:[di],0</span><br><span class="line">    mov byte ptr es:[di+1],00100000b</span><br><span class="line">    inc di</span><br><span class="line">    inc di</span><br><span class="line">    jmp lp1</span><br><span class="line">exit1:</span><br><span class="line">    pop di</span><br><span class="line">lp2:</span><br><span class="line">    cmp byte ptr ds:[si],0</span><br><span class="line">    jz  exit2</span><br><span class="line">                            ;字符不为空</span><br><span class="line">    mov al,ds:[si]          ;进行字符填充</span><br><span class="line">    mov es:[di],al</span><br><span class="line">    mov byte ptr es:[di+1],cl</span><br><span class="line">    inc di</span><br><span class="line">    inc di</span><br><span class="line">    inc si</span><br><span class="line">    jmp lp2</span><br><span class="line">exit2:</span><br><span class="line">lp3:</span><br><span class="line">    cmp di,4000</span><br><span class="line">    jz exit3</span><br><span class="line"></span><br><span class="line">    mov byte ptr es:[di],0</span><br><span class="line">    mov byte ptr es:[di+1],00100000b</span><br><span class="line">    inc di</span><br><span class="line">    inc di</span><br><span class="line">    jmp lp3</span><br><span class="line">exit3:</span><br><span class="line"></span><br><span class="line">    pop bx</span><br><span class="line">    pop ds</span><br><span class="line">    pop si</span><br><span class="line">    pop di</span><br><span class="line">    pop cx</span><br><span class="line">    pop dx</span><br><span class="line">    pop es</span><br><span class="line">    pop ax</span><br><span class="line">    ret</span><br><span class="line">show_str endp</span><br><span class="line"></span><br><span class="line">code ends</span><br><span class="line">end start</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:3080167665@qq.com">VincentVan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://vincentvannf.github.io/2021/07/08/X86-ASM/">https://vincentvannf.github.io/2021/07/08/X86-ASM/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://vincentvannf.github.io" target="_blank">VincentVan</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/X86/">X86</a><a class="post-meta__tags" href="/tags/ASM/">ASM</a><a class="post-meta__tags" href="/tags/%E6%B1%87%E7%BC%96/">汇编</a></div><div class="post_share"><div class="social-share" data-image="/img/X86_ASM.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/Wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/Wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/ZFB.jpg" target="_blank"><img class="post-qr-code-img" src="/img/ZFB.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F%E5%9C%A8%E7%BB%93%E6%9E%84%E5%8C%96%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">寻址方式在结构化数据访问中的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%9C%A8%E5%B1%8F%E5%B9%95%E4%B8%8A%E7%9A%84%E8%BE%93%E5%87%BA"><span class="toc-number">2.</span> <span class="toc-text">控制字符串在屏幕上的输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E5%AD%90%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0%E6%98%BE%E7%A4%BA%E6%8E%A7%E5%88%B6"><span class="toc-number">3.</span> <span class="toc-text">编写子程序实现显示控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E5%AD%90%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2"><span class="toc-number">4.</span> <span class="toc-text">编写子程序实现字符串转换</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('/img/X86_ASM.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 By VincentVan</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '7PWsEAqsvnjMA6rvGTGAHgPf-gzGzoHsz',
+      appKey: 'qTBPPbl1UzSllihkSt0s7mWG',
+      placeholder: '有什么话温柔点说',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://7PWsEAqs.api.lncldglobal.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": '7PWsEAqsvnjMA6rvGTGAHgPf-gzGzoHsz',
+        "X-LC-Key": 'qTBPPbl1UzSllihkSt0s7mWG',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 1/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
