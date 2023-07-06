@@ -1,0 +1,1422 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>SAP_IBSO_TOOLS_PART3 | VincentVan</title><meta name="keywords" content="SAP &quot;IBSO TOOLS BOOTCAMP&quot; Devops"><meta name="author" content="VincentVan,3080167665@qq.com"><meta name="copyright" content="VincentVan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="SAP 实习期间 学习Devops相关tools">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SAP_IBSO_TOOLS_PART3">
+<meta property="og:url" content="https://vincentvannf.github.io/2022/08/01/SAP_IBSO_TOOLS_PART3/index.html">
+<meta property="og:site_name" content="VincentVan">
+<meta property="og:description" content="SAP 实习期间 学习Devops相关tools">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vincentvannf.github.io/img/docker_exercise.jpg">
+<meta property="article:published_time" content="2022-08-01T07:00:00.000Z">
+<meta property="article:modified_time" content="2022-08-01T07:23:50.408Z">
+<meta property="article:author" content="VincentVan">
+<meta property="article:tag" content="SAP">
+<meta property="article:tag" content="Devops">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="IBSO TOOLS BOOTCAMP">
+<meta property="article:tag" content="JAVA">
+<meta property="article:tag" content="SAP UI5">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vincentvannf.github.io/img/docker_exercise.jpg"><link rel="shortcut icon" href="/img/avatar.jpg"><link rel="canonical" href="https://vincentvannf.github.io/2022/08/01/SAP_IBSO_TOOLS_PART3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="SMp-WCh2-15NoyvdKD57wvY3dGBCraogGZOhwy_h9Qk"/><meta name="baidu-site-verification" content="code-dq7TNN1IXf"/><meta name="msvalidate.01" content="EAEAB8A5E519B85254994EF46F15A64C"/><link rel="manifest" href="/img/siteicons/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/siteicons/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/siteicons/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/siteicons/favicon-16x16.png"/><link rel="mask-icon" href="/img/siteicons/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6977b44415e5cb320371eaf48031d71d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-239901416-2"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-239901416-2');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "dhcmcg78px");</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"OI6JNF40NR","apiKey":"c21669e336acb106e29d7212316209df","indexName":"hexo","hits":{"per_page":6},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: VincentVan","link":"链接: ","source":"来源: VincentVan","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SAP_IBSO_TOOLS_PART3',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-01 15:23:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><style type="text/css">.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body{left:-66px!important}.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover{left:0!important}</style><link rel="stylesheet" href="/css/footer-all-transparent.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/me"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">VincentVan</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/me"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">SAP_IBSO_TOOLS_PART3</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-01T07:23:50.408Z" title="更新于 2022-08-01 15:23:50">2022-08-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/SAP-IBSO-TOOLS-BOOTCAMP-Devops-Docker-Exercise/">SAP/IBSO TOOLS BOOTCAMP/Devops/Docker Exercise</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">8.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>50分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SAP_IBSO_TOOLS_PART3"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2022/08/01/SAP_IBSO_TOOLS_PART3/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div><article class="post-content" id="article-container"><h2 id="Docker-and-Docker-Compose">Docker and Docker-Compose</h2>
+<h3 id="Exercise-06-Setting-up-the-Database-with-Docker">Exercise 06 - Setting up the Database with Docker</h3>
+<p>In this exercise, you will create two Docker containers: a container for the database <em>PostgreSQL</em> and a container for a database administration tool <em>Adminer</em>, so that we can look into the created database tables and entries. You will connect the Java application to the database and test the application with a database connection.</p>
+<p><strong>Before</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/04/26/zLMRBbtq2VS1JIX.png" alt="components_ex05"></p>
+<p><strong>Overview Image</strong></p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/03/28/qni4XImCfk6BGUO.png" alt="image-20220328150026600" style="zoom: 200%;"/>
+<ul>
+<li>
+<p><strong>STEPS</strong></p>
+<ul>
+<li>
+<p><strong>STEP 1: Create a Container with the Database PostgreSQL</strong></p>
+<ol>
+<li>
+<p>Go to <a target="_blank" rel="noopener" href="https://hub.docker.com/">hub.docker.com</a> and search for <code>postgres</code>. You will get several results. The first entry <code>postgres</code> looks has an <em>official image</em> badge and is the most frequently used one.</p>
+</li>
+<li>
+<p>In the section <strong>Supported tags</strong>, we find a tag which is called <code>11-alpine</code>, which means that this release of the Docker image uses version 11 of PostgreSQL on top of an Alpine Linux distribution. Let’s use this one.</p>
+</li>
+<li>
+<p>Use docker to pull image from docker hub</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull postgres:11-alpine</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>To run the <code>postgres</code> image</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name backend_postgres \</span><br><span class="line">  -e POSTGRES_PASSWORD=my?ecret \</span><br><span class="line">  -p 5432:5432 \</span><br><span class="line">  postgres:11-alpine</span><br><span class="line">  </span><br><span class="line"><span class="meta">  #</span><span class="bash"> -d : means run the container <span class="keyword">in</span> the background</span></span><br><span class="line"><span class="meta">  #</span><span class="bash"> --name: container<span class="string">&#x27;s name</span></span></span><br><span class="line"><span class="meta">  #</span><span class="bash"><span class="string"> -p: expose the port in container format: &lt;host port&gt;:&lt;container port&gt;</span></span></span><br><span class="line"><span class="meta">  #</span><span class="bash"><span class="string"> -e : set environment variable which container will user to set password of postgres</span></span></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Check the status of the  <code>postgres</code> container</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Step 2 - Start the Java Application with Connection to the Database</strong></p>
+<ol>
+<li>
+<p>Change the spring config file to connect the database. Have a look at the <code>application.yml</code> file under the folder <code>/src/main/resources/</code>.</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">profiles:</span> <span class="string">postgres</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">platform:</span> <span class="string">pg</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:postgresql://localhost:5432/postgres</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">postgres</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">&quot;my?ecret&quot;</span></span><br><span class="line">  <span class="attr">jpa:</span></span><br><span class="line">    <span class="attr">open-in-view:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">show-sql:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">hibernate:</span></span><br><span class="line">      <span class="attr">ddl-auto:</span> <span class="string">update</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Start the application with Spring Profile postgres</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn spring-boot:run -Dspring-boot.run.profiles=postgres</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Start the UI5 project</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">grunt serve --open</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In the browser, the UI5 application is opened. In the UI5 application, add one or two new advertisements via the ➕ button.</p>
+</li>
+<li>
+<p>Restart java project and refresh UI5 project you will find data is still available. The created advertisement is still persisted in the database.</p>
+</li>
+<li>
+<p>You successfully connected your Java application to a  PostgreSQL database!</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>STEP 3 -  you can access into the <code>postgres</code> container to use SQL command to operate database</strong></p>
+<ol>
+<li>
+<p>Access into the <code>postgres</code> container</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker exec -it backend_postgres bash</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Use the <strong><code>psql</code></strong> command line tool, which is installed in this container, to access the <code>postgres</code> database</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">psql -U postgres</span><br></pre></td></tr></table></figure>
+<p>You will see that the terminal changes to <code>postgres=#</code> as you are now connected to the <code>postgres</code> database.</p>
+</li>
+<li>
+<p>List all tables in the database named <code>postgres</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">\dt</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>You can user SQL to operate the database object</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> advertisement;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Leave the <code>psq</code>l command line tool with the following command:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">\q</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Leave the container session by executing <code>exit</code></p>
+</li>
+<li>
+<p>You successfully attached to a running container and connected to the database in this container!</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Step 4 - Create a Container for the Database Administration Tool Adminer</strong></p>
+<p>We already saw how we can get access to the database tables in a container. But it would be great if we also would have a more convenient tool, where we can have a look at the tables and data of this database and which is accessible via the browser. There is also a Docker image available on Docker Hub for this use case: <a target="_blank" rel="noopener" href="https://hub.docker.com/_/adminer/">Adminer</a></p>
+<ol>
+<li>
+<p>pull adminer image</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull adminer</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>To create a an Adminer container from the image, execute the following command:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name backend_postgres_admin \</span><br><span class="line">  --link backend_postgres \</span><br><span class="line">  -p 8086:8080 \</span><br><span class="line">  adminer</span><br><span class="line"><span class="meta">  </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> To give the Adminer container access to the PostgreSQL container from Step 1, we will use the option --link &lt;name of container we want to connect to&gt;:&lt;link <span class="built_in">alias</span> name&gt;.</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In your browser, navigate to <a target="_blank" rel="noopener" href="http://localhost:8086/">localhost:8086</a>. You will see the Adminer logon page, from where you can connect to a database. Enter the following information and log on:</p>
+<table>
+<thead>
+<tr>
+<th>ield</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>System</td>
+<td>select <strong>PostgresSQL</strong></td>
+</tr>
+<tr>
+<td>Server</td>
+<td>enter <code>backend_postgres</code></td>
+</tr>
+<tr>
+<td>Username</td>
+<td>enter <code>postgres</code></td>
+</tr>
+<tr>
+<td>Password</td>
+<td>enter <code>my?ecret</code></td>
+</tr>
+<tr>
+<td>Database</td>
+<td>enter <code>postgres</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The login should succeed and you will see the table <strong>advertisement</strong> now.</p>
+</li>
+<li>
+<p>Click on the table <strong>advertisement</strong> and on next page click on <strong>Select data</strong>. You will see the same data you already saw in the step before where you accessed the database via the psql command line tool in the container.</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="Exercise-07-Running-the-Java-Backend-Application-in-a-Docker-Container">Exercise 07 - Running the Java Backend Application in a Docker Container</h3>
+<p>In this exercise, you will create a Docker container which builds and runs our Java application.</p>
+<p>After this exercise, you will know how to execute commands during container creation and how to use volume mapping in order to provide data from the host machine to the Docker container.</p>
+<p><strong>Before</strong></p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/03/28/qni4XImCfk6BGUO.png" alt="image-20220328150026600" style="zoom: 200%;"/>
+<p>Overview image</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/03/28/nZe5KlgUtWXJMVE.png" alt="image-20220328153942141"></p>
+<ul>
+<li>
+<p>STEPS</p>
+<ul>
+<li>
+<p><strong>STEP 1 - Create a Container to Build and Run the Java Application</strong></p>
+<ol>
+<li>
+<p>First to start the <code>posgres</code> service</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker start backend_postgres backend_postgres_admin</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>As we want to build and execute a Java application in a Docker container, we need a container with Maven installed. Let’s look for a Maven image on <a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker Hub</a>. Search for <code>maven</code>. The first entry looks promising, as it has again a <em>official image</em> badge. Click on it to see the details. The <strong>Supported tags</strong> represent the Maven version and a JDK (Java Development Kit) version. We want to use Maven 3.5 and JDK 8. So let’s use the tag <code>3.5-jdk-8</code>. Download the Docker image from the central repository:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull maven:3.5-jdk-8</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>To create a Docker container from this image that builds and runs our application, we need to execute the <code>docker run</code> command with a some options. Execute the following commands:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="keyword">if</span> not yet <span class="keyword">done</span>, create the named volume <span class="keyword">for</span> the maven dependencies</span></span><br><span class="line">docker volume create m2</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> execute the docker run <span class="built_in">command</span></span></span><br><span class="line">docker run -d \</span><br><span class="line"> --name backend  \</span><br><span class="line"> --link backend_postgres:db \</span><br><span class="line"> -p 8085:8080  \</span><br><span class="line"> -v ~/ibso-tools-bootcamp/bulletinboard-backend-java/src:/usr/src/app/src \</span><br><span class="line"> -v ~/ibso-tools-bootcamp/bulletinboard-backend-java/.m2:/usr/src/app/.m2 \</span><br><span class="line"> -v ~/ibso-tools-bootcamp/bulletinboard-backend-java/pom.xml:/usr/src/app/pom.xml \</span><br><span class="line"> -v m2:/root/.m2 \</span><br><span class="line"> -e SPRING_DATASOURCE_URL=&quot;jdbc:postgresql://backend_postgres:5432/postgres&quot;\</span><br><span class="line"> -w /usr/src/app \</span><br><span class="line"> maven:3.5-jdk-8 \</span><br><span class="line"> mvn \</span><br><span class="line">  --settings ./.m2/settings.xml \</span><br><span class="line">  -Dspring-boot.run.profiles=postgres \</span><br><span class="line">  clean spring-boot:run</span><br><span class="line"><span class="meta">  </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -v: Provides (aka mounts) the root directory of the Java project and all its content to /usr/src/app <span class="keyword">in</span> the container. We use a volume <span class="keyword">for</span> that, specifically a <span class="built_in">bind</span> mount volume.</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">-v Mounts /root/.m2 inside the container to a named volume on the host (i.e. our virtual machine) called m2. We <span class="keyword">do</span> this to cache the Maven dependencies of the Java application (defined <span class="keyword">in</span> the pom.xml), <span class="built_in">which</span> <span class="keyword">in</span> our <span class="keyword">case</span> are stored <span class="keyword">in</span> /root/.m2. So the first time we run a Maven <span class="built_in">command</span> <span class="keyword">in</span> the container and the cache is empty, it will download all the dependencies and it will take quite some time. For any subsequent Maven <span class="built_in">command</span>, it will take the cached dependencies and significantly reduce build time, even after restarting the container.</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -e : Overwrites the database url <span class="keyword">in</span> the application.yml by setting an environment variable. The default value <span class="keyword">in</span> the config is jdbc:postgresql://localhost:5432/postgres, <span class="built_in">which</span> will not work anymore because inside the container there<span class="string">&#x27;s nothing listening on localhost:5432. Instead, we made the database (that&#x27;</span>s running <span class="keyword">in</span> a different container) accessible as backend_postgres:5432 with the --link option above. That<span class="string">&#x27;s why we need to update the url.</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string"> -w: workspace</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string"> mvn : The command that is executed when the container is started. It&#x27;</span>s similar to the <span class="built_in">command</span> that we used before to run the Java application with the postgres profile. Additionally, we use our own Maven settings.xml, <span class="built_in">which</span> ensures that all dependencies are retrieved from Nexus (our SAP-internal Maven repository). Note that this is a relative path that is resolved <span class="keyword">in</span> the working directory (i.e. /usr/src/app).</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>As the container runs in the background, we don’t know if the web server is already up and running (or still starting or downloading Maven dependencies). We can look into the logs of the container so see what’s going on. Execute the following command:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker logs backend --follow</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>After the application started in the container, we can access it via <a target="_blank" rel="noopener" href="http://localhost:8085/api/v1/ads">localhost:8085/api/v1/ads</a>. Note that we use port <code>8085</code> instead of <code>8080</code> because of the <code>-p</code> option (i.e. port mapping).</p>
+</li>
+<li>
+<p>Before we can run the UI5 application against the containerized Java application, we need to adjust the <em>reverse proxy</em> configuration in the <code>package.json</code>. Open the <code>package.json</code> in VS Code.</p>
+</li>
+<li>
+<p>In the <code>package.json</code>, replace <code>localhost:8080</code> with <code>localhost:8085</code> and save the changes</p>
+</li>
+<li>
+<p>In the Terminal, run the UI5 application with <code>grunt serve --open</code> and test it by creating, updating, or deleting advertisements.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>*<em>Step 2 - Access the Named Volume <code>m2</code></em></p>
+<ol>
+<li>
+<p>Execute the following command in the Terminal to get details about the volume:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker volume inspect m2  </span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Got information</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;Driver&quot;</span>: <span class="string">&quot;local&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Labels&quot;</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">&quot;Mountpoint&quot;</span>: <span class="string">&quot;/var/lib/docker/volumes/m2/_data&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;m2&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Options&quot;</span>: &#123;&#125;,</span><br><span class="line">    <span class="attr">&quot;Scope&quot;</span>: <span class="string">&quot;local&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>The <strong>Mountpoint</strong> attribute is the directory on the host (i.e. our virtual machine) where the data is persisted. Let’s have a look at the content of this folder. As this folder has restricted permission we have to execute the command as root user:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo ls -al /var/lib/docker/volumes/m2/_data</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>You will find a folder <code>repository</code>. This is where all dependencies that Maven requires are stored. Have a look at this folder:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo ls -al /var/lib/docker/volumes/m2/_data/repository</span><br></pre></td></tr></table></figure>
+<p>You should see a separate folder for each Maven dependency. When we restart the container, we will see that it starts much faster because of the cache.</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Step 3 - Access the Mounted Folder inside the Container</strong></p>
+<ol>
+<li>
+<p>Get into container</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker exec -it backend bash</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Let’s now have a look at our mounted volume. Remember that we mapped the root directory of the Java project to <code>/usr/src/app</code> inside the container. We also configured this directory as the working directory of the container, which means we should already be in that directory. Execute the following commands to show the content of the <code>src</code> folder.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd src</span><br><span class="line">ls -al</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>As these directories are mapped (i.e. shared) and not copied, we can add files to the <code>src</code> directory on the host and see it also in the container. Let’s try that. Open a new Terminal tab and create an empty text file by executing the following command from the root directory of the Java project:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ~/ibso-tools-bootcamp/bulletinboard-backend-java/src</span><br><span class="line">touch text.txt</span><br><span class="line">ls -al</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>When you switch back to the other tab in the Terminal with the container session, you should see that the file is shared by executing the following command:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ls -al</span><br></pre></td></tr></table></figure>
+<p>You should see that the file we just created on the host is also available in the container.</p>
+</li>
+<li>
+<p>🎉 You successfully attached to a running container!</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-08-Creating-a-Custom-Docker-Image">Exercise 08 - Creating a Custom Docker Image</h3>
+<p><strong>Before</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/05/05/O46lw1g8iQ39rL5.png" alt="image-20220328153942141"></p>
+<p>Overview image</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/04/29/JfyxlCANFO91HMa.png" alt="image-20220429141044102"></p>
+<p>To increase our productivity when developing SAPUI5, we want to get rid of the latency for the SAPUI5 framework. We will download it once and package it into a custom Docker image, which will then serve SAPUI5 from our local machine.</p>
+<ul>
+<li>
+<p>STEPS</p>
+<ul>
+<li>
+<p>Step 1 - Hello World with nginx in Docker</p>
+<ol>
+<li>
+<p>Execute the following command to ensure that the containers from the previous exercise are running:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker start backend_postgres backend_postgres_admin  backend</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Open the SAPUI5 project in VS Code.</p>
+</li>
+<li>
+<p>Open the Terminal and navigate to the SAPUI5 project.</p>
+</li>
+<li>
+<p>Create the missing <code>docker</code> and <code>image-openui5-sdk</code> directories so that you have following directory structure:</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">bulletinboard-frontend-ui5/</span><br><span class="line">  - docker/</span><br><span class="line">      - image-openui5-sdk/</span><br><span class="line">  - webapp/</span><br><span class="line">      - ...</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Open the <code>Dockerfile</code> and add the following snippet as the first line. That like tells Docker to use a base image called <a target="_blank" rel="noopener" href="https://hub.docker.com/_/nginx/"><code>nginx:1.17-alpine</code></a>, which is available on Docker Hub.</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Dockerfile</span></span><br><span class="line"><span class="keyword">FROM</span> nginx:<span class="number">1.17</span>-alpine</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>This single line is sufficient to create a custom image from that. In the Terminal, make sure you are in the <code>image-openui5-sdk</code> directory.</p>
+</li>
+<li>
+<p>Execute the following command to build the Docker image from the <code>Dockerfile</code>:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker build .</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>You should see something like <code>Successfully built &lt;HASH&gt;</code> in the console.</p>
+</li>
+<li>
+<p>To start a container from that image, you can use <code>docker run</code> like we did in the previous exercises and use the hash as the image name (instead of e.g. <code>postgres:11-alpine</code>). Note that the web server nginx listens to port <code>80</code> by default, which you need to map to a port on your host machine (i.e. our virtual machine). Also note that once the container runs, you won’t see anything(!) in the Terminal until you access the web server from e.g. the browser.</p>
+<p>You can either try to put the <code>docker run</code> command together by yourself based on the information above or use the following command:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -it -p 8070:80 &lt;HASH&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In your browser, go to <a target="_blank" rel="noopener" href="http://localhost:8070/">localhost:8070</a> and you should see the a welcome page of nginx.</p>
+</li>
+<li>
+<p>In the Terminal, you should also see that accessing the web server produces traffic in the log.</p>
+</li>
+<li>
+<p>Cancel the running container by pressing CTRL + C.</p>
+</li>
+<li>
+<p>In VS Code, go back to your <code>Dockerfile</code>.</p>
+</li>
+<li>
+<p>In order to serve some custom content with nginx, we only need to create an <code>index.html</code> file with some static content. We can do that in the <code>Dockerfile</code>. Add the highlighted line to the end of the <code>Dockerfile</code> to <em>run</em> a shell command. It creates an <code>index.html</code> file with the content <code>Hello World</code> at a default nginx path.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Dockerfile</span><br><span class="line">FROM nginx:1.17-alpine</span><br><span class="line">RUN echo &quot;Hello World&quot; &gt; /usr/share/nginx/html/index.html</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Let’s build the image again and test it. This time, when we build the image, we will give it a name instead of just a hash (i.e. a <em>tag</em>). For that, switch to the Terminal and execute the following command:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker build -t openui5-sdk .</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>To run a container from the image, we can now use the <em>tag</em> instead of the hash. Execute the following command to run the container:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -it -p 8070:80 openui5-sdk</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In your browser, go to <a target="_blank" rel="noopener" href="http://localhost:8070/">localhost:8070</a> and you should see your <em>Hello World</em>.</p>
+</li>
+<li>
+<p>In the Terminal, cancel the running container by pressing CTRL + C.</p>
+</li>
+<li>
+<p>🎉 You successfully created an nginx container instance!</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Step 2 - Build Custom Images Efficiently</p>
+<p>When creating custom Docker images, it can many <em>build-and-run</em> cycles of trial and error until you finally got it right. Entering the same commands over and over again can become tedious then, but we can do something about it by creating a build script.</p>
+<ol>
+<li>
+<p>In VS Code, create a file called <code>build-and-run</code> in the <code>image-openui5-sdk</code> directory. You can do that by right-clicking on the folder and selecting <strong>New File</strong>.</p>
+</li>
+<li>
+<p>Add the following snippet as the first line to indicates that the content of the file should be interpreted as a <em>bash script</em>.</p>
+</li>
+<li>
+<p>In the Terminal, navigate to the <code>image-openui5-sdk</code> directory and execute the following command to make the <code>build-and-run</code> script executable.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod +x build-and-run</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Add the highlighted line to the end of the <code>build-and-run</code> file to <em>build</em> the Docker image. Note that this is the same command that we used previously.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">docker build -t openui5-sdk .</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Below <code>docker build</code>, add the highlighted lines to <em>run</em> a container with our Docker image:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">docker build -t openui5-sdk .</span><br><span class="line"></span><br><span class="line">docker run -d \</span><br><span class="line">  --rm \</span><br><span class="line">  -p 8070:80 \</span><br><span class="line">  --name openui5-sdk-test \</span><br><span class="line">  openui5-sdk</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>To indicate that nginx has actually started, add the highlighted line to the of the <code>build-and-run</code> file:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">docker build -t openui5-sdk .</span><br><span class="line"></span><br><span class="line">docker run -d \</span><br><span class="line">  --rm \</span><br><span class="line">  -p 8070:80 \</span><br><span class="line">  --name openui5-sdk-test \</span><br><span class="line">  openui5-sdk</span><br><span class="line"></span><br><span class="line">echo &quot;Listening to localhost:8070, try http://localhost:8070&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>To avoid conflicts with Docker containers from a previous script execution (e.g. same name or port already allocated), add the highlighted command before <code>docker build</code>.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">docker stop openui5-sdk-test</span><br><span class="line"></span><br><span class="line">docker build -t openui5-sdk .</span><br><span class="line"></span><br><span class="line">docker run -d \</span><br><span class="line">  --rm \</span><br><span class="line">  -p 8070:80 \</span><br><span class="line">  --name openui5-sdk-test \</span><br><span class="line">  openui5-sdk</span><br><span class="line"></span><br><span class="line">echo &quot;Listening to localhost:8070, try http://localhost:8070&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Verify your <code>build-and-run</code> script: it should have the <code>docker stop</code> command, followed by <code>docker build</code> and then <code>docker run</code>.</p>
+</li>
+<li>
+<p>In the Terminal, make sure you are in the <code>image-openui5-sdk</code> directory.</p>
+</li>
+<li>
+<p>As the <code>build-and-run</code> script is ready, execute the following command to run the steps:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./build-and-run</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In your browser, go to <a target="_blank" rel="noopener" href="http://localhost:8070/">localhost:8070</a> and verify that the server is running properly.</p>
+</li>
+<li>
+<p>In the Terminal, execute the script again and make sure that there are no errors.</p>
+</li>
+<li>
+<p>🎉 You successfully created a Bash script to efficiently build-and-test a Docker image during development!</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Step 3 - Package SAPUI5 in Docker</p>
+<ol>
+<li>
+<p>In VS Code, create a file called <code>nginx.conf</code> in the <code>image-openui5-sdk</code> directory and paste in the content below. This simple configuration tells nginx to listen to port <code>80</code> (inside the container) and to serve files in the folder <code>/var/www</code>.</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">root</span> /var/www/;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># avoid caching</span></span><br><span class="line">    <span class="comment"># see https://stackoverflow.com/questions/40243633/disable-nginx-cache-for-javascript-files</span></span><br><span class="line">    <span class="attribute">add_header</span> Last-Modified $date_gmt;</span><br><span class="line">    <span class="attribute">add_header</span> Cache-Control <span class="string">&#x27;no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0&#x27;</span>;</span><br><span class="line">    <span class="attribute">if_modified_since</span> <span class="literal">off</span>;</span><br><span class="line">    <span class="attribute">expires</span> <span class="literal">off</span>;</span><br><span class="line">    <span class="attribute">etag</span> <span class="literal">off</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>To copy this file to the Docker image, add the highlighted <code>COPY</code> command to the end of the <code>Dockerfile</code>:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Dockerfile</span></span><br><span class="line"><span class="keyword">FROM</span> nginx:<span class="number">1.17</span>-alpine</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">echo</span> <span class="string">&quot;Hello World&quot;</span> &gt; /usr/share/nginx/html/index.html</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> ./nginx.conf /etc/nginx/conf.d/default.conf</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>As the new nginx configuration listens to port <code>80</code> (like before), we should document this in the <code>Dockerfile</code>. Add the highlighted command to the end of the <code>Dockerfile</code>:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Dockerfile</span></span><br><span class="line"><span class="keyword">FROM</span> nginx:<span class="number">1.17</span>-alpine</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">echo</span> <span class="string">&quot;Hello World&quot;</span> &gt; /usr/share/nginx/html/index.html</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> ./nginx.conf /etc/nginx/conf.d/default.conf</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>As the new nginx configuration serves files from <code>/var/www</code>, we need to make sure that this folder exists inside the image. Add the highlighted command after <code>FROM</code> in the <code>Dockerfile</code>. The <code>-p</code> option makes sure that any intermediate directories are also created.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Dockerfile</span><br><span class="line">FROM nginx:1.17-alpine</span><br><span class="line"></span><br><span class="line">RUN mkdir -p /var/www</span><br><span class="line"></span><br><span class="line">RUN echo &quot;Hello World&quot; &gt; /usr/share/nginx/html/index.html</span><br><span class="line"></span><br><span class="line">COPY ./nginx.conf /etc/nginx/conf.d/default.conf</span><br><span class="line"></span><br><span class="line">EXPOSE 80</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>From the Terminal, run the following command to copy the OpenUI5 SDK zip file into the same folder as your <code>Dockerfile</code>. We’ll copy them into the image in the next steps.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cp ~/openui5-sdks/*.zip \</span><br><span class="line">  ~/ibso-tools-bootcamp/bulletinboard-frontend-ui5/docker/image-openui5-sdk/</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>Why OpenUI5 and not SAPUI5?</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">The only reason we are using OpenUI5 instead of SAPUI5 is that the framework is much smaller and all related tasks will be a bit faster during the exercises.Everything we describe here is also applicable to <a target="_blank" rel="noopener" href="http://SAPUI5.In">SAPUI5.In</a> a real scenario, you would probably package SAPUI5 into a container instead of OpenUI5.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>Copying vs. downloading the OpenUI5 SDK</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Usually, we would download our artifacts from their official source on-the-fly as part of the <code>Dockerfile</code>. For OpenUI5, this would be <a target="_blank" rel="noopener" href="https://openui5.org/releases">openui5.org/releases</a>. For SAPUI5, this would ideally be <a target="_blank" rel="noopener" href="http://Nexus.As">Nexus.As</a> this could become a bottleneck with multiple participants downloading the SDK in parallel and multiple times, we instead copy the SDK from the VM’s file system into the Docker container.</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>In the <code>Dockerfile</code>, add the highlighted command right after creating the <code>/var/www</code> directory.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Dockerfile</span></span><br><span class="line">FROM nginx:1.17-alpine</span><br><span class="line"></span><br><span class="line">RUN mkdir -p /var/www</span><br><span class="line">COPY ./openui5-sdk-1.72.x.zip /var/www/openui5-sdk-1.72.x.zip</span><br><span class="line"></span><br><span class="line">RUN echo &quot;Hello World&quot; &gt; /usr/share/nginx/html/index.html</span><br><span class="line"></span><br><span class="line">COPY ./nginx.conf /etc/nginx/conf.d/default.conf</span><br><span class="line"></span><br><span class="line">EXPOSE 80</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>About downloading from Nexus/openui5.org</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">As explained in a previous info box, we would rather <strong>download</strong> the artifact on-the-fly in the <code>Dockerfile</code> instead of copying a local zip file.</td>
+</tr>
+<tr>
+<td style="text-align:left">You could do that with <code>wget</code> command like this one here for example:</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="keyword">for</span> OpenUI5</span></span><br><span class="line">RUN wget https://github.com/SAP/openui5/releases/download/1.72.5/openui5-sdk-1.72.5.zip -P /var/www</span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="keyword">for</span> SAPUI5</span></span><br><span class="line">wget https://nexusmil.wdf.sap.corp:8443/nexus/service/local/repo_groups/build.releases/content/com/sap/ui5/dist/sapui5-sdk-dist/1.72.5/sapui5-sdk-dist-1.72.5-opt-static.zip -P /var/www</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>Note</strong> that we <strong>do not recommend</strong> to try this now as network might be rather slow, depending on the location.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">If you still decide to try it out (which we really don’t recommend), you might get an error along the lines of <em>server returned error: HTTP/1.1 404 Not Found</em>. That’s because the patch version might not be available for download anymore. Check the available <a target="_blank" rel="noopener" href="https://openui5.org/releases">OpenUI5 releases</a> and adjust the URL if necessary.</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>We need to extract the content of the zip archive, which we can do with <code>unzip</code>. Add the highlighted command after <code>COPY</code>:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Dockerfile</span></span><br><span class="line">FROM nginx:1.17-alpine</span><br><span class="line"></span><br><span class="line">RUN mkdir -p /var/www</span><br><span class="line">COPY ./openui5-sdk-1.72.x.zip /var/www/openui5-sdk-1.72.x.zip</span><br><span class="line">RUN unzip -o /var/www/openui5-sdk-1.72.x.zip -d /var/www</span><br><span class="line"></span><br><span class="line">RUN echo &quot;Hello World&quot; &gt; /usr/share/nginx/html/index.html</span><br><span class="line"></span><br><span class="line">COPY ./nginx.conf /etc/nginx/conf.d/default.conf</span><br><span class="line"></span><br><span class="line">EXPOSE 80</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In the Terminal, build the image by executing the <code>./build-and-run</code> script again. It will run through all the different commands of the <code>Dockerfile</code> and also copy the OpenUI5 SDK.</p>
+</li>
+<li>
+<p>Once the build is complete and the container is running, go to <a target="_blank" rel="noopener" href="http://localhost:8070/">localhost:8070</a> in your browser. You should see the landing page of OpenUI5, which is now served from your container.</p>
+</li>
+<li>
+<p>In VS Code, in the <code>Dockerfile</code>, find the <em>Hello World</em> <code>RUN</code> command from Step 1 and remove the line.</p>
+</li>
+<li>
+<p>In the Terminal, build the image again by executing the <code>./build-and-run</code> script.</p>
+<p>When you look closely, you will note that Docker doesn’t build the entire image from scratch, but that it takes some of the <em>layers</em> from the cache.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Step 4 - Integrate Image with SAPUI5</p>
+<ol>
+<li>
+<p>In the Terminal, execute the <code>./build-and-run</code> script again without any argument to make sure that a container with a recent SAPUI5 version is running.</p>
+</li>
+<li>
+<p>In VS Code, open the <code>package.json</code> file in the root directory of the SAPUI5 project. Find the <code>resources</code> and <code>testResources</code> parameters, which are pointing to <code>openui5.hana.ondemand.com</code>.</p>
+<p>Use the following values instead:</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;sapui5&quot;</span>: &#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;1.72.5&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;resources&quot;</span>: <span class="string">&quot;http://localhost:8070/resources&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;testResources&quot;</span>: <span class="string">&quot;http://localhost:8070/test-resources&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;defaultPage&quot;</span>: <span class="string">&quot;webapp/index.html&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;libs&quot;</span>: &#123;&#125;,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In the Terminal, make sure you are in the root directory of the SAPUI5 project. Execute the following command to start the web server for the SAPUI5 app and open the browser:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">grunt serve --open</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In a different Terminal tab, attach to the log stream of your Docker container by executing the following command:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker logs openui5-sdk-test --follow</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In the browser, you should see that your application is running successfully. When you look into the logs, you should see some log traffic every time you refresh the URL, because the SAPUI5 resources are now served from your container and not from <code>openui5.hana.ondemand.com</code> anymore.</p>
+</li>
+<li>
+<p>🎉 You successfully connected your UI5 application to your custom Docker container.</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-08-01-Reusing-Docker-Images-with-Build-Arguments">Exercise 08.01 - Reusing Docker Images with Build Arguments</h3>
+<p>In this exercise, you will leverage the same <code>Dockerfile</code> for creating multiple custom Docker images to host different OpenUI5 SDK versions.</p>
+<p>After this exercise, you will understand how to leverage build arguments in a <code>Dockerfile</code>.</p>
+<ul>
+<li>
+<p>Steps</p>
+<ul>
+<li>
+<p>Step 1 - Use Variables in Build-and-Run</p>
+<ol>
+<li>
+<p>To further improve the <code>build-and-run</code> script, we can introduce variables to ease maintenance. We can define variables with <code>MY_VAR=&quot;MY_VALUE&quot;</code> (<strong>note:</strong> no space before or after <code>=</code>!). Introduce variables <code>CONTAINER_NAME</code>, <code>IMAGE_NAME</code>, and <code>HOST_PORT</code> with the respective values and make sure that all occurrences in the <code>docker</code> and <code>echo</code> commands are replaced, for example:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CONTAINER_NAME=&quot;openui5-sdk-test&quot;</span><br><span class="line"></span><br><span class="line">docker stop $CONTAINER_NAME</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Execute the <code>build-and-run</code> script with <code>./build-and-run</code> and make sure that there are no errors.</p>
+</li>
+<li>
+<p>In your browser, go to <a target="_blank" rel="noopener" href="http://localhost:8070/">localhost:8070</a> and verify that the server is running properly.</p>
+</li>
+<li>
+<p>🎉 You successfully introduced variables to the <code>build-and-run</code> script!</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Step 2 - Introduce Build Arguments</p>
+<p>We can leverage the same <code>Dockerfile</code> for different SAPUI5 versions. For that, we need to make the <code>Dockerfile</code> more flexible by introducing so-called <em>build arguments</em>.</p>
+<ol>
+<li>
+<p>In VS Code, make sure the <code>Dockerfile</code> is open. Add the following command after <code>FROM</code> in the <code>Dockerfile</code>. It defines a build argument <code>SAPUI5_VERSION</code> with a default value.</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ARG</span> SAPUI5_VERSION=<span class="number">1.72</span>.x</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Replace the two occurrences of the SAPUI5 version <code>1.72.x</code> with a reference to the build argument. You can do that with <code>$SAPUI5_VERSION</code>, e.g.:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">COPY</span><span class="bash"> ./openui5-sdk-<span class="variable">$SAPUI5_VERSION</span>.zip /var/www/openui5-sdk-<span class="variable">$SAPUI5_VERSION</span>.zip</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Make sure to open the <code>build-and-run</code> script. Although the <code>SAPUI5_VERSION</code> build argument has a default value, we should explicitly reflect the SAPUI5 version in the script. Add a <code>SAPUI5_VERSION</code> variable with the value <code>1.72.x</code> to the top of the file (<strong>note:</strong> no space before or after <code>=</code>!)</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">SAPUI5_VERSION=&quot;1.72.x&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>To reflect the SAPUI5 version of the image in the image name, change the name in the script as follows: <code>openui5-sdk:1.72.x</code>.</p>
+</li>
+<li>
+<p>Build arguments are set by passing the <code>--build-arg</code> option and <code>KEY=VAL</code> as value, e.g. <code>--build-arg MY_VAR=MY_VAL</code>. Adjust the <code>docker build</code> script so that the <code>SAPUI5_VERSION</code> build argument is set from the variable we just introduced.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--build-arg SAPUI5_VERSION=$SAPUI5_VERSION</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In the Terminal, execute the <code>./build-and-run</code> script. You should see that it fully rebuilds the image, because the <code>Dockerfile</code> changed compared to the previous build. Although it’s semantically the same, a new <em>layer</em> was introduced by adding the <code>ARG</code> instruction.</p>
+</li>
+<li>
+<p>We can modify the <code>build-and-run</code> script so that it allows to specify the SAPUI5 version from the Terminal (e.g. <code>./build-and-run &quot;1.70.x&quot;</code>).</p>
+<p>Replace the static declaration of the <code>SAPUI5_VERSION</code> variable in the <code>build-and-run</code> script with the following if-else block:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">if [ -z $1 ]; then # if first argument is empty</span><br><span class="line">  SAPUI5_VERSION=&quot;1.72.x&quot;</span><br><span class="line">else</span><br><span class="line">  SAPUI5_VERSION=$1</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In the Terminal, execute the <code>./build-and-run</code> script again. You should see that Docker doesn’t have to re-build the image, but that all layers are served from cache.</p>
+</li>
+<li>
+<p>Execute the <code>build-and-run</code> script again to with a parameter to create a separate image for the other OpenUI5 SDK version that we have available:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./build-and-run &quot;1.70.x&quot;</span><br></pre></td></tr></table></figure>
+<p>You should see the script considers the parameter, passes it on to <code>docker run</code> and then builds a new image, as there are no layers for this SAPUI5 version in the cache.</p>
+</li>
+<li>
+<p>🎉 You successfully used build arguments to make your Docker image more flexible!</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-09-Describing-the-Development-Environment-with-Docker-Compose">Exercise 09 - Describing the Development Environment with Docker Compose</h3>
+<ul>
+<li>Dockerfile: build docker image</li>
+<li>Docker-compose: Compose file is what’s used to deploy an instance of that image as a container.</li>
+</ul>
+<p>BEFORE:</p>
+<p>​	<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/06/19/k8D7ezLtKvCyZrQ.png" alt="image-20220619224934402"></p>
+<p>AFTER:</p>
+<p>​	<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/06/20/pZOgXEx5DmWaU9u.png" alt="image-20220620001220960"></p>
+<h4 id="Step-1-Docker-Compose-for-the-SAPUI5-Application">Step 1 - Docker Compose for the SAPUI5 Application</h4>
+<ol>
+<li>
+<p>Open the Terminal and navigate to the SAPUI5 project.</p>
+</li>
+<li>
+<p>Open the SAPUI5 project in VS Code.</p>
+</li>
+<li>
+<p>In VS Code, create a file called <code>docker-compose.yml</code> in the root directory of the SAPUI5 project. In VS Code, you can do that by scrolling to the end of the file tree, right-clicking below the last file and selecting <strong>New File</strong>.</p>
+</li>
+<li>
+<p>First, we add a <em>service</em> (aka container) to our <code>docker-compose.yml</code> file for our custom image. For that, we provide the same set of parameters than we did before, such as the path to the <code>Dockerfile</code> and the port mapping when running the container. Add the highlighted snippet to the <code>docker-compose.yml</code> file for <code>services</code>:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.1&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">openui5_sdk:</span></span><br><span class="line">    <span class="attr">build:</span></span><br><span class="line">      <span class="attr">context:</span> <span class="string">docker/image-openui5-sdk</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8090</span><span class="string">:80</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#volumes:</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In the Terminal, execute the following command to start what is described in <code>docker-compose.yml</code>. What this command will do is to build the image if not cached yet (<code>docker build</code>) and run the container (<code>docker run</code>).</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+<p>Similar to what we know from <code>docker run</code>, the <code>-d</code> option executes everything that is described in the <code>docker-compose.yml</code> file as <em>daemon</em> (i.e. in the background).</p>
+<p>If you run <code>docker-compose up</code> (without <code>-d</code>), it will attach to the logs of all the containers and stream them to the Terminal.</p>
+</li>
+<li>
+<p>In the browser, navigate to <a target="_blank" rel="noopener" href="http://localhost:8090/">localhost:8090</a> and you should see the SAPUI5 SDK landing page from the container that you started with Docker Compose.</p>
+</li>
+<li>
+<p>Execute the following command to stop the containers you started with Docker Compose:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker-compose down</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Before we can add a container for the SAPUI5 application to Docker Compose, we need to make some changes to its configuration.</p>
+<p>In VS Code, open the <code>package.json</code> file from the root directory of the SAPUI5 project. Find the <code>resources</code> and <code>testResources</code> parameters, which are pointing to <code>http://localhost:8070</code>.</p>
+<p>Replace them with the following:</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;sapui5&quot;</span>: &#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;1.72.5&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;resources&quot;</span>: <span class="string">&quot;$&#123;SAPUI5_HOST:-https://openui5.hana.ondemand.com&#125;/resources&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;testResources&quot;</span>: <span class="string">&quot;$&#123;SAPUI5_HOST:-https://openui5.hana.ondemand.com&#125;/test-resources&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;defaultPage&quot;</span>: <span class="string">&quot;webapp/index.html&quot;</span>,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Remember that when we ran the SAPUI5 SDK container with Docker Compose, we used a different port (<code>8090</code> instead of <code>8070</code>). Also, the <em>hostname</em> isn’t <code>localhost</code> in Docker Compose, but rather the name of the container (like we know it from <code>--link</code>).</li>
+<li>With the new parameter values, we to make the URLs configurable through environment variables. It’s a Bash-style syntax, that either takes the value from the <code>SAPUI5_HOST</code> environment variable if defined or uses the value specified after <code>:-</code> as a fallback:</li>
+</ul>
+</li>
+<li>
+<p>With the SAPUI5 resources URL configurable, we can add the SAPUI5 application also as a service (aka container) to our <code>docker-compose.yml</code>.</p>
+<p>Add the highlighted snippet to the <code>docker-compose.yml</code> file under <code>services</code> (sequence of services is irrelevant):</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.1&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">openui5_sdk:</span></span><br><span class="line">    <span class="attr">build:</span></span><br><span class="line">      <span class="attr">context:</span> <span class="string">docker/image-openui5-sdk</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8090</span><span class="string">:80</span></span><br><span class="line">  <span class="attr">frontend:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">node:12.13.0</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">bash</span> <span class="string">-c</span> <span class="string">&quot;npm install &amp;&amp; npx grunt serve&quot;</span></span><br><span class="line">    <span class="attr">working_dir:</span> <span class="string">/usr/src/app</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8000</span><span class="string">:8000</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./.npmrc:/usr/src/app/.npmrc</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./webapp:/usr/src/app/webapp</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./package.json:/usr/src/app/package.json</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./Gruntfile.js:/usr/src/app/Gruntfile.js</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">node_modules:/usr/src/app/node_modules</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">npm:/root/.npm</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">SAPUI5_HOST:</span> <span class="string">http://openui5_sdk:80</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#volumes:</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>All the parameters in the <code>docker-compose.yml</code> file can be translated to a <code>docker run</code> command. They are mostly concepts that we already learned about such as the image name, commands to execute, and port and volume mapping.</p>
+<p>Note that:</p>
+<ul>
+<li>when we refer to the container with the OpenUI5 SDK in the <code>SAPUI5_HOST</code> variable, we do that with the container name and the <strong>internal port</strong>, not the mapped port.</li>
+<li>we cache the <code>node_modules</code> that are installed in the project directory.</li>
+<li>we cache the <code>npm</code> dependencies that are downloaded from the central registry.</li>
+<li>we use <code>bash -c CMDS</code> to execute multiple commands (i.e. <code>&amp;&amp;</code>), which you can also use with <code>docker run</code> to execute multiple commands in sequence.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Note that above, there are two named volumes defined, <code>node_modules</code> and <code>npm</code>, which serve as caches for dependencies. Any named volumes need to be defined in Docker Compose (similar to <code>docker volume create</code>). Add the highlighted lines to the <code>docker-compose.yml</code> file for <code>volumes</code>:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.1&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">openui5_sdk:</span></span><br><span class="line">    <span class="attr">build:</span></span><br><span class="line">      <span class="attr">context:</span> <span class="string">docker/image-openui5-sdk</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8090</span><span class="string">:80</span></span><br><span class="line">  <span class="attr">frontend:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">node:12.13.0</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">bash</span> <span class="string">-c</span> <span class="string">&quot;npm install &amp;&amp; npx grunt serve&quot;</span></span><br><span class="line">    <span class="attr">working_dir:</span> <span class="string">/usr/src/app</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8000</span><span class="string">:8000</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./.npmrc:/usr/src/app/.npmrc</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./webapp:/usr/src/app/webapp</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./package.json:/usr/src/app/package.json</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./Gruntfile.js:/usr/src/app/Gruntfile.js</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">node_modules:/usr/src/app/node_modules</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">npm:/root/.npm</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">SAPUI5_HOST:</span> <span class="string">http://openui5_sdk:80</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="attr">node_modules:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">node_modules</span></span><br><span class="line">  <span class="attr">npm:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">npm</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In the Terminal, execute Docker Compose with <code>docker-compose up -d</code>. This command now starts two containers, as specified in <code>docker-compose.yml</code>.</p>
+</li>
+<li>
+<p>In the browser, navigate to <a target="_blank" rel="noopener" href="http://localhost:8000/webapp">localhost:8000/webapp</a> and you should see your SAPUI5 application, served with SAPUI5 resources from the other container, and started with just a single command.</p>
+<p>Important</p>
+<p>Don’t worry if you see an error message. That’s because the SAPUI5 application again cannot connect to the Java backend as it’s not reachable from the Docker container. We will fix this in Exercise 10.</p>
+</li>
+<li>
+<p>Execute <code>docker-compose logs --follow</code> to stream the logs in the Terminal. Refresh the URL in the browser and note that the Terminal shows information from both containers, only with a different prefixes.</p>
+</li>
+<li>
+<p>In the Terminal, detach from the logging stream by pressing CTRL + C.</p>
+</li>
+<li>
+<p>You can stop both containers with <code>docker-compose down</code></p>
+</li>
+<li>
+<p>🎉 You successfully used Docker Compose to run the UI5 application!</p>
+</li>
+</ol>
+<h4 id="Step-2-Docker-Compose-for-the-Java-Application¶">Step 2 - Docker Compose for the Java Application<a target="_blank" rel="noopener" href="https://github.wdf.sap.corp/pages/ibso-tools-bootcamp/coursematerial/exercises/09/#step-3-docker-compose-for-the-java-application">¶</a></h4>
+<ol>
+<li>
+<p>Open the Terminal and navigate to the Java project.</p>
+</li>
+<li>
+<p>Open the Java project in VS Code.</p>
+</li>
+<li>
+<p>In VS Code, create a file called <code>docker-compose.yml</code> in the root directory of the Java project. In VS Code, you can do that by scrolling to the end of the file tree, right-clicking below the last file and selecting <strong>New File</strong>.</p>
+</li>
+<li>
+<p>First, we add a <em>service</em> (aka container) to our <code>docker-compose.yml</code> file for the PostgreSQL database.</p>
+<p>Add the highlighted snippet to the <code>docker-compose.yml</code> file for <code>services</code>:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.1&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">backend_postgres:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">postgres:11-alpine</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">5432</span><span class="string">:5432</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">backend_postgres_data:/var/lib/postgresql/data</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">POSTGRES_PASSWORD:</span> <span class="string">&quot;my?ecret&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="attr">backend_postgres_data:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">backend_postgres_data</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Next, we add another service for Adminer.</p>
+<p>Add the highlighted snippet to the <code>docker-compose.yml</code> file under <code>services</code> (sequence of services is irrelevant):</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.1&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">backend_postgres:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">postgres:11-alpine</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">5432</span><span class="string">:5432</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">backend_postgres_data:/var/lib/postgresql/data</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">POSTGRES_PASSWORD:</span> <span class="string">&quot;my?ecret&quot;</span></span><br><span class="line">  <span class="attr">backend_postgres_admin:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">adminer</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8086</span><span class="string">:8080</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./.adminer/index.php:/var/www/html/index.php</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">ADMINER_DEFAULT_DRIVER:</span> <span class="string">&quot;pgsql&quot;</span></span><br><span class="line">      <span class="attr">ADMINER_DEFAULT_SERVER:</span> <span class="string">&quot;backend_postgres&quot;</span></span><br><span class="line">      <span class="attr">ADMINER_DEFAULT_USERNAME:</span> <span class="string">&quot;postgres&quot;</span></span><br><span class="line">      <span class="attr">ADMINER_DEFAULT_PASSWORD:</span> <span class="string">&quot;my?ecret&quot;</span></span><br><span class="line">      <span class="attr">ADMINER_DEFAULT_DB:</span> <span class="string">&quot;postgres&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="attr">backend_postgres_data:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">backend_postgres_data</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>We are mounting a custom <code>index.php</code> file into Adminer. It’s a script that we created based on a blog post, which allows to set all logon parameters via environment variables. To use this <em>enhancement</em> of Adminer, we only need to mount it into the respective container and then set the respective environment variable.</p>
+<p>Without the modification, whenever you access Adminer, you would need to enter the credentials and connection details for the test database manually, which is quite tedious and inefficient.</p>
+<p>Feel free to open the <code>index.php</code> file in VS Code. We recommend not to change it though!</p>
+<p>We should rather create a custom Docker image that contains these modifications rather than modifying Adminer every time we use it but that’s out of scope for now.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>In the Terminal, execute Docker Compose with <code>docker-compose up -d</code>.</p>
+</li>
+<li>
+<p>In the browser, navigate to <a target="_blank" rel="noopener" href="http://localhost:8086/">localhost:8086</a> and you should see the Adminer interface. This time, all the form fields should be pre-filled with the correct values. Press <strong>Login</strong> to verify this behavior.</p>
+</li>
+<li>
+<p>To complete the Docker Compose setup, we need to add a service for the Java container that executes the Maven commands.</p>
+<p>Add the highlighted snippet to the <code>docker-compose.yml</code> file under <code>services</code> (sequence of services is irrelevant):</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.1&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">backend_postgres:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">postgres:11-alpine</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">5432</span><span class="string">:5432</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">backend_postgres_data:/var/lib/postgresql/data</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">POSTGRES_PASSWORD:</span> <span class="string">&quot;my?ecret&quot;</span></span><br><span class="line">  <span class="attr">backend_postgres_admin:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">adminer</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8086</span><span class="string">:8080</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./.adminer/index.php:/var/www/html/index.php</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">ADMINER_DEFAULT_DRIVER:</span> <span class="string">&quot;pgsql&quot;</span></span><br><span class="line">      <span class="attr">ADMINER_DEFAULT_SERVER:</span> <span class="string">&quot;backend_postgres&quot;</span></span><br><span class="line">      <span class="attr">ADMINER_DEFAULT_USERNAME:</span> <span class="string">&quot;postgres&quot;</span></span><br><span class="line">      <span class="attr">ADMINER_DEFAULT_PASSWORD:</span> <span class="string">&quot;my?ecret&quot;</span></span><br><span class="line">      <span class="attr">ADMINER_DEFAULT_DB:</span> <span class="string">&quot;postgres&quot;</span></span><br><span class="line">  <span class="attr">backend:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">maven:3.5-jdk-8</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">mvn</span> <span class="string">--settings</span> <span class="string">./.m2/settings.xml</span> <span class="string">clean</span> <span class="string">spring-boot:run</span> <span class="string">-Dmaven.clean.failOnError=false</span></span><br><span class="line">    <span class="attr">working_dir:</span> <span class="string">/usr/src/app</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8085</span><span class="string">:8080</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./src:/usr/src/app/src</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./.m2:/usr/src/app/.m2</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./pom.xml:/usr/src/app/pom.xml</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">m2:/root/.m2</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">SPRING_PROFILES_ACTIVE:</span> <span class="string">&quot;postgres&quot;</span></span><br><span class="line">      <span class="attr">SPRING_DATASOURCE_URL:</span> <span class="string">&quot;jdbc:postgresql://backend_postgres:5432/postgres&quot;</span></span><br><span class="line">      <span class="attr">SPRING_DATASOURCE_PASSWORD:</span> <span class="string">&quot;my?ecret&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="attr">backend_postgres_data:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">backend_postgres_data</span></span><br><span class="line">  <span class="attr">m2:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">m2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In the Terminal, execute Docker Compose with <code>docker-compose up -d</code> again. You should see the application starting without any error.</p>
+</li>
+<li>
+<p>In the browser, navigate to <a target="_blank" rel="noopener" href="http://localhost:8085/hello/World">localhost:8085/hello/World</a> and you should see the <em>Hello World</em> text.</p>
+</li>
+<li>
+<p>🎉 You successfully used Docker Compose to run the Java application!</p>
+</li>
+</ol>
+<h3 id="Exercise-10-Integrating-Multiple-Docker-Compose-Files">Exercise 10 - Integrating Multiple Docker Compose Files</h3>
+<p>In this exercise, you will round up the Docker Compose setup and enable livereload, debugging, and bring Java and SAPUI5 together.</p>
+<p>After this exercise, you will understand how to orchestrate several containers.</p>
+<p>BEFORE:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/06/20/APZ1wdmQOq2ob6y.png" alt="image-20220620163140104"></p>
+<p>AFTER:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/06/20/85hlTmNpeUszWRk.png" alt="image-20220620163203891"></p>
+<h4 id="Step-1-Integrate-Java-and-SAPUI5-with-Docker-Compose¶">Step 1 - Integrate Java and SAPUI5 with Docker Compose<a target="_blank" rel="noopener" href="https://github.wdf.sap.corp/pages/ibso-tools-bootcamp/coursematerial/exercises/10/#step-2-integrate-java-and-sapui5-with-docker-compose">¶</a></h4>
+<p>Both the Java and the SAPUI5 application themselves are now wrapped with Docker Compose and ready for development. The problem is that while the Java service is accessible via <code>localhost:8085</code> on your host machine, the SAPUI5 container doesn’t know how to access that localhost. The solution is to bring both <code>docker-compose.yml</code> scripts together.</p>
+<p>In VS Code, open the SAPUI5 project and open the <code>package.json</code> file from the root directory of the project. Find the <code>proxies</code> parameter.</p>
+<p>Replace both occurrences of <code>http://localhost:8085</code> with the following (but leave the rest of the URI as is):</p>
+<p>Copied to clipboard</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">$&#123;BULLETINBOARD_BACKEND_HOST:-http:<span class="comment">//localhost:8085&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>Open the Terminal and navigate to your Tools Bootcamp workspace, where you already have directories for the Java and SAPUI5 projects (e.g. <code>cd ~/ibso-tools-bootcamp</code>)</p>
+</li>
+<li>
+<p>Create the missing <code>docker-playground</code> directory so that you have following directory structure:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">ibso-tools-bootcamp/</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">bulletinboard-backend-java/</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">...</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">bulletinboard-frontend-ui5/</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">...</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">docker-playground/</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">...</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Navigate into the newly created <code>docker-playground</code> directory.</p>
+</li>
+<li>
+<p>Run the following command to open the project in VS Code:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">code .</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Create a file called <code>docker-compose.yml</code> in root directory of the <code>docker-playground</code> project. In VS Code, you can do that by scrolling to the end of the file tree, right-clicking below the last file and selecting <strong>New File</strong>.</p>
+</li>
+<li>
+<p>Include the <code>frontend</code> services from the Docker Compose script of the SAPUI5 project by <em>extending</em> your current <code>docker-compose.yml</code> file with existing definition.</p>
+<p>Add the highlighted snippet to the <code>docker-compose.yml</code> file for <code>services</code>:</p>
+<p>Copied to clipboard</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.1&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">frontend:</span></span><br><span class="line">    <span class="attr">extends:</span></span><br><span class="line">      <span class="attr">file:</span> <span class="string">./../bulletinboard-frontend-ui5/docker-compose.yml</span></span><br><span class="line">      <span class="attr">service:</span> <span class="string">frontend</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#volumes:</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Based on that syntax, we can add the other services. Add the highlighted snippet to the <code>docker-compose.yml</code> file:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.1&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">frontend:</span></span><br><span class="line">    <span class="attr">extends:</span></span><br><span class="line">      <span class="attr">file:</span> <span class="string">./../bulletinboard-frontend-ui5/docker-compose.yml</span></span><br><span class="line">      <span class="attr">service:</span> <span class="string">frontend</span></span><br><span class="line">  <span class="attr">openui5_sdk:</span></span><br><span class="line">    <span class="attr">extends:</span> </span><br><span class="line">      <span class="attr">file:</span> <span class="string">./../bulletinboard-frontend-ui5/docker-compose.yml</span></span><br><span class="line">      <span class="attr">service:</span> <span class="string">openui5_sdk</span></span><br><span class="line">  <span class="attr">backend:</span></span><br><span class="line">    <span class="attr">extends:</span> </span><br><span class="line">      <span class="attr">file:</span> <span class="string">./../bulletinboard-backend-java/docker-compose.yml</span></span><br><span class="line">      <span class="attr">service:</span> <span class="string">backend</span></span><br><span class="line">  <span class="attr">backend_postgres:</span></span><br><span class="line">    <span class="attr">extends:</span> </span><br><span class="line">      <span class="attr">file:</span> <span class="string">./../bulletinboard-backend-java/docker-compose.yml</span></span><br><span class="line">      <span class="attr">service:</span> <span class="string">backend_postgres</span></span><br><span class="line">  <span class="attr">backend_postgres_admin:</span></span><br><span class="line">    <span class="attr">extends:</span> </span><br><span class="line">      <span class="attr">file:</span> <span class="string">./../bulletinboard-backend-java/docker-compose.yml</span></span><br><span class="line">      <span class="attr">service:</span> <span class="string">backend_postgres_admin</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#volumes:</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Add the highlighted named volumes to the <code>volumes</code> section of the new <code>docker-compose.yml</code> file of the <code>docker-playground</code> project:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.1&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">frontend:</span></span><br><span class="line">    <span class="attr">extends:</span></span><br><span class="line">      <span class="attr">file:</span> <span class="string">./../bulletinboard-frontend-ui5/docker-compose.yml</span></span><br><span class="line">      <span class="attr">service:</span> <span class="string">frontend</span></span><br><span class="line">  <span class="attr">openui5_sdk:</span></span><br><span class="line">    <span class="attr">extends:</span> </span><br><span class="line">      <span class="attr">file:</span> <span class="string">./../bulletinboard-frontend-ui5/docker-compose.yml</span></span><br><span class="line">      <span class="attr">service:</span> <span class="string">openui5_sdk</span></span><br><span class="line">  <span class="attr">backend:</span></span><br><span class="line">    <span class="attr">extends:</span> </span><br><span class="line">      <span class="attr">file:</span> <span class="string">./../bulletinboard-backend-java/docker-compose.yml</span></span><br><span class="line">      <span class="attr">service:</span> <span class="string">backend</span></span><br><span class="line">  <span class="attr">backend_postgres:</span></span><br><span class="line">    <span class="attr">extends:</span> </span><br><span class="line">      <span class="attr">file:</span> <span class="string">./../bulletinboard-backend-java/docker-compose.yml</span></span><br><span class="line">      <span class="attr">service:</span> <span class="string">backend_postgres</span></span><br><span class="line">  <span class="attr">backend_postgres_admin:</span></span><br><span class="line">    <span class="attr">extends:</span> </span><br><span class="line">      <span class="attr">file:</span> <span class="string">./../bulletinboard-backend-java/docker-compose.yml</span></span><br><span class="line">      <span class="attr">service:</span> <span class="string">backend_postgres_admin</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="attr">backend_postgres_data:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">backend_postgres_data</span></span><br><span class="line">  <span class="attr">m2:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">m2</span></span><br><span class="line">  <span class="attr">node_modules:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">node_modules</span></span><br><span class="line">  <span class="attr">npm:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">npm</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>About named volumes and inheritance</p>
+<p>While most configuration is inherited when <em>extending</em> a Docker Compose configuration, named volumes are not. They need to be re-declared explicitly.</p>
+<p>The named volumes above are the ones that we already declared in the <code>docker-compose.yml</code> files of the SAPUI5 and Java project.</p>
+</li>
+<li>
+<p>With the central Docker Compose configuration, we can now wire the SAPUI5 container to the Java container. For that, define an environment variable in the <code>docker-compose.yml</code> file of the <code>docker-playground</code> project for the <code>frontend</code> service with the name <code>BULLETINBOARD_BACKEND_HOST</code> and value <code>http://backend:8080</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version: &#x27;2.1&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  frontend:</span><br><span class="line">    extends:</span><br><span class="line">      file: ./../bulletinboard-frontend-ui5/docker-compose.yml</span><br><span class="line">      service: frontend</span><br><span class="line">    environment:</span><br><span class="line">      BULLETINBOARD_BACKEND_HOST: http://backend:8080</span><br><span class="line">  openui5_sdk:</span><br><span class="line">    extends: </span><br><span class="line">      file: ./../bulletinboard-frontend-ui5/docker-compose.yml</span><br><span class="line">      service: openui5_sdk</span><br><span class="line">  backend:</span><br><span class="line">    extends: </span><br><span class="line">      file: ./../bulletinboard-backend-java/docker-compose.yml</span><br><span class="line">      service: backend</span><br><span class="line">  backend_postgres:</span><br><span class="line">    extends: </span><br><span class="line">      file: ./../bulletinboard-backend-java/docker-compose.yml</span><br><span class="line">      service: backend_postgres</span><br><span class="line">  backend_postgres_admin:</span><br><span class="line">    extends: </span><br><span class="line">      file: ./../bulletinboard-backend-java/docker-compose.yml</span><br><span class="line">      service: backend_postgres_admin</span><br><span class="line"></span><br><span class="line">volumes:</span><br><span class="line">  backend_postgres_data:</span><br><span class="line">    name: backend_postgres_data</span><br><span class="line">  m2:</span><br><span class="line">    name: m2</span><br><span class="line">  node_modules:</span><br><span class="line">    name: node_modules</span><br><span class="line">  npm:</span><br><span class="line">    name: npm</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Before testing the setup and avoid port issues, make sure to stop all running Docker containers by executing the following command in the Terminal:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker stop $(docker ps -aq)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In the Terminal, execute Docker Compose with <code>docker-compose up -d</code>.</p>
+</li>
+<li>
+<p>Execute the following command to follow the logs of the containers:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker-compose logs --follow</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In the browser, navigate to <a target="_blank" rel="noopener" href="http://localhost:8000/webapp">localhost:8000/webapp</a> and you should see the SAPUI5 application. Use the user interface to create an advertisement.</p>
+</li>
+<li>
+<p>Restart all Docker Compose containers by executing the following command:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose restart</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In the browser, again navigate to <a target="_blank" rel="noopener" href="http://localhost:8000/webapp">localhost:8000/webapp</a> and you should still see the data that you previously created.</p>
+</li>
+<li>
+<p>🎉 You successfully described major parts of your development environment with Docker Compose!</p>
+</li>
+</ul>
+<h3 id="Exercise-10-01-Enabling-Livereload-in-Docker-Compose-for-SAPUI5">Exercise 10.01 - Enabling Livereload in Docker Compose for SAPUI5</h3>
+<p>After this exercise, you will understand what needs to be considered for enabling live reload in a Docker setup.</p>
+<h4 id=""></h4>
+<p>The SAPUI5 tool <code>custdev-sapui5-infra-util</code> that we are using automatically looks for a free port for the so-called <em>livereload server</em>. In a Docker setup, we need a static port, which is exposed by the container.</p>
+<ol>
+<li>
+<p>Open the Terminal and navigate to the SAPUI5 project.</p>
+</li>
+<li>
+<p>Open the SAPUI5 project in VS Code.</p>
+</li>
+<li>
+<p>In VS Code, open the <code>docker-compose.yml</code> in the root directory of the SAPUI5 project.</p>
+</li>
+<li>
+<p>Adjust the <code>grunt serve</code> command by adding the <code>--lr-server-port=35731</code> parameter:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npx grunt serve --lr-server-port=35731</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In the <code>ports</code> section, expose port <code>35731</code> to the same external port:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">- <span class="number">35731</span>:<span class="number">35731</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In the Terminal, execute Docker Compose with <code>docker-compose up -d</code> again. Everything should start as usual.</p>
+</li>
+<li>
+<p>In the browser, navigate to <a target="_blank" rel="noopener" href="http://localhost:8000/webapp">localhost:8000/webapp</a> and you should see the SAPUI5 application.</p>
+</li>
+<li>
+<p>In VS Code, open the file <code>webapp/view/Main.view.xml</code>. Find the <code>Title</code> element in the XML and change the <code>text</code> attribute (around line 15). And save the file.</p>
+</li>
+<li>
+<p>In the browser, you should see that the page automatically refreshes and that the title is displayed.</p>
+</li>
+<li>
+<p>🎉 You successfully enabled Livereload for SAPUI5 in Docker!</p>
+</li>
+</ol>
+<h3 id="Exercise-10-02-Enabling-Livereload-in-Docker-Compose-for-Java-with-Spring-Boot¶">Exercise 10.02 - Enabling Livereload in Docker Compose for Java with Spring Boot<a target="_blank" rel="noopener" href="https://github.wdf.sap.corp/pages/ibso-tools-bootcamp/coursematerial/exercises/10-02/#exercise-1002-enabling-livereload-in-docker-compose-for-java-with-spring-boot">¶</a></h3>
+<h4 id="Step-1-Enable-Livereload-for-Java-with-Spring-Boot¶">Step 1 - Enable Livereload for Java with Spring Boot<a target="_blank" rel="noopener" href="https://github.wdf.sap.corp/pages/ibso-tools-bootcamp/coursematerial/exercises/10-02/#step-1-enable-livereload-for-java-with-spring-boot">¶</a></h4>
+<p>As livereload with Spring Boot works a bit different than with SAPUI5, it’s not sufficient to just expose a port in Docker Compose. With Spring Boot, there is a dedicated <code>RemoteSpringApplication</code> that we need to start in VS Code, which will keep the Docker container in sync.</p>
+<ol>
+<li>
+<p>Open the Terminal and navigate to the Docker Playground project:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd ~/ibso-tools-bootcamp/docker-playground</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Execute Docker Compose with <code>docker-compose up -d</code>. Everything should start as usual.</p>
+</li>
+<li>
+<p>Open the Java project in VS Code.</p>
+</li>
+<li>
+<p>In VS Code, in the icon bar on the far left, click on the <strong>beatle icon</strong> to open the <em>Run and Debug</em> view.</p>
+</li>
+<li>
+<p>In the menu on the left, click on <strong>create a launch.json file</strong> and select <strong>Java</strong> from the menu to initialize a metadata file about different configurations to start your Java application. If you already have a file, click on the <strong>gear icon</strong> at the top of the menu to open it.<code>launch.json</code></p>
+</li>
+<li>
+<p>In the <code>launch.json</code> file, add the highlighted lines to the <code>configuration</code> array of the file:</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Use IntelliSense to learn about possible attributes.</span></span><br><span class="line">    <span class="comment">// Hover to view descriptions of existing attributes.</span></span><br><span class="line">    <span class="comment">// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;java&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;bulletinboard-backend-java devtools&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;mainClass&quot;</span>: <span class="string">&quot;org.springframework.boot.devtools.RemoteSpringApplication&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: <span class="string">&quot;http://localhost:8085&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        ...</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Make sure to <strong>Save</strong> the changes.</p>
+</li>
+<li>
+<p>In the blue bar at the bottom, click on the <strong>run icon</strong> and select <strong>bulletinboard-backend-java devtools</strong> to start the <code>RemoteSpringApplication</code>.</p>
+</li>
+<li>
+<p>Open the <code>HelloWorldController.java</code> file and change the <code>Hello World</code> text and save your changes. Within a few seconds, the Java server will restart.</p>
+</li>
+<li>
+<p>In the browser, navigate to <a target="_blank" rel="noopener" href="http://localhost:8085/hello/World">localhost:8085/hello/World</a> and you should see your updated text without having to restart Docker Compose.</p>
+</li>
+<li>
+<p>In VS Code, in the hovering menu at the center, click on the <strong>red rectangle</strong> to stop the the <code>RemoteSpringApplication</code>.</p>
+</li>
+<li>
+<p>🎉 You successfully ran livereload with the RemoteSpringApplication!</p>
+</li>
+</ol>
+<h3 id="Exercise-10-03-Enabling-Debugging-in-Docker-Compose-for-Java¶">Exercise 10.03 - Enabling Debugging in Docker Compose for Java<a target="_blank" rel="noopener" href="https://github.wdf.sap.corp/pages/ibso-tools-bootcamp/coursematerial/exercises/10-03/#exercise-1003-enabling-debugging-in-docker-compose-for-java">¶</a></h3>
+<h4 id="Step-1-Enable-Debugging-for-Java¶">Step 1 - Enable Debugging for Java<a target="_blank" rel="noopener" href="https://github.wdf.sap.corp/pages/ibso-tools-bootcamp/coursematerial/exercises/10-03/#step-1-enable-debugging-for-java">¶</a></h4>
+<p>As debugging Java works via ports, we need expose the respective ports in the Docker setup. Also, as the Java application fully runs in Docker, there’s a bit more that needs to be done than just pressing the <em>Debug</em> button in VS Code.</p>
+<ol>
+<li>
+<p>Open the Terminal and navigate to the Java project.</p>
+</li>
+<li>
+<p>Open the Java project in VS Code.</p>
+</li>
+<li>
+<p>In VS Code, open the <code>docker-compose.yml</code> in the root directory of the Java project.</p>
+</li>
+<li>
+<p>Add the following parameters to the end of the <code>mvn</code> command to run the Java application in a mode where it can be debugged:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-Dspring-boot.run.jvmArguments=&quot;-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005&quot;</span><br></pre></td></tr></table></figure>
+<p>About the additional arguments</p>
+<p>We are passing some specific arguments to the Java Virtual Machine (JVM) that enable remote debugging. They make the JVM start in debug mode and debuggers can attach to port <code>5005</code>.</p>
+</li>
+<li>
+<p>In the <code>ports</code> section, expose port <code>5005</code> to the same external port.</p>
+</li>
+<li>
+<p>In the Terminal, execute Docker Compose with <code>docker-compose up -d</code> again. Everything should start as usual. When you log into the log, just before the large Spring ASCII art is logged, you should see the following:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Listening for transport dt_socket at address: 5005</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>In VS Code, in the icon bar on the far left, click on the <strong>beatle icon</strong> to open the <em>Run and Debug</em> view.</p>
+</li>
+<li>
+<p>In the menu on the left, click on <strong>create a launch.json file</strong> and select <strong>Java</strong> from the menu to initialize a metadata file about different configurations to start your Java application. If you already have a <code>launch.json</code> file, click on the <strong>gear icon</strong> at the top of the menu to open it.</p>
+</li>
+<li>
+<p>In the <code>launch.json</code> file, add the highlighted lines to the <code>configuration</code> array of the file:</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Use IntelliSense to learn about possible attributes.</span></span><br><span class="line">    <span class="comment">// Hover to view descriptions of existing attributes.</span></span><br><span class="line">    <span class="comment">// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;java&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Debug in Docker&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;attach&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;hostName&quot;</span>: <span class="string">&quot;localhost&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;port&quot;</span>: <span class="number">5005</span></span><br><span class="line">        &#125;,</span><br><span class="line">        ...</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Make sure to <strong>Save</strong> the changes.</p>
+</li>
+<li>
+<p>In the blue bar at the bottom, click on the <strong>run icon</strong> and select <strong>Debug in Docker</strong> attach the debugger to the Docker container.</p>
+</li>
+<li>
+<p>Open the <code>HelloWorldController.java</code> file and set a breakpoint in the <code>sayHello</code> method. You can set a breakpoint by clicking just left of the line number in VS Code.</p>
+</li>
+<li>
+<p>In the browser, navigate to <a target="_blank" rel="noopener" href="http://localhost:8085/hello/World">localhost:8085/hello/World</a> and you should see that there is no immediate response. Instead, the processing of the request is stopped because of the breakpoint.</p>
+</li>
+<li>
+<p>In VS Code, in the hovering menu at the center, click on the <strong>blue run icon</strong> to continue with the script execution.</p>
+</li>
+<li>
+<p>🎉 You successfully debugged your dockerized Java project!</p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/VincentVanNF">VincentVan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://vincentvannf.github.io/2022/08/01/SAP_IBSO_TOOLS_PART3/">https://vincentvannf.github.io/2022/08/01/SAP_IBSO_TOOLS_PART3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://vincentvannf.github.io" target="_blank">VincentVan</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SAP/">SAP</a><a class="post-meta__tags" href="/tags/Devops/">Devops</a><a class="post-meta__tags" href="/tags/Docker/">Docker</a><a class="post-meta__tags" href="/tags/IBSO-TOOLS-BOOTCAMP/">IBSO TOOLS BOOTCAMP</a><a class="post-meta__tags" href="/tags/JAVA/">JAVA</a><a class="post-meta__tags" href="/tags/SAP-UI5/">SAP UI5</a></div><div class="post_share"><div class="addthis_inline_share_toolbox"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=null" async="async"></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/Wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/Wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/ZFB.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/ZFB.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/08/01/SAP_PAAS/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/paas.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">SAP_Paas</div></div></a></div><div class="next-post pull-right"><a href="/2022/07/31/ML/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/ML.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Machine Learning and Deep Learning</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/08/01/SAP_IBSO_TOOLS_PART2/" title="SAP_IBSO_TOOLS_PART2"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/exercise1_5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-01</div><div class="title">SAP_IBSO_TOOLS_PART2</div></div></a></div><div><a href="/2022/07/31/SAP_Docker/" title="Docker"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/docker.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-31</div><div class="title">Docker</div></div></a></div><div><a href="/2022/08/01/SAP_IBSO_TOOLS_PART1/" title="SAP_IBSO_TOOLS_PART1"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/IBSO.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-01</div><div class="title">SAP_IBSO_TOOLS_PART1</div></div></a></div><div><a href="/2022/08/01/SAP_Dynatrace/" title="SAP_Dynatrace"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/Dynatrace.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-01</div><div class="title">SAP_Dynatrace</div></div></a></div><div><a href="/2022/08/01/SAP_Git/" title="SAP_Git"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/git.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-01</div><div class="title">SAP_Git</div></div></a></div><div><a href="/2022/08/01/SAP_PAAS/" title="SAP_Paas"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/paas.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-01</div><div class="title">SAP_Paas</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">VincentVan</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/VincentVanNF"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/VincentVanNF" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3080167665@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">每天睡够8小时</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-and-Docker-Compose"><span class="toc-number">1.</span> <span class="toc-text">Docker and Docker-Compose</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise-06-Setting-up-the-Database-with-Docker"><span class="toc-number">1.1.</span> <span class="toc-text">Exercise 06 - Setting up the Database with Docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise-07-Running-the-Java-Backend-Application-in-a-Docker-Container"><span class="toc-number">1.2.</span> <span class="toc-text">Exercise 07 - Running the Java Backend Application in a Docker Container</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise-08-Creating-a-Custom-Docker-Image"><span class="toc-number">1.3.</span> <span class="toc-text">Exercise 08 - Creating a Custom Docker Image</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise-08-01-Reusing-Docker-Images-with-Build-Arguments"><span class="toc-number">1.4.</span> <span class="toc-text">Exercise 08.01 - Reusing Docker Images with Build Arguments</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise-09-Describing-the-Development-Environment-with-Docker-Compose"><span class="toc-number">1.5.</span> <span class="toc-text">Exercise 09 - Describing the Development Environment with Docker Compose</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-1-Docker-Compose-for-the-SAPUI5-Application"><span class="toc-number">1.5.1.</span> <span class="toc-text">Step 1 - Docker Compose for the SAPUI5 Application</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-2-Docker-Compose-for-the-Java-Application%C2%B6"><span class="toc-number">1.5.2.</span> <span class="toc-text">Step 2 - Docker Compose for the Java Application</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise-10-Integrating-Multiple-Docker-Compose-Files"><span class="toc-number">1.6.</span> <span class="toc-text">Exercise 10 - Integrating Multiple Docker Compose Files</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-1-Integrate-Java-and-SAPUI5-with-Docker-Compose%C2%B6"><span class="toc-number">1.6.1.</span> <span class="toc-text">Step 1 - Integrate Java and SAPUI5 with Docker Compose</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise-10-01-Enabling-Livereload-in-Docker-Compose-for-SAPUI5"><span class="toc-number">1.7.</span> <span class="toc-text">Exercise 10.01 - Enabling Livereload in Docker Compose for SAPUI5</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">1.7.1.</span> <span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise-10-02-Enabling-Livereload-in-Docker-Compose-for-Java-with-Spring-Boot%C2%B6"><span class="toc-number">1.8.</span> <span class="toc-text">Exercise 10.02 - Enabling Livereload in Docker Compose for Java with Spring Boot</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-1-Enable-Livereload-for-Java-with-Spring-Boot%C2%B6"><span class="toc-number">1.8.1.</span> <span class="toc-text">Step 1 - Enable Livereload for Java with Spring Boot</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise-10-03-Enabling-Debugging-in-Docker-Compose-for-Java%C2%B6"><span class="toc-number">1.9.</span> <span class="toc-text">Exercise 10.03 - Enabling Debugging in Docker Compose for Java</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Step-1-Enable-Debugging-for-Java%C2%B6"><span class="toc-number">1.9.1.</span> <span class="toc-text">Step 1 - Enable Debugging for Java</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/09/03/Pytorch/" title="Basic DL Using Pytorch"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/pytorch.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Basic DL Using Pytorch"/></a><div class="content"><a class="title" href="/2022/09/03/Pytorch/" title="Basic DL Using Pytorch">Basic DL Using Pytorch</a><time datetime="2022-09-02T16:50:00.000Z" title="发表于 2022-09-03 00:50:00">2022-09-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/SAP_Dynatrace/" title="SAP_Dynatrace"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/Dynatrace.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SAP_Dynatrace"/></a><div class="content"><a class="title" href="/2022/08/01/SAP_Dynatrace/" title="SAP_Dynatrace">SAP_Dynatrace</a><time datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/SAP_Git/" title="SAP_Git"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/git.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SAP_Git"/></a><div class="content"><a class="title" href="/2022/08/01/SAP_Git/" title="SAP_Git">SAP_Git</a><time datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/SAP_IBSO_TOOLS_PART2/" title="SAP_IBSO_TOOLS_PART2"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/exercise1_5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SAP_IBSO_TOOLS_PART2"/></a><div class="content"><a class="title" href="/2022/08/01/SAP_IBSO_TOOLS_PART2/" title="SAP_IBSO_TOOLS_PART2">SAP_IBSO_TOOLS_PART2</a><time datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/SAP_IBSO_TOOLS_PART1/" title="SAP_IBSO_TOOLS_PART1"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/IBSO.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SAP_IBSO_TOOLS_PART1"/></a><div class="content"><a class="title" href="/2022/08/01/SAP_IBSO_TOOLS_PART1/" title="SAP_IBSO_TOOLS_PART1">SAP_IBSO_TOOLS_PART1</a><time datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright"><div><b><font color="#00BFFF">&copy;2021 - 2023 By </font></b> <b><a font color="#00BFFF"href=https://vincentvannf.github.io/ style="position: relative; z-index: 10"><font color="#00BFFF">VincentVan</a></font></b></div></div><div class="footer_custom_text"><b><font color="#00BFFF">Hi, Welcom to my blog.</font></b></div></div><div id="footer-wrap" style="iposition:absolute;text-align:cente;inset:20px;"></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '8f42e6f2019939020945',
+      clientSecret: 'e8db6e1f9cc7b4ec40ba8ce4d76250264b125b8c',
+      repo: 'VincentVanNF.github.io',
+      owner: 'VincentVanNF',
+      admin: ['VincentVanNF'],
+      id: '9b31a58c89c0221d0316aca48ef2152e',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const findTrueUrl = (array) => {
+    Promise.all(array.map(item =>
+      fetch(item.url).then(resp => resp.json()).then(data => {
+        const urlArray = data.body.match(/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/ig)
+        if (data.user.login === 'utterances-bot') {
+          return urlArray.pop()
+        } else {
+          return urlArray.shift()
+        }
+      })
+    )).then(res => {
+        array = array.map((i,index)=> {
+          return {
+            ...i,
+            url: res[index]
+          }
+        })
+
+        saveToLocal.set('github-newest-comments', JSON.stringify(array), 10/(60*24))
+        generateHtml(array)
+    });
+  }
+
+  const getComment = () => {
+    fetch('https://api.github.com/repos/VincentVanNF/VincentVanNF.github.io/issues/comments?sort=updated&direction=desc&per_page=6&page=1',{
+      "headers": {
+        Accept: 'application/vnd.github.v3.html+json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        const githubArray = data.map(item => {
+          return {
+            'avatar': item.user.avatar_url,
+            'content': changeContent(item.body_html),
+            'nick': item.user.login,
+            'url': item.issue_url,
+            'date': item.updated_at,
+            'githubUrl': item.html_url
+          }
+        })
+        findTrueUrl(githubArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      })
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('github-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><div class="aplayer no-destroy" data-id="7622286806" data-server="netease" data-type="playlist" data-fixed="true" data-mutex="true" data-autoplay="false" > </div><script src="/js/jquery.min.js"></script><script src="/js/fishes.js"></script><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script>(function(d, w, c) {
+    w.ChatraID = 'xKZME3aZENuKqB3Z7';
+    var s = d.createElement('script');
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments);
+    };
+    s.async = true;
+    s.src = 'https://call.chatra.io/chatra.js';
+    if (d.head) d.head.appendChild(s);
+})(document, window, 'Chatra');
+
+if (false) {
+  var chatBtnFn = () => {
+    var chatBtn = document.getElementById("chat_btn")
+    chatBtn.addEventListener("click", function(){
+      Chatra('openChat')
+    });
+  }
+  chatBtnFn()
+} else {
+  if (false) {
+    function chatBtnHide () {
+      Chatra('hide')
+    }
+    function chatBtnShow () {
+      Chatra('show')
+    }
+  }
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'UA-239901416-2', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.4.0" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://www.jsdelivr.com/" style="margin-inline:5px" data-title="本站使用JsDelivr为静态资源提供CDN加速" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/js/runtime.js"></script><!-- hexo injector body_end end --></body></html>

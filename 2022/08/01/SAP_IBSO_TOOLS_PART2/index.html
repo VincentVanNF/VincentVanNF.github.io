@@ -1,0 +1,825 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>SAP_IBSO_TOOLS_PART2 | VincentVan</title><meta name="keywords" content="SAP &quot;IBSO TOOLS BOOTCAMP&quot; Devops"><meta name="author" content="VincentVan,3080167665@qq.com"><meta name="copyright" content="VincentVan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="SAP 实习期间 学习Devops相关tools">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SAP_IBSO_TOOLS_PART2">
+<meta property="og:url" content="https://vincentvannf.github.io/2022/08/01/SAP_IBSO_TOOLS_PART2/index.html">
+<meta property="og:site_name" content="VincentVan">
+<meta property="og:description" content="SAP 实习期间 学习Devops相关tools">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vincentvannf.github.io/img/exercise1_5.jpg">
+<meta property="article:published_time" content="2022-08-01T07:00:00.000Z">
+<meta property="article:modified_time" content="2022-08-01T07:20:37.300Z">
+<meta property="article:author" content="VincentVan">
+<meta property="article:tag" content="SAP">
+<meta property="article:tag" content="Devops">
+<meta property="article:tag" content="IBSO TOOLS BOOTCAMP">
+<meta property="article:tag" content="JAVA">
+<meta property="article:tag" content="SAP UI5">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vincentvannf.github.io/img/exercise1_5.jpg"><link rel="shortcut icon" href="/img/avatar.jpg"><link rel="canonical" href="https://vincentvannf.github.io/2022/08/01/SAP_IBSO_TOOLS_PART2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="SMp-WCh2-15NoyvdKD57wvY3dGBCraogGZOhwy_h9Qk"/><meta name="baidu-site-verification" content="code-dq7TNN1IXf"/><meta name="msvalidate.01" content="EAEAB8A5E519B85254994EF46F15A64C"/><link rel="manifest" href="/img/siteicons/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/siteicons/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/siteicons/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/siteicons/favicon-16x16.png"/><link rel="mask-icon" href="/img/siteicons/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6977b44415e5cb320371eaf48031d71d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-239901416-2"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-239901416-2');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "dhcmcg78px");</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"OI6JNF40NR","apiKey":"c21669e336acb106e29d7212316209df","indexName":"hexo","hits":{"per_page":6},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: VincentVan","link":"链接: ","source":"来源: VincentVan","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SAP_IBSO_TOOLS_PART2',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-01 15:20:37'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><style type="text/css">.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body{left:-66px!important}.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover{left:0!important}</style><link rel="stylesheet" href="/css/footer-all-transparent.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/me"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">VincentVan</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/me"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">SAP_IBSO_TOOLS_PART2</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-01T07:20:37.300Z" title="更新于 2022-08-01 15:20:37">2022-08-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/SAP-IBSO-TOOLS-BOOTCAMP-Devops-Exercise1-5/">SAP/IBSO TOOLS BOOTCAMP/Devops/Exercise1-5</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SAP_IBSO_TOOLS_PART2"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2022/08/01/SAP_IBSO_TOOLS_PART2/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div><article class="post-content" id="article-container"><h2 id="Exercise-01-Building-and-Running-a-Java-Project-with-Maven">Exercise 01 - Building and Running a Java Project with Maven</h2>
+<ul>
+<li>
+<p>Turn off the automount and autoApendWindowsPath</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/wsl.conf</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> write these info to the wsl.conf file</span></span><br><span class="line">[interop]</span><br><span class="line">appendWindowsPath = false</span><br><span class="line">[automount]</span><br><span class="line">enabled = false</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> terminate the wsl</span></span><br><span class="line">wsl -t $&#123;your Distribution&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> restart wsl2</span></span><br><span class="line">wsl</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Java Environment in WSL2</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install openjdk-11-jdk</span><br><span class="line"></span><br><span class="line">vim /etc/profile </span><br><span class="line"><span class="meta">#</span><span class="bash">add these info</span></span><br><span class="line"></span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Maven Environment</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install maven</span><br><span class="line"></span><br><span class="line">vim /etc/profile</span><br><span class="line"><span class="meta">#</span><span class="bash">add these info</span></span><br><span class="line">export MAVEN_HOME=/usr/share/maven</span><br><span class="line">export PATH=$PATH:$MAVEN_HOME/bin</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>get project zip and unzip:<a target="_blank" rel="noopener" href="https://github.wdf.sap.corp/ibso-tools-bootcamp/bulletinboard-backend-java/archive/sol00-starter.zip">📥 ibso-tools-bootcamp/bulletinboard-backend-java</a></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">unzip -n bulletinboard-backend-java-sol00-starter.zip</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>cd into Home dir of the demo project</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ls -a</span><br></pre></td></tr></table></figure>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/03/24/bBVT2MIEQgl3WqP.png" alt="image-20220324164221578"></p>
+</li>
+<li>
+<p>clean package and deploy the project</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> clean target packages</span> </span><br><span class="line">mvn clean</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> clean target packages and depoly</span></span><br><span class="line">mvn clean verify</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> or use <span class="built_in">command</span> provided by the Spring Boot Maven Plugin that is listed <span class="keyword">in</span> the build plugins section as spring-boot-maven-plugin.</span></span><br><span class="line">mvn spring-boot:run</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Exercise-02-Building-and-Running-a-SAPUI5-Project-with-Node-js-and-Grunt">Exercise 02 - Building and Running a SAPUI5 Project with Node.js and Grunt</h2>
+<ul>
+<li>
+<p>get SAPUI5 project and unzip :<a target="_blank" rel="noopener" href="https://github.wdf.sap.corp/ibso-tools-bootcamp/bulletinboard-frontend-ui5/archive/sol00-starter.zip">📥 ibso-tools-bootcamp/bulletinboard-frontend-ui5</a></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">unzip -n bulletinboard-frontend-ui5-sol00-starter.zip</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>set up Nodejs environment</p>
+<ul>
+<li>Get nvm :version manager</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Install node：</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> install stable</span></span><br><span class="line">nvm install --lts</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">install latest</span></span><br><span class="line">nvm install node</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Cd into project module</p>
+</li>
+<li>
+<p>Initialize a Node.js package</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> will create package.json</span></span><br><span class="line">npm init --yes</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Use eslint to do static check</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> install eslint node package</span></span><br><span class="line">npm install --save-dev eslint</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Run eslint</p>
+<ul>
+<li>Use command directly</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npx eslint --no-eslintrc webapp/**/*.js</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Create a script shortcut in the <code>package.json</code> file</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">#change <span class="string">&quot;test&quot;</span>: <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span></span><br><span class="line">		<span class="string">&quot;test&quot;</span>: <span class="string">&quot;eslint --no-eslintrc webapp/**/*.js&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Use npm command to run eslint</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm test</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Use Grunt for Building a Zip File of the UI5 Project</p>
+</li>
+<li>
+<p>Cd into root directory of the UI5 project  install <code>grunt</code> and <code>grunt-contrib-compress</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install --global grunt-cli</span><br><span class="line">npm install --save-dev grunt</span><br><span class="line">npm install --save-dev grunt-contrib-compress</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>configure any Grunt task such as the <code>compress</code> task, we need to create the file <code>Gruntfile.js</code> in the root directory of our UI5 project</p>
+</li>
+<li>
+<p>Add the following lines to your newly created <code>Gruntfile.js</code>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Task configuration</span></span><br><span class="line">    grunt.initConfig(&#123;</span><br><span class="line">        <span class="attr">compress</span>: &#123;</span><br><span class="line">          <span class="attr">main</span>: &#123;</span><br><span class="line">            <span class="attr">options</span>: &#123;</span><br><span class="line">              <span class="attr">archive</span>: <span class="string">&#x27;dist/archive.zip&#x27;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">files</span>: [&#123;</span><br><span class="line">              <span class="attr">expand</span>: <span class="literal">true</span>,</span><br><span class="line">              <span class="attr">cwd</span>: <span class="string">&#x27;webapp&#x27;</span>,</span><br><span class="line">              <span class="attr">src</span>: <span class="string">&#x27;**&#x27;</span></span><br><span class="line">            &#125;]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Load the plugin that provides the &quot;compress&quot; task</span></span><br><span class="line">    grunt.loadNpmTasks(<span class="string">&#x27;grunt-contrib-compress&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Custom task(s)</span></span><br><span class="line">    grunt.registerTask(<span class="string">&#x27;build&#x27;</span>, [<span class="string">&#x27;compress&#x27;</span>]);</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Execute grunt task</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npx grunt compress</span><br><span class="line"><span class="meta">#</span><span class="bash"> or</span></span><br><span class="line">npx grunt build</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>If succeed,you can find <code>dist/archive.zip</code> file is re-created.</p>
+</li>
+</ul>
+<h2 id="Exercise-03-Setting-up-the-SAPUI5-Project-with-the-IBSO-UI5-Tools">Exercise 03 - Setting up the SAPUI5 Project with the IBSO UI5 Tools</h2>
+<ul>
+<li>
+<p>Install the latest version of <code>generator-custdev-sapui5</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install generator-custdev-sapui5 --save-dev  </span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Start the <em>generator-custdev-sapui5</em> tool from that directory with the following command</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npx generator-ui5</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Answer the questions by using arrow keys or entering the following</p>
+<table>
+<thead>
+<tr>
+<th>Prompt</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What kind of project do you want to generate?</td>
+<td>choose <strong>only infrastructure to link existing SAPUI5 apps and libs</strong></td>
+</tr>
+<tr>
+<td>What dev landscape do you want to use?</td>
+<td>choose <strong>Dev@SAP</strong></td>
+</tr>
+<tr>
+<td>Your project name:</td>
+<td>confirm the proposed name</td>
+</tr>
+<tr>
+<td>What version of SAPUI5 do you want to use?</td>
+<td>type <code>1.72.5</code></td>
+</tr>
+<tr>
+<td>Where is the SAPUI5 framework located for local testing?</td>
+<td>choose <strong>remotely on a server (e.g. HCP, ABAP System)</strong></td>
+</tr>
+<tr>
+<td>Where are the SAPUI5 resources located?</td>
+<td>enter <code>https://openui5.hana.ondemand.com/1.72.5/resources</code></td>
+</tr>
+<tr>
+<td>Where are the SAPUI5 test-resources located?</td>
+<td>enter <code>https://openui5.hana.ondemand.com/1.72.5/test-resources</code></td>
+</tr>
+</tbody>
+</table>
+<p>During generation, you will get the message that there is a conflict, as the <code>package.json</code> already exists in the project directory. Answer the question <strong>Overwrite package.json?</strong> with y (for <em>yes</em>) and press ENTER to confirm. Do the same for the <code>Gruntfile.js</code> and <code>.gitignore</code>.</p>
+</li>
+<li>
+<p><strong>Run application locally</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npx grunt serve --open</span><br></pre></td></tr></table></figure>
+<ol>
+<li>
+<p>The web server is started on <a target="_blank" rel="noopener" href="http://localhost:8000/">localhost:8000</a> and the browser opens automatically (option: <code>--open</code>) in the root directory of the UI5 project. As there is no <code>index.html</code> in the root directory, we only see a <em>file browser</em>. Click on the folder <code>webapp</code>. The <code>index.html</code> of that folder is loaded and the UI5 application is started.</p>
+</li>
+<li>
+<p>As we don’t always want to manually navigate to the <code>index.html</code> file, we can specify in the <code>package.json</code> what file to open when <code>--open</code> is used.</p>
+</li>
+<li>
+<p>Modify <code>package.json</code></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;sapui5&quot;</span>: &#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;1.72.5&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;resources&quot;</span>: <span class="string">&quot;https://openui5.hana.ondemand.com/1.72.5/resources&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;testResources&quot;</span>: <span class="string">&quot;https://openui5.hana.ondemand.com/1.72.5/test-resources&quot;</span>,</span><br><span class="line">  </span><br><span class="line">  <span class="attr">&quot;defaultPage&quot;</span>: <span class="string">&quot;webapp/index.html&quot;</span>,</span><br><span class="line">  </span><br><span class="line">  <span class="attr">&quot;libs&quot;</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">&quot;apps&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;bulletinboard-frontend-ui5&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;namespace&quot;</span>: <span class="string">&quot;com.sap.ibso.bb&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;resources&quot;</span>: <span class="string">&quot;webapp&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;testResources&quot;</span>: <span class="string">&quot;webapp/test&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;proxies&quot;</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">&quot;profiles&quot;</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Get Familiar with the Available Grunt Tasks</strong></p>
+<p>more info : <a target="_blank" rel="noopener" href="https://github.wdf.sap.corp/pages/ibso-ui5-tools/docs/tasks/">a lot more</a></p>
+<p>Some useful commands:</p>
+<ol>
+<li><code>grunt eslint</code> runs static code checks via eslint</li>
+<li><code>grunt test</code> runs all the automated tests of the project</li>
+<li><code>grunt build</code> creates preload files and and a zip archive</li>
+</ol>
+<p><strong>NOTE</strong>:When run <code>grunt test</code> it will start a karma test and use chrome to do the test,thus need to configue chrome in WSL2</p>
+<ul>
+<li>
+<p>Install chrome</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line">wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br><span class="line"></span><br><span class="line">sudo apt install ./google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Make sure if it worked</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">google-chrome --version</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Install ChromeDriver</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> check version</span></span><br><span class="line">chrome_driver=$(curl &quot;https://chromedriver.storage.googleapis.com/LATEST_RELEASE&quot;) &amp;&amp; \</span><br><span class="line">echo &quot;$chrome_driver&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> download</span></span><br><span class="line"></span><br><span class="line">curl -Lo chromedriver_linux64.zip &quot;https://chromedriver.storage.googleapis.com/\</span><br><span class="line"><span class="meta">$</span><span class="bash">&#123;chrome_driver&#125;/chromedriver_linux64.zip<span class="string">&quot;</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string">unzip</span></span></span><br><span class="line">unzip chromedriver_linux64.zip</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string">move to /usr/bin</span></span></span><br><span class="line">sudo mv chromedriver /usr/bin/chromedriver</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Check if it worked</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chromedriver --version</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Install X Server</p>
+<p>Download and install <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/vcxsrv/">VcXsrv</a> <strong>in Windows</strong>. Once installed, run <code>xlaunch.exe</code> (from the VcXsrv folder in Program Files). You can leave most of the settings as default, but make sure to check “Disable access control”. Allow it through the firewall if prompted when you first run it.</p>
+<p>In Linux the <code>DISPLAY</code> environment variable tells GUI applications at which IP address the X Server is that we want to use. Since in WSL2 the IP address of Windows land is <strong>not</strong> localhost anymore, we need to set <code>DISPLAY</code> to the correct IP address:</p>
+<p>I recommend you put this in your <code>.bashrc</code> or <code>/etc/profile</code> whatever the equivalent is for your distro.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk &#x27;&#123;print $2; exit;&#125;&#x27;):0.0</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Run command not with root user</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npx grunt test</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Successful</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/03/25/btE8iFN7qpdwuXC.png" alt="image-20220325173835447"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Exercise-04-Changing-the-Java-Project-Efficiently">Exercise 04 - Changing the Java Project Efficiently</h2>
+<p><strong>In this exercise, you will import the Java project into Visual Studio Code and enable the Spring Boot devtools.</strong></p>
+<h3 id="Step-1-Import-Java-Project-into-Visual-Studio-Code"><strong>Step 1 Import Java Project into Visual Studio Code</strong></h3>
+<ul>
+<li>
+<p>Import the project in Visual Studio Code</p>
+</li>
+<li>
+<p>cd into root of the project</p>
+</li>
+<li>
+<p>open VS code by command</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">code .</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Step-2-Enable-Live-Reload-for-Spring-Boot"><strong>Step 2 Enable Live Reload for Spring Boot</strong></h3>
+<ul>
+<li>
+<p>find the dependency file <code>pom.xml</code> and open it add following dependency</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Step-3-Test-Live-Reload-with-Spring-Boot">Step 3 Test Live Reload with Spring Boot</h3>
+<ol>
+<li>
+<p>In the Terminal, make sure are in the root directory of your Java project.</p>
+</li>
+<li>
+<p>Run the Java project with <code>mvn spring-boot:run</code> as we did in a previous exercise.</p>
+</li>
+<li>
+<p>Open <a target="_blank" rel="noopener" href="http://localhost:8080/hello/World">localhost:8080/hello/World</a> in the browser to see the test page of the Java project.</p>
+</li>
+<li>
+<p>Arrange your windows so that you see the Terminal and VS Code at the same time.</p>
+</li>
+<li>
+<p>In VS Code, expand the <code>src/main/java</code> folder. It contains the productive source code.</p>
+</li>
+<li>
+<p>Expand all elements to the <code>com.sap.ibso.ato.training.tools.controller</code> namespace and open the <code>HelloWorldController.java</code> file.</p>
+</li>
+<li>
+<p>Find the following line in the file:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="string">&quot;Hello &quot;</span>+ name + <span class="string">&quot;!&quot;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Change the line, e.g. by changing <code>Hello</code> to something else (e.g. <code>Hola</code> or <code>Bonjour</code>). Once you save the file, e.g. with CTRL + S, VS Code will compile your changes. The compilation process updates the <em>classpath</em>, which is detected by the Spring Boot devtools. The devtools then restart the server. In the Terminal, you should see some traffic, which is exactly the server restarting.</p>
+</li>
+<li>
+<p>In the browser, refresh the <a target="_blank" rel="noopener" href="http://localhost:8080/hello/World">Hello World test page</a>.</p>
+</li>
+</ol>
+<h2 id="Exercise-05-Changing-the-UI5-Project-Efficiently">Exercise 05 - Changing the UI5 Project Efficiently</h2>
+<h3 id="Step-1-Test-Live-Reload-with-the-UI5-Application"><strong>Step 1 - Test Live Reload with the UI5 Application</strong></h3>
+<ul>
+<li>
+<p>cd into root directory of the UI5 project</p>
+</li>
+<li>
+<p>Open project in VS code</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">code .</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>start the server</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npx grunt serve --open</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Make sure you see the UI5 application in the browser or open <a target="_blank" rel="noopener" href="http://localhost:8000/webapp">localhost:8000/webapp</a> manually.</p>
+</li>
+<li>
+<p>In VS Code, open the file <code>webapp/view/Main.view.xml</code>. Look for the line <code>&lt;Title text=&quot;Ads&quot; level=&quot;H2&quot;/&gt;</code> (line 15) and change the title from <code>Ads</code> to <code>Advertisements</code>.</p>
+</li>
+<li>
+<p>refresh the page</p>
+</li>
+</ul>
+<h3 id="Step-2-Call-the-Java-Application-from-the-UI5-Application-CORS">Step 2 - Call the Java Application from the UI5 Application(CORS)</h3>
+<ul>
+<li>
+<p>start Java application in the root of the Java project</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn spring-boot:run</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Check the <em>Advertisements</em> API of the Java application via the browser:</p>
+<ul>
+<li>
+<p>Advertisements Service: <a target="_blank" rel="noopener" href="http://localhost:8080/api/v1/ads">localhost:8080/api/v1/ads</a> (should be an empty array)</p>
+</li>
+<li>
+<p>Documentation of the Services: <a target="_blank" rel="noopener" href="http://localhost:8080/v2/api-docs">localhost:8080/v2/api-docs</a> (Swagger API metadata as JSON)</p>
+<blockquote>
+<p>About Swagger</p>
+<p><a target="_blank" rel="noopener" href="https://swagger.io/">Swagger</a> allows you to describe the structure of APIs so that machines can read them. By reading API’s structure, swagger can automatically build interactive API documentation as well as generate client libraries for the API in many languages. You can have a look at the swagger API documentation of our java application <a target="_blank" rel="noopener" href="http://localhost:8080/swagger-ui.html">here</a>.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>In the browser, switch back to the UI5 application (<a target="_blank" rel="noopener" href="http://localhost:8000/webapp">localhost:8000/webapp</a>).Open the Developer Tools by pressing F12 or clicking on the settings button in Chrome (icon with three dots) and selecting <strong>More Tools &gt; Developer tools</strong>. In the Developer tools, click on the <strong>Network</strong> tab.</p>
+<p>Refresh the page in the browser and you will see a request <strong>api-docs</strong> on the <strong>Network</strong> tab, which fails. If you click on it and look at the details of this request, you will see that the request is sent to <code>localhost:8000/v2/api-docs</code> and returns with status <code>404 - Not found</code>. Note the port number <code>8000</code>, but the Java application is listening to port <code>8080</code>.</p>
+<blockquote>
+<p><strong>About cross-origin requests</strong></p>
+<p>We could try changing the UI5 application so that it directly goes to the Java application on port <code>8080</code>. If we did that and ran the UI5 application again, Chrome (or any browser for that matter) would show a <strong>CORS error</strong>. CORS stands for Cross-Origin Resource Sharing.</p>
+<p>CORS is typically disabled for security reasons and prevents that a web page can send an HTTP request to a different host (aka origin). In our case, it prevents that the UI5 application on <code>8000</code> can send requests to <code>8080</code>.</p>
+<p>Although we can disable CORS for development purposes, we still need to build our application in a way that it works even when CORS is enabled, as this is how most people would be using our application in production.</p>
+<p>That’s why web applications are usually built in a way that all requests in the browser are sent to the same host and the web server then proxies the requests to a different host. This is called <strong>reverse proxy</strong> and is another feature that is supported by the <code>custdev-sapui5-infra-util</code> tool.</p>
+</blockquote>
+</li>
+<li>
+<p>We have to configure a reverse proxy in the <code>package.json</code>, so that certain requests from the UI5 application (on <code>8000</code>) are forwarded to the Java application (on <code>8080</code>).</p>
+<p>Open the file <code>package.json</code> in VS Code and replace the line <code>&quot;proxies&quot;: &#123;&#125;,</code> with the highlighted code:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;sapui5&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;version&quot;</span>: <span class="string">&quot;1.72.5&quot;</span>,</span><br><span class="line">  <span class="string">&quot;resources&quot;</span>: <span class="string">&quot;https://openui5.hana.ondemand.com/1.72.5/resources&quot;</span>,</span><br><span class="line">  <span class="string">&quot;testResources&quot;</span>: <span class="string">&quot;https://openui5.hana.ondemand.com/1.72.5/test-resources&quot;</span>,</span><br><span class="line">  <span class="string">&quot;defaultPage&quot;</span>: <span class="string">&quot;webapp/index.html&quot;</span>,</span><br><span class="line">  <span class="string">&quot;libs&quot;</span>: &#123;&#125;,</span><br><span class="line">  <span class="string">&quot;apps&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;bulletinboard-frontend-ui5&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;namespace&quot;</span>: <span class="string">&quot;com.sap.ibso.bb&quot;</span>,</span><br><span class="line">      <span class="string">&quot;resources&quot;</span>: <span class="string">&quot;webapp&quot;</span>,</span><br><span class="line">      <span class="string">&quot;testResources&quot;</span>: <span class="string">&quot;webapp/test&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;proxies&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;ads&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;context&quot;</span>: <span class="string">&quot;^/api/v1/(.*)$&quot;</span>,</span><br><span class="line">        <span class="string">&quot;uri&quot;</span>: <span class="string">&quot;http://localhost:8080/api/v1/$1&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;swagger&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;context&quot;</span>: <span class="string">&quot;^/v2/(.*)$&quot;</span>,</span><br><span class="line">        <span class="string">&quot;uri&quot;</span>: <span class="string">&quot;http://localhost:8080/v2/$1&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;profiles&quot;</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>After saving the changes in <code>package.json</code>, restart your web server for the UI5 application. In the Terminal, stop the server with CTRL + C and run it again with <code>grunt serve --open</code>.</p>
+</li>
+<li>
+<p>Have a look at the Developer Tools in the browser (F12 + refresh the web page). On the <strong>Network</strong> tab, you will see now the two requests: <strong>api-docs</strong> and <strong>ads</strong>, which both came back with status 200.</p>
+</li>
+<li>
+<p>Now let’s add some data to the bulletinboard! Add a new <em>advertisement</em> via the ➕ button on the top right corner, enter a name and save the advertisement. If you refresh the page, you will still see the data you entered previously. Even if you stop and start the UI5 application again, you still will see the data.</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/VincentVanNF">VincentVan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://vincentvannf.github.io/2022/08/01/SAP_IBSO_TOOLS_PART2/">https://vincentvannf.github.io/2022/08/01/SAP_IBSO_TOOLS_PART2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://vincentvannf.github.io" target="_blank">VincentVan</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SAP/">SAP</a><a class="post-meta__tags" href="/tags/Devops/">Devops</a><a class="post-meta__tags" href="/tags/IBSO-TOOLS-BOOTCAMP/">IBSO TOOLS BOOTCAMP</a><a class="post-meta__tags" href="/tags/JAVA/">JAVA</a><a class="post-meta__tags" href="/tags/SAP-UI5/">SAP UI5</a></div><div class="post_share"><div class="addthis_inline_share_toolbox"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=null" async="async"></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/Wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/Wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/ZFB.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/ZFB.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/08/01/SAP_Git/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/git.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">SAP_Git</div></div></a></div><div class="next-post pull-right"><a href="/2022/08/01/SAP_IBSO_TOOLS_PART1/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/IBSO.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">SAP_IBSO_TOOLS_PART1</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/08/01/SAP_IBSO_TOOLS_PART3/" title="SAP_IBSO_TOOLS_PART3"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/docker_exercise.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-01</div><div class="title">SAP_IBSO_TOOLS_PART3</div></div></a></div><div><a href="/2022/08/01/SAP_IBSO_TOOLS_PART1/" title="SAP_IBSO_TOOLS_PART1"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/IBSO.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-01</div><div class="title">SAP_IBSO_TOOLS_PART1</div></div></a></div><div><a href="/2022/07/31/SAP_Docker/" title="Docker"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/docker.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-31</div><div class="title">Docker</div></div></a></div><div><a href="/2022/08/01/SAP_Dynatrace/" title="SAP_Dynatrace"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/Dynatrace.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-01</div><div class="title">SAP_Dynatrace</div></div></a></div><div><a href="/2022/08/01/SAP_Git/" title="SAP_Git"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/git.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-01</div><div class="title">SAP_Git</div></div></a></div><div><a href="/2022/08/01/SAP_PAAS/" title="SAP_Paas"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/paas.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-01</div><div class="title">SAP_Paas</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">VincentVan</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/VincentVanNF"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/VincentVanNF" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3080167665@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">每天睡够8小时</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Exercise-01-Building-and-Running-a-Java-Project-with-Maven"><span class="toc-number">1.</span> <span class="toc-text">Exercise 01 - Building and Running a Java Project with Maven</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exercise-02-Building-and-Running-a-SAPUI5-Project-with-Node-js-and-Grunt"><span class="toc-number">2.</span> <span class="toc-text">Exercise 02 - Building and Running a SAPUI5 Project with Node.js and Grunt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exercise-03-Setting-up-the-SAPUI5-Project-with-the-IBSO-UI5-Tools"><span class="toc-number">3.</span> <span class="toc-text">Exercise 03 - Setting up the SAPUI5 Project with the IBSO UI5 Tools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exercise-04-Changing-the-Java-Project-Efficiently"><span class="toc-number">4.</span> <span class="toc-text">Exercise 04 - Changing the Java Project Efficiently</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-Import-Java-Project-into-Visual-Studio-Code"><span class="toc-number">4.1.</span> <span class="toc-text">Step 1 Import Java Project into Visual Studio Code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Enable-Live-Reload-for-Spring-Boot"><span class="toc-number">4.2.</span> <span class="toc-text">Step 2 Enable Live Reload for Spring Boot</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-Test-Live-Reload-with-Spring-Boot"><span class="toc-number">4.3.</span> <span class="toc-text">Step 3 Test Live Reload with Spring Boot</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exercise-05-Changing-the-UI5-Project-Efficiently"><span class="toc-number">5.</span> <span class="toc-text">Exercise 05 - Changing the UI5 Project Efficiently</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-Test-Live-Reload-with-the-UI5-Application"><span class="toc-number">5.1.</span> <span class="toc-text">Step 1 - Test Live Reload with the UI5 Application</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Call-the-Java-Application-from-the-UI5-Application-CORS"><span class="toc-number">5.2.</span> <span class="toc-text">Step 2 - Call the Java Application from the UI5 Application(CORS)</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/09/03/Pytorch/" title="Basic DL Using Pytorch"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/pytorch.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Basic DL Using Pytorch"/></a><div class="content"><a class="title" href="/2022/09/03/Pytorch/" title="Basic DL Using Pytorch">Basic DL Using Pytorch</a><time datetime="2022-09-02T16:50:00.000Z" title="发表于 2022-09-03 00:50:00">2022-09-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/SAP_Dynatrace/" title="SAP_Dynatrace"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/Dynatrace.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SAP_Dynatrace"/></a><div class="content"><a class="title" href="/2022/08/01/SAP_Dynatrace/" title="SAP_Dynatrace">SAP_Dynatrace</a><time datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/SAP_Git/" title="SAP_Git"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/git.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SAP_Git"/></a><div class="content"><a class="title" href="/2022/08/01/SAP_Git/" title="SAP_Git">SAP_Git</a><time datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/SAP_IBSO_TOOLS_PART2/" title="SAP_IBSO_TOOLS_PART2"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/exercise1_5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SAP_IBSO_TOOLS_PART2"/></a><div class="content"><a class="title" href="/2022/08/01/SAP_IBSO_TOOLS_PART2/" title="SAP_IBSO_TOOLS_PART2">SAP_IBSO_TOOLS_PART2</a><time datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/SAP_IBSO_TOOLS_PART1/" title="SAP_IBSO_TOOLS_PART1"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/IBSO.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SAP_IBSO_TOOLS_PART1"/></a><div class="content"><a class="title" href="/2022/08/01/SAP_IBSO_TOOLS_PART1/" title="SAP_IBSO_TOOLS_PART1">SAP_IBSO_TOOLS_PART1</a><time datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright"><div><b><font color="#00BFFF">&copy;2021 - 2023 By </font></b> <b><a font color="#00BFFF"href=https://vincentvannf.github.io/ style="position: relative; z-index: 10"><font color="#00BFFF">VincentVan</a></font></b></div></div><div class="footer_custom_text"><b><font color="#00BFFF">Hi, Welcom to my blog.</font></b></div></div><div id="footer-wrap" style="iposition:absolute;text-align:cente;inset:20px;"></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '8f42e6f2019939020945',
+      clientSecret: 'e8db6e1f9cc7b4ec40ba8ce4d76250264b125b8c',
+      repo: 'VincentVanNF.github.io',
+      owner: 'VincentVanNF',
+      admin: ['VincentVanNF'],
+      id: '330ec5f5a4b42a998ef1ad7b0e9a048e',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const findTrueUrl = (array) => {
+    Promise.all(array.map(item =>
+      fetch(item.url).then(resp => resp.json()).then(data => {
+        const urlArray = data.body.match(/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/ig)
+        if (data.user.login === 'utterances-bot') {
+          return urlArray.pop()
+        } else {
+          return urlArray.shift()
+        }
+      })
+    )).then(res => {
+        array = array.map((i,index)=> {
+          return {
+            ...i,
+            url: res[index]
+          }
+        })
+
+        saveToLocal.set('github-newest-comments', JSON.stringify(array), 10/(60*24))
+        generateHtml(array)
+    });
+  }
+
+  const getComment = () => {
+    fetch('https://api.github.com/repos/VincentVanNF/VincentVanNF.github.io/issues/comments?sort=updated&direction=desc&per_page=6&page=1',{
+      "headers": {
+        Accept: 'application/vnd.github.v3.html+json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        const githubArray = data.map(item => {
+          return {
+            'avatar': item.user.avatar_url,
+            'content': changeContent(item.body_html),
+            'nick': item.user.login,
+            'url': item.issue_url,
+            'date': item.updated_at,
+            'githubUrl': item.html_url
+          }
+        })
+        findTrueUrl(githubArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      })
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('github-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><div class="aplayer no-destroy" data-id="7622286806" data-server="netease" data-type="playlist" data-fixed="true" data-mutex="true" data-autoplay="false" > </div><script src="/js/jquery.min.js"></script><script src="/js/fishes.js"></script><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script>(function(d, w, c) {
+    w.ChatraID = 'xKZME3aZENuKqB3Z7';
+    var s = d.createElement('script');
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments);
+    };
+    s.async = true;
+    s.src = 'https://call.chatra.io/chatra.js';
+    if (d.head) d.head.appendChild(s);
+})(document, window, 'Chatra');
+
+if (false) {
+  var chatBtnFn = () => {
+    var chatBtn = document.getElementById("chat_btn")
+    chatBtn.addEventListener("click", function(){
+      Chatra('openChat')
+    });
+  }
+  chatBtnFn()
+} else {
+  if (false) {
+    function chatBtnHide () {
+      Chatra('hide')
+    }
+    function chatBtnShow () {
+      Chatra('show')
+    }
+  }
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'UA-239901416-2', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.4.0" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://www.jsdelivr.com/" style="margin-inline:5px" data-title="本站使用JsDelivr为静态资源提供CDN加速" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/js/runtime.js"></script><!-- hexo injector body_end end --></body></html>

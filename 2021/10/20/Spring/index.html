@@ -1,0 +1,1343 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Spring | VincentVan</title><meta name="keywords" content="Java/Spring"><meta name="author" content="VincentVan,3080167665@qq.com"><meta name="copyright" content="VincentVan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Spring框架学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring">
+<meta property="og:url" content="https://vincentvannf.github.io/2021/10/20/Spring/index.html">
+<meta property="og:site_name" content="VincentVan">
+<meta property="og:description" content="Spring框架学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vincentvannf.github.io/img/Spring.jpg">
+<meta property="article:published_time" content="2021-10-20T13:52:41.000Z">
+<meta property="article:modified_time" content="2021-10-21T08:21:11.556Z">
+<meta property="article:author" content="VincentVan">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Spring">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vincentvannf.github.io/img/Spring.jpg"><link rel="shortcut icon" href="/img/avatar.jpg"><link rel="canonical" href="https://vincentvannf.github.io/2021/10/20/Spring/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="SMp-WCh2-15NoyvdKD57wvY3dGBCraogGZOhwy_h9Qk"/><meta name="baidu-site-verification" content="code-dq7TNN1IXf"/><meta name="msvalidate.01" content="EAEAB8A5E519B85254994EF46F15A64C"/><link rel="manifest" href="/img/siteicons/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/siteicons/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/siteicons/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/siteicons/favicon-16x16.png"/><link rel="mask-icon" href="/img/siteicons/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6977b44415e5cb320371eaf48031d71d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-239901416-2"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-239901416-2');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "dhcmcg78px");</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"OI6JNF40NR","apiKey":"c21669e336acb106e29d7212316209df","indexName":"hexo","hits":{"per_page":6},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: VincentVan","link":"链接: ","source":"来源: VincentVan","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Spring',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-10-21 16:21:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><style type="text/css">.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body{left:-66px!important}.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover{left:0!important}</style><link rel="stylesheet" href="/css/footer-all-transparent.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/me"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">VincentVan</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/me"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Spring</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-10-20T13:52:41.000Z" title="发表于 2021-10-20 21:52:41">2021-10-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-10-21T08:21:11.556Z" title="更新于 2021-10-21 16:21:11">2021-10-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java-Spring/">Java/Spring</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">11.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>47分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Spring"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2021/10/20/Spring/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div><article class="post-content" id="article-container"><h2 id="Maven">Maven</h2>
+<ul>
+<li>
+<p>核心概念</p>
+<ul>
+<li>
+<p>pom:项目对象模型，构建maven项目，管理jar包依赖。</p>
+</li>
+<li></li>
+</ul>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span>	 <span class="comment">&lt;!--maven模型的版本 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>		<span class="comment">&lt;!--组织id，一般为公司域名的倒写或域名倒写+项目名字 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>Spring1<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>	<span class="comment">&lt;!--项目名称 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span>		<span class="comment">&lt;!-- 项目版本号，通常在版本后加-SNAPSHOT(快照)--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 搜索使用的中央仓库：https://mvnrepository.com/，使用groupId或者artifactId搜索 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span> <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>				项目打包的类型，默认为jar</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>					<span class="comment">&lt;!--添加依赖，从本地仓库中查找，没有从远程下载。--&gt;</span></span><br><span class="line">   		<span class="comment">&lt;!-- 坐标 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span> <span class="tag">&lt;/<span class="name">scope</span>&gt;</span>			<span class="comment">&lt;!--依赖使用的范围:compile(默认，所有阶段),test,provided（编译，测试时有效，打包部署时不需要）--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span>						<span class="comment">&lt;!-- 设置属性 --&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--自定义全局变量，一般为统一版本号--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>版本号<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!--使用方式：在其他地方$&#123;name&#125; --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span>						<span class="comment">&lt;!--maven项目在构建是，配置信息，使用的插件或者编译使用的jdk--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">            	<span class="tag">&lt;<span class="name">source</span>&gt;</span>    <span class="tag">&lt;/<span class="name">source</span>&gt;</span>	<span class="comment">&lt;!--编译jdk版本--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">target</span>&gt;</span>   <span class="tag">&lt;/<span class="name">target</span>&gt;</span>	<span class="comment">&lt;!--运行jdk版本--&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">	没有该标签时，mavn将src/main/resources拷贝到target/classes下，src/main/java目录下的其他文件不拷贝</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 该标签：需要将src/main/java目录下的其他文件不拷贝--&gt;</span></span><br><span class="line">                </span><br><span class="line">                <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">                	<span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">                	<span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.properties<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- *.properties已经启过滤器作用--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>false<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>约定的目录结构：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">HELLO 					<span class="comment">&lt;!--项目文件夹 --&gt;</span></span><br><span class="line">|---src</span><br><span class="line">|---|---main			<span class="comment">&lt;!--主程序 --&gt;</span></span><br><span class="line">|---|---|---java		<span class="comment">&lt;!--主程序java文件和程序包--&gt;</span></span><br><span class="line">|---|---|---resources	<span class="comment">&lt;!--主程序使用的配置文件--&gt;</span></span><br><span class="line"></span><br><span class="line">|---|---test</span><br><span class="line">|---|---|---java		<span class="comment">&lt;!--测试java文件和程序包--&gt;</span></span><br><span class="line">|---|---|---resources	<span class="comment">&lt;!--测试使用的配置文件--&gt;</span></span><br><span class="line"></span><br><span class="line">|---pom.xml				<span class="comment">&lt;!--maven的配置文件--&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>坐标：唯一的字符串，用于表示资源，必须</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>		<span class="comment">&lt;!--组织id，一般为公司域名的倒写或域名倒写+项目名字--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>Spring1<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>	<span class="comment">&lt;!--项目名称--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span>		<span class="comment">&lt;!--项目版本号，通常在版本后加-SNAPSHOT(快照)--&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>依赖管理：管理jar包依赖。</p>
+</li>
+<li>
+<p>仓库管理：资源存放的仓库管理</p>
+<ul>
+<li>存放maven使用的jar包和项目使用的jar包</li>
+<li>分类
+<ul>
+<li>本地仓库：在maven 目录下settings.xml中配置本地仓库</li>
+<li>远程仓库：需要联网下载
+<ol>
+<li>中央仓库（欧洲）</li>
+<li>中央仓库的镜像。</li>
+<li>私服：局域网中使用的仓库。</li>
+</ol>
+</li>
+<li>仓库使用过程
+<ul>
+<li>首先查看本地仓库</li>
+<li>在私服中查找</li>
+<li>镜像中查找</li>
+<li>中央仓库</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>生命周期：maven构建项目过程，清理，编译，测试，报告，打包，安装，部署</p>
+</li>
+</ul>
+</li>
+<li>
+<p>常用命令：使用jar文件中的插件实现</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn clean	#--清理target文件</span><br><span class="line">mvn compile	#编译src/main目录下所有java文件,生成target文件</span><br><span class="line"></span><br><span class="line">mvn test-compile</span><br><span class="line">mvn test		#会执行前面的步骤</span><br><span class="line"></span><br><span class="line">mvn package		#打包：会进行编译，测试编译，测试，按照pom文件进行打包生成在target目录下，只有src/main中的东西，</span><br><span class="line">mvn install		#将本地工程按照坐标保存到本地仓库</span><br><span class="line">mvn deploy		#将本地工程按照坐标保存到本地仓库，保存到私服仓库中，且自动将项目部署到web容器中</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="IOC">IOC</h2>
+<ul>
+<li>
+<p>控制反转：<strong>对象</strong>创建，赋值，管理工作由代码之外的容器外部资源实现。</p>
+<ul>
+<li>控制：创建对象，属性赋值，对象之间的关系管理</li>
+<li>反转：创建对象的权限转移给代码之外的容器实现。由容器代替开发人员管理对象。创建对象，给属性赋值。
+<ul>
+<li>容器：服务器\框架。</li>
+</ul>
+</li>
+<li>IOC目的：减少代码改动，实现更多的功能，实现解耦合。</li>
+</ul>
+</li>
+<li>
+<p>创建对象：</p>
+<ul>
+<li>
+<p>构造方法：</p>
+</li>
+<li>
+<p>反射：</p>
+<ul>
+<li>
+<p>Java特征之一，允许运行中的java程序获取自身的信息，并且操作<strong>类</strong>或者<strong>对象</strong>的内部属性。</p>
+</li>
+<li>
+<p>通过反射，可以在运行时获得程序中的每一个类型的成员活动成员的信息。</p>
+</li>
+<li>
+<p>对象是在编译时确定的，java反射机制可以动态地创建对象并且调用相关的属性，这些对象的类型在编译时未知。</p>
+</li>
+<li>
+<p>因此可以通过反射创建对象。即使在编译时对象的类型是未知的。</p>
+</li>
+<li>
+<p>反射提供功能：</p>
+<ul>
+<li>在运行时判断任意一个<strong>对象</strong>所属的类</li>
+<li>在运行时<strong>构造</strong>任意一个<strong>类的对象</strong></li>
+<li>在运行时判断任意一个类所具有的成员变量和方法,可以通过反射调用<strong>private</strong>方法</li>
+<li>在运行时调用任意一个对象的方法</li>
+</ul>
+</li>
+<li>
+<p>反射的核心思想：JVM在动态运行时才加载类，调用方法或者访问属性，不需要再编译的时候知道运行的对象是什么。</p>
+</li>
+<li>
+<p>原理：</p>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WAF4eS"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://z3.ax1x.com/2021/07/13/WAF4eS.jpg" alt="WAF4eS.jpg"></a></p>
+</li>
+<li>
+<p>class的加载：JVM使用ClassLoader将<strong>编译好的class文件加载到方法区内存中：此方法返回一个Class对象</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class clazz = ClassLoader.getSystemClassLoader().loadClass(<span class="string">&quot;com.mypackage.MyClass&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>详细一点的过程：</p>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/WAASnf"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://z3.ax1x.com/2021/07/13/WAASnf.jpg" alt="WAASnf.jpg"></a></p>
+</li>
+<li>
+<p>类加载器：加载.class文件步骤</p>
+<ul>
+<li>检查是否已经加载</li>
+<li>未加载，遵循父优先加载机制，加载.class文件</li>
+<li>调用findclass(name)读取.class文件，创建字节数组，创建Class对象。</li>
+<li><a target="_blank" rel="noopener" href="https://imgtu.com/i/WAEds0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://z3.ax1x.com/2021/07/13/WAEds0.jpg" alt="WAEds0.jpg"></a></li>
+</ul>
+</li>
+<li>
+<p>ReflectionData缓存：</p>
+<ul>
+<li>
+<p>提高反射性能，Class内中有一个useCaches静态变量标记是否使用缓存。外部使用sun.reflect.noCaches来禁用缓存。Class内中有一个ReflectionData内部类用于存放反射数据的缓存，声明了一个<strong>reflectionData</strong>域，按照需要延迟加载并没有指向一个实例化的ReflectionData对象。</p>
+</li>
+<li>
+<p>Class类：Class类的构造器是私有的，因此无法手动new一个Class对象，只能由JVM创建，JVM通过类加载器创建Class对象。</p>
+</li>
+<li>
+<p>Class对象：修饰符，类名，参数化信息（泛化信息），接口，注解，<strong>字段</strong>，<strong>构造器</strong>，<strong>方法</strong>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 标记是否使用缓存,可以通过外部的sun.reflect.noCaches配置是否禁用缓存</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> useCaches = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectionData</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"><span class="keyword">volatile</span> Field[] declaredFields;</span><br><span class="line"><span class="keyword">volatile</span> Field[] publicFields;</span><br><span class="line"><span class="keyword">volatile</span> Method[] declaredMethods;</span><br><span class="line"><span class="keyword">volatile</span> Method[] publicMethods;</span><br><span class="line"><span class="keyword">volatile</span> Constructor&lt;T&gt;[] declaredConstructors;</span><br><span class="line"><span class="keyword">volatile</span> Constructors&lt;T&gt;[] publicConstructors;</span><br><span class="line"><span class="keyword">volatile</span> Field[] declaredPublicFields;</span><br><span class="line"><span class="keyword">volatile</span> Method[] declaredPublicMethods;</span><br><span class="line"><span class="keyword">final</span> <span class="keyword">int</span> redefinedCount;</span><br><span class="line"></span><br><span class="line">ReflectionData(<span class="keyword">int</span> redefinedCount) &#123;</span><br><span class="line">    <span class="keyword">this</span>.redefinedCount = redefinedCount;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个是SoftReference,在内存资源紧张的时候可能会被回收</span></span><br><span class="line"><span class="comment">// volatile保证多线程环境下读写的正确性</span></span><br><span class="line"> <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">transient</span> SoftReference&lt;RefelectionData&lt;T&gt;&gt; reflectionData;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个主要用于和ReflectionData中的redefinedCount进行比较</span></span><br><span class="line"><span class="comment">// 如果两个值不相等,说明ReflectionData缓存的数据已经过期了</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">transient</span> classRedefinedCount = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Class构造器为私有的，只能由JVM创建，需要传入类加载器。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>反射的运用:</p>
+<ul>
+<li>
+<p>用于框架的开发</p>
+</li>
+<li>
+<p>各种容器实现的核心</p>
+</li>
+<li>
+<p>反射中各类API：依赖与四个类：Class，Constructor，Field，Method；</p>
+<ul>
+<li>
+<p>获得构造器的方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function">Constructor <span class="title">getConstructor</span><span class="params">(Class[] params)</span> <span class="comment">//获得使用特殊的参数类型的公共构造函数，   </span></span></span><br><span class="line"><span class="function">Constructor[] <span class="title">getConstructors</span><span class="params">()</span> <span class="comment">//获得类的所有公共构造函数   Constructor </span></span></span><br><span class="line"><span class="function">Constructor <span class="title">getDeclaredConstructor</span><span class="params">(Class[] params)</span> <span class="comment">//获得使用特定参数类型的构造函数(与接入级别无关) </span></span></span><br><span class="line"><span class="function">Constructor[] <span class="title">getDeclaredConstructors</span><span class="params">()</span> <span class="comment">//获得类的所有构造函数(与接入级别无关)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>获取字段信息（属性）：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function">Field <span class="title">getField</span><span class="params">(String name)</span> <span class="comment">//获得命名的公共字段 </span></span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function">Field[] <span class="title">getFields</span><span class="params">()</span> <span class="comment">//获得类的所有公共字段 </span></span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function">Field <span class="title">getDeclaredField</span><span class="params">(String name)</span> <span class="comment">//获得类声明的命名的字段 </span></span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function">Field[] <span class="title">getDeclaredFields</span><span class="params">()</span> <span class="comment">//获得类声明的所有字段</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>获取方法信息：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function">Method <span class="title">getMethod</span><span class="params">(String name, Class[] params)</span> <span class="comment">//使用特定的参数类型，获得命名的公共方法 </span></span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function">Method[] <span class="title">getMethods</span><span class="params">()</span> <span class="comment">//获得类的所有公共方法 ,可获得父类的方法。</span></span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function">Method <span class="title">getDeclaredMethod</span><span class="params">(String name, Class[] params)</span> <span class="comment">//使用特写的参数类型，获得类声明的命名的方法 </span></span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function">Method[] <span class="title">getDeclaredMethods</span><span class="params">()</span> <span class="comment">//获得类声明的所有方法</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>创建Class对象:</p>
+<ul>
+<li>对象.<code>getClass();</code></li>
+<li><code>类.class</code></li>
+<li><code>Class.forName(“包名.类名”)</code>静态方法</li>
+</ul>
+</li>
+<li>
+<p>反射API调用方法</p>
+<ul>
+<li>
+<p>通过<strong>Class对象获得实例化</strong>对象：</p>
+<ul>
+<li>
+<p><code>class对象.newInstance()</code>必须存在一个无参的构造方法，底层调用的是无参的构造器。否则需要找到一个构造方法去调用：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class clazz = Class.forName(<span class="string">&quot; &quot;</span>);</span><br><span class="line">Object O = clazz.newInstance();</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>通过<code>getConstructor(String.class,int.class);</code>获得构造器，然后<code>con.newInstance(String,int):</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class clazz = Class.forName(<span class="string">&quot; &quot;</span>);</span><br><span class="line">Constructor con = clazz.getConstructor(<span class="keyword">int</span>.class);</span><br><span class="line">Object O = con.newInstanceof(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Class对象的<code>getMethod</code><strong>需要传入</strong>方法名</strong>和<strong>参数类型的Class对象引用</strong>：确保找到唯一匹配的方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object obj, Object ... args)</span> <span class="keyword">throws</span> IllegalAccessException, IllegalArgumentException, InvocationTargetException </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><code>method.invoke(obj,args)</code>传入对象参数</strong>，保证执行方法时知道是哪个对象的数据，如果是静态方法就不需要。</li>
+</ul>
+</li>
+<li>
+<p><strong>Class对象获得属性</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>反射创建数组</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//通过Array.newInstance()创建数组对象。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">newInstance</span><span class="params">(Class&lt;?&gt; componentType, <span class="keyword">int</span> length)</span> <span class="keyword">throws</span> NegativeArraySizeException </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> newArray(componentType, length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">TestAraary</span><span class="params">()</span> Throws ClassNotFoundException</span>&#123;</span><br><span class="line">	Class&lt;?&gt; clazz = Class.forName(<span class="string">&quot;java.lang.String&quot;</span>);<span class="comment">//创建String的Class对象。</span></span><br><span class="line">    Object array = Array.newInstance(clazz,<span class="number">25</span>);<span class="comment">//创建Array对象。</span></span><br><span class="line">    </span><br><span class="line">    Array.set(array,<span class="number">0</span>,<span class="string">&quot;a&quot;</span>);</span><br><span class="line">    Array.set(array,<span class="number">0</span>,<span class="string">&quot;b&quot;</span>);</span><br><span class="line">    Array.set(array,<span class="number">0</span>,<span class="string">&quot;c&quot;</span>);</span><br><span class="line">    Array.set(array,<span class="number">0</span>,<span class="string">&quot;d&quot;</span>);</span><br><span class="line">    <span class="comment">//添加数组成员</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//获取数组成员</span></span><br><span class="line">    Array.get(array,<span class="number">0</span>);</span><br><span class="line">    Array.get(array,<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//set 与 get方法都是native方法 （C/C++实现的）</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>序列化：就是把对象通过流的方式存储到文件中：可以是网络文件或磁盘设备。此对象 要重写Serializable 接口才能被序列化。</p>
+<ul>
+<li>
+<p>永久保存数据</p>
+</li>
+<li>
+<p>只有实现了<code>Serializable和Externalizable接口</code>的类的对象才能被序列化，不想序列化的属性可以加上，<code>transient</code>关键字。</p>
+</li>
+<li>
+<p><code>java.io.ObjectOutputStream</code>代表对象输出流，它的<code>writeObject(Object obj)</code>方法可对参数指定的obj对象进行序列化，把得到的字节序列写到一个目标输出流中。</p>
+</li>
+<li>
+<p>步骤：</p>
+<ul>
+<li>1） 创建一个对象输出流，它可以包装一个其他类型的目标输出流，如文件输出流；</li>
+<li>2） 通过对象输出流的writeObject()方法写对象。</li>
+</ul>
+</li>
+<li>
+<p>反序列化步骤：</p>
+<ul>
+<li>1） 创建一个对象输入流，它可以包装一个其他类型的源输入流，如文件输入流；</li>
+<li>2） 通过对象输入流的readObject()方法读取对象。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line"></span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> age;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         </span><br><span class="line">       <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       </span><br><span class="line">        <span class="keyword">return</span> sex;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">         <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">       </span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">   	&#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSex</span><span class="params">(String sex)</span> </span>&#123;</span><br><span class="line">        	</span><br><span class="line">        <span class="keyword">this</span>.sex = sex;</span><br><span class="line">   	&#125;</span><br><span class="line"> &#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> class <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    	<span class="comment">//序列化：</span></span><br><span class="line">    	ObjectOutputStream out = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">&quot;test.txt&quot;</span>)));</span><br><span class="line">   	 	out.writeObject(person);</span><br><span class="line">    	System.out.println(<span class="string">&quot;Person对象序列化成功！&quot;</span>);</span><br><span class="line">    	out.close();</span><br><span class="line">    </span><br><span class="line">    	<span class="comment">//反序列化：</span></span><br><span class="line">    	ObjectInputStream in = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">&quot;test.txt&quot;</span>)));</span><br><span class="line">    	Person person = in.readObject();</span><br><span class="line">     	System.out.println(person.getName());</span><br><span class="line">    	System.out.println(<span class="string">&quot;Person对象反序列化成功！&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>克隆:clone方法来源于java中object类，在jdk中的解释为：该方法返回一个此对象的副本。clone顾名思义就是复制的意思。所谓复制对象就是在内存中分配一个和原一模一样的空间，在此创建新的对象。内容一致但是指向的内存空间不同。由于Object类中clone方法是protected 修饰的，所以我们必须在需要克隆的类中重写克隆方法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> Coding;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 深复制 ，在对clone方法进行重写时手动对要复制的对象的引用进行复制*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Clone</span> <span class="keyword">implements</span> <span class="title">Cloneable</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Head</span> <span class="keyword">implements</span> <span class="title">Cloneable</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Head</span><span class="params">()</span></span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">super</span>.clone();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">      <span class="keyword">public</span> Head head = <span class="keyword">new</span> Head();</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        Clone new_clone = (Clone) <span class="keyword">super</span>.clone();</span><br><span class="line">        new_clone.head = (Head) head.clone();</span><br><span class="line">        <span class="keyword">return</span> new_clone;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">       Clone C = <span class="keyword">new</span> Clone();</span><br><span class="line">       Clone C1 = C;</span><br><span class="line">       <span class="keyword">if</span>(C1 == C )&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;两对象指向同一地址&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">else</span> &#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;两对象指向不同地址&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       Clone C2 = (Clone) C.clone();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(C2 == C)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;两对象指向同一地址&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;两对象指向不同地址&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(C.head);</span><br><span class="line">        System.out.println(C2.head);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>IOC：容器创建对象。</p>
+<ul>
+<li>DI：依赖注入实现IOC技术：通过名字从容器中拿到对象，对象属性赋值</li>
+<li>在程序中提供使用的<strong>对象的名称</strong>，对象的创建，赋值，查找由容器管理。</li>
+</ul>
+</li>
+<li>
+<p>Spring使用DI实现IOC功能，底层使用反射机制。</p>
+<ul>
+<li>
+<p>使用Spring创建对象</p>
+<ul>
+<li>
+<p>创建maven</p>
+</li>
+<li>
+<p>加入maven依赖-&gt;spring依赖</p>
+</li>
+<li>
+<p>创建类（接口和他的实现类）</p>
+</li>
+<li>
+<p>创建Spring需要使用的配置文件：声明类，这些类由Spring创建，管理</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment"> 	beans:根标签，spring把java对象成为bean</span></span><br><span class="line"><span class="comment"> 	spring-beans.xsd为约束文件	</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">	声明bean，告诉Spring创建某个类对象</span></span><br><span class="line"><span class="comment">	两个属性：</span></span><br><span class="line"><span class="comment">		id：对象的自定义名称，唯一值。通过此名称找到对象</span></span><br><span class="line"><span class="comment">		class：类的全限定名称，不能为接口，Spring通过反射机制创建类。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">		spring通过反射机制完成对象创建</span></span><br><span class="line"><span class="comment">		Spring将创建好的对象放入map中：springmap.put(id,对象)</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;myservice&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.example.Ser.service&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>获取Spring创建的对象</p>
+<ul>
+<li>
+<p>指定spring配置文件名：<code>String name</code></p>
+</li>
+<li>
+<p>通过pp<code>ApplicationContext</code>接口创建实现类获取对象。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Application spring = <span class="keyword">new</span> Application();</span><br><span class="line"></span><br><span class="line"><span class="comment">//两个的实现类：</span></span><br><span class="line"><span class="keyword">new</span> FileSystemXmlApplicationContext()	<span class="comment">//从磁盘中读配置文件，不常用</span></span><br><span class="line"><span class="keyword">new</span> ClassPathXmlApplicationContext()  <span class="comment">//配置文件在当前项目中</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//从类路径中加载配置文件，mvn时会讲resources路径下额配置文件拷贝到target下</span></span><br><span class="line">ApplicationContext cont = <span class="keyword">new</span> ClassPathXmlApplicationContext(config);</span><br><span class="line"></span><br><span class="line"><span class="comment">//例如：</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args )</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        String config = <span class="string">&quot;bean.xml&quot;</span>;			<span class="comment">//加载配置文件</span></span><br><span class="line">     	ApplicationContext cont = <span class="keyword">new</span> ClassPathXmlApplicationContext(config);<span class="comment">//创建spring容器，读取配置文件，并创建所有对象。</span></span><br><span class="line">    </span><br><span class="line">        serviceimpl serv1 = (serviceimpl) cont.getBean(<span class="string">&quot;myservice&quot;</span>);	<span class="comment">//获取对象</span></span><br><span class="line">        serv1.doThins();												<span class="comment">//调用方法</span></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>获取容器中对象的信息：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> String config = <span class="string">&quot;bean.xml&quot;</span>;			</span><br><span class="line"> ApplicationContext cont = <span class="keyword">new</span> ClassPathXmlApplicationContext(config);</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建对象：默认调用无参构造方法函数返回的时Object对象，因此需要向下转型：强制转换</span></span><br><span class="line">serviceimpl serv1 = (serviceimpl) cont.getBean(<span class="string">&quot;myservice&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取容器中对象的数量：</span></span><br><span class="line"><span class="keyword">int</span> cont.getBeanDefinitionCount();</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取容器中对象的名称</span></span><br><span class="line">String []names = cont.getBeanDefinitionNames();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Spring中给对象属性赋值</p>
+<ul>
+<li>
+<p>基于XML的DI</p>
+<ul>
+<li>
+<p>set注入（设置注入）：spring调用类的set方法实现赋值</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--简单类型：基本数据类型和String--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--spring只会去找name值的set方法，和有无此属性无关--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span> = <span class="string">&quot;student_1&quot;</span> <span class="attr">class</span> = <span class="string">&quot;org.example.DI_CREATE.Student&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span> = <span class="string">&quot;age&quot;</span> <span class="attr">value</span> = <span class="string">&quot;20&quot;</span> /&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span> = <span class="string">&quot;matt&quot;</span> <span class="attr">value</span> = <span class="string">&quot;21&quot;</span>  /&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--引用类型：使用ref指定引用类型的对象名，在使用bean创建对象 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span> = <span class="string">&quot;student_1&quot;</span> <span class="attr">class</span> = <span class="string">&quot;org.example.DI_SET.Student&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span> = <span class="string">&quot;age&quot;</span> <span class="attr">value</span> = <span class="string">&quot;19&quot;</span> /&gt;</span>      <span class="comment">&lt;!-- 执行setage()方法--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span> = <span class="string">&quot;name&quot;</span> <span class="attr">value</span> = <span class="string">&quot;matt&quot;</span>/&gt;</span>  <span class="comment">&lt;!--执行setname()方法--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;school&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;school1&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;school1&quot;</span> <span class="attr">class</span> =<span class="string">&quot;org.example.DI_SET.School&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;电子科技大学&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;addr&quot;</span> <span class="attr">value</span>=<span class="string">&quot;成都市成华区&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>构造注入：spring调用类的构造方法实现赋值</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 默认调用的时无参构造创建对象 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 调用构造方法进行属性赋值：使用constructor-arg标签</span></span><br><span class="line"><span class="comment">        name：构造方法形参名</span></span><br><span class="line"><span class="comment">        index：（参数索引值）构造方法参数位置，从0开始</span></span><br><span class="line"><span class="comment">        value：参数值</span></span><br><span class="line"><span class="comment">     --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span> = <span class="string">&quot;student_1&quot;</span> <span class="attr">class</span> = <span class="string">&quot;org.example.DI_SET.Student&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span> = <span class="string">&quot;age&quot;</span> <span class="attr">value</span> = <span class="string">&quot;19&quot;</span> /&gt;</span>      <span class="comment">&lt;!-- 执行构造方法--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span> = <span class="string">&quot;name&quot;</span> <span class="attr">value</span> = <span class="string">&quot;matt&quot;</span>/&gt;</span>     <span class="comment">&lt;!--执行构造方法--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;school&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;school1&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;school1&quot;</span> <span class="attr">class</span> =<span class="string">&quot;org.example.DI_SET.School&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;电子科技大学&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;addr&quot;</span> <span class="attr">value</span>=<span class="string">&quot;成都市成华区&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>引用类型</strong>：<strong>自动注入</strong></p>
+<ul>
+<li>
+<p>ByName:<strong>按名称</strong>注入，将配置文件中bean标签id和类中引用类型属性名一致，且数据类型相同，既可自动注入</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span> = <span class="string">&quot;student_1&quot;</span> <span class="attr">class</span> = <span class="string">&quot;org.example.DI_ByName.Student&quot;</span> <span class="attr">autowire</span>=<span class="string">&quot;byName&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;matt&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;age&quot;</span> <span class="attr">value</span>=<span class="string">&quot;19&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;school&quot;</span> <span class="attr">class</span> =<span class="string">&quot;org.example.DI_ByName.School&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;UESTC&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;addr&quot;</span> <span class="attr">value</span>=<span class="string">&quot;成华大道建设路&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- spring自动将和Student类中同名的引用类型属性名school 注入 --&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Bytype：<strong>按类型注入</strong>，类中引用类型和spring容器中bean标签的class属性是同源关系（相同或继承或接口实现类关系）</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span> = <span class="string">&quot;student_1&quot;</span> <span class="attr">class</span> = <span class="string">&quot;org.example.DI_ByName.Student&quot;</span> <span class="attr">autowire</span>=<span class="string">&quot;byType&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;matt&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;age&quot;</span> <span class="attr">value</span>=<span class="string">&quot;19&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;school_1&quot;</span> <span class="attr">class</span> =<span class="string">&quot;org.example.DI_ByName.School&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;UESTC&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;addr&quot;</span> <span class="attr">value</span>=<span class="string">&quot;成华大道建设路&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 多个同源关系会报错：没有唯一的匹配 --&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>多配置文件分类</p>
+<ul>
+<li>
+<p>按功能模块分：</p>
+<ul>
+<li>主模块配置文件没有对象，用来指定其他配置文件的位置：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">&quot;classpath:classes 文件下配置文件路径&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--使用通配符：文件在同一级目录。注意不要把自己文件加载进去，防止死循环 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">&quot;classpath:classes *.xml&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>按类的功能类：数据库/事务/service</p>
+</li>
+</ul>
+</li>
+<li>
+<p>常用对象:dao类，service类，contoller类，工具类</p>
+</li>
+<li>
+<p>不放入Spring：实体类对象，servlet，listener，filter。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>基于注解的DI：使用的是<strong>spring-context</strong>依赖中的<strong>spring-aop</strong>依赖。在spring配置文件中，加入一个组件扫描器标签，说明注解在项目中的位置。</p>
+<ul>
+<li>
+<p><code>@Component</code>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    @Component注解：创建对象，功能类似于&lt;bean&gt;</span></span><br><span class="line"><span class="comment">    属性：value为对象的名称：bean中id的值</span></span><br><span class="line"><span class="comment">        value的值唯一的，整个spring容器中就一个</span></span><br><span class="line"><span class="comment">    位置：在类的上面</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">	其他用法：</span></span><br><span class="line"><span class="comment">		不指定value值，由spring指定默认的值：类名只有首字母大写的话变成小写/其他不变</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Component(value = &quot;student_1&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">&quot;vin&quot;</span>;</span><br><span class="line">        <span class="keyword">this</span>.age = <span class="number">18</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Student&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置文件中：添加组件扫描器</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"> <span class="comment">&lt;!--组件扫描器:组件：java对象</span></span><br><span class="line"><span class="comment">        base_package:指定注解在项目中的包名</span></span><br><span class="line"><span class="comment">        组件扫描器工作方式：扫描base-package指定的包，以及包中和子包中所有的类，找到类中的注解，按照注解创建对象或给属性赋值</span></span><br><span class="line"><span class="comment">        加入component-scan标签后：配置文件：</span></span><br><span class="line"><span class="comment">            1. 加入了一个新的约束文件spring-contex.xsd</span></span><br><span class="line"><span class="comment">            2. 给这个新的约束文件起个新的命名空间:http://www.springframework.org/schema/context,指定一个url的约束文件xsd地址</span></span><br><span class="line"><span class="comment">            再通过一个标签context指定此命名空间</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;org.example.Component&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><code>@Respository</code></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*	持久层</span></span><br><span class="line"><span class="comment">	放在dao的实现类上面，表示创建dao对象，dao对象访问数据库</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>@Service</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">	用在业务层，放在service实现类上面</span></span><br><span class="line"><span class="comment">	创建service对象，service对象做业务处理，可以有事物等功能。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>@Controller</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">	用在控制器上面</span></span><br><span class="line"><span class="comment">	创建控制器对象，接受用户提交的参数，显示请求的处理结果。servlet功能。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>以上三个注解语法与component一样创建对象。但也有额外的功能，用于给项目对象分层。</p>
+<ul>
+<li>
+<p>扫描多个包</p>
+<ul>
+<li>使用多个组件扫描器</li>
+<li>使用分隔符;或者，分隔多个包名</li>
+<li>指定父包：递归扫描</li>
+</ul>
+</li>
+<li>
+<p><code>@Value</code></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;!-- 简单类型赋值 --&gt;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    @Value:简单类型的属性赋值</span></span><br><span class="line"><span class="comment">    属性：value：String类型，表示简单类型的属性值,反射原理。</span></span><br><span class="line"><span class="comment">    位置：直接再属性的上面，无需set方法：推荐使用</span></span><br><span class="line"><span class="comment">         在set方法之上</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Component(&quot;student_1&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value(value = &quot;matt&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Value(value = &quot;20&quot;)</span></span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = <span class="string">&quot;vin&quot;</span>;</span><br><span class="line">        <span class="keyword">this</span>.age = <span class="number">18</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Student&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>@Autowired</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    @Autowired:spring实现引用类型的赋值</span></span><br><span class="line"><span class="comment">    属性：require = true：表示引用类型赋值失败，程序报错终止执行。</span></span><br><span class="line"><span class="comment">    	 require = false ：引用类型赋值失败，则赋值为null，程序不终止。</span></span><br><span class="line"><span class="comment">    	 </span></span><br><span class="line"><span class="comment">    使用的是自动注入方法，支持，ByName，ByType</span></span><br><span class="line"><span class="comment">    默认使用的是ByType</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    使用ByName方式：</span></span><br><span class="line"><span class="comment">    @Autowired</span></span><br><span class="line"><span class="comment">    @Qualifier(&quot;school_1&quot;)</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>Resource</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    @Resource来自JDK的注解，spring提供支持，可以给引用类型赋值</span></span><br><span class="line"><span class="comment">    给引用类型赋值，应用类型变量上或set方法</span></span><br><span class="line"><span class="comment">    默认ByName方式:先使用ByName，失败再使用ByType</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    只是用ByName方式：</span></span><br><span class="line"><span class="comment">    @Resource(name=&quot;&quot;)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>使用自定义属性变量：${}</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">//引入自定义属性变量文件</span><br><span class="line"><span class="tag">&lt;<span class="name">context:property-placeholder</span> <span class="attr">location</span>=<span class="string">&quot;classpath:my.properties&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>IOC实现了解耦合：业务对象之间的解耦合：service和dao和controller</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="AOP-面向切面编程">AOP:面向切面编程</h2>
+<ul>
+<li>
+<p>代理：基于反射机制。功能增强，控制访问</p>
+</li>
+<li>
+<p>静态代理：<strong>代理类</strong>是手工实现；<strong>目标类</strong>是确定的。设计模式中：代理模式</p>
+<ul>
+<li>
+<p>用户不能直接访问目标类中方法实现功能，而代理类可以且必须。</p>
+</li>
+<li>
+<p>缺点：目标类增多时，代理类数量会增加</p>
+<p>​			接口中功能增加。修改，会影响实现类：目标类与代理类。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>动态代理：目标类很多，代理类数量可以很少， 修改接口后，不回影响代理类。</p>
+<ul>
+<li>
+<p>JDK动态代理：在程序运行过程中，通过反射机制，<strong>直接创建代理对象</strong>，动态指定代理目标。</p>
+<ul>
+<li>
+<p>目标对象必须为<strong>接口</strong>，目标类与代理类实现相同的接口。java.lang.reflect包提供三个类支持代理模式：Proxy，Method和InvocationHandler</p>
+<ul>
+<li>
+<p>InvocationHanler接口：<code>invoke()</code>方法：代理类完成的功能写在此方法中。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy,Method method,Object[] args)</span></span></span><br><span class="line"><span class="function"><span class="comment">/*</span></span></span><br><span class="line"><span class="comment"><span class="function">	参数依次为：</span></span></span><br><span class="line"><span class="comment"><span class="function">	proxy：代理类对象，无需赋值：使用静态方法：</span></span></span><br><span class="line"><span class="comment"><span class="function">	public static Object newProxyInstance(ClassLoader loader,Class&lt;?&gt;[] interface,InvocationHandler h) </span></span></span><br><span class="line"><span class="comment"><span class="function">		目标对象的类加载器</span></span></span><br><span class="line"><span class="comment"><span class="function">		接口，目标对象实现的接口</span></span></span><br><span class="line"><span class="comment"><span class="function">		InvocationHandler ：自己写的代理类 </span></span></span><br><span class="line"><span class="comment"><span class="function">	</span></span></span><br><span class="line"><span class="comment"><span class="function">	Method：目标类中方法的Method对象，jdk提供，执行的反射中的</span></span></span><br><span class="line"><span class="comment"><span class="function">	public Object Method.invoke(Object obj,Object[] args)</span></span></span><br><span class="line"><span class="comment"><span class="function">	</span></span></span><br><span class="line"><span class="comment"><span class="function">	args：目标类方法参数，jdk提供</span></span></span><br><span class="line"><span class="comment"><span class="function">	</span></span></span><br><span class="line"><span class="comment"><span class="function">*/</span></span></span><br><span class="line"><span class="function">   </span></span><br><span class="line"><span class="function"><span class="comment">/*</span></span></span><br><span class="line"><span class="comment"><span class="function">	创建接口实现类</span></span></span><br><span class="line"><span class="comment"><span class="function">	重写invoke方法实现代理类中的功能。</span></span></span><br><span class="line"><span class="comment"><span class="function">*/</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>使用步骤</p>
+<ul>
+<li>
+<p>​	创建InvocationHandler实现类，重写invoke方法：使用反射的Method.invoke()执行目标类中方法，需要动态传入目标类对象。</p>
+</li>
+<li>
+<p>​    使用：创建目标类对象</p>
+<p>​				创建InvocationHandler对象，传入目标类对象。</p>
+<p>​				创建Proxy对象：通过静态方法newProxyInstance(ClassLoader loader,Class&lt;?&gt;[] interface,InvocationHandler h)，<strong>转型为接口类型</strong></p>
+</li>
+<li>
+<p>通过代理执行接口中方法。</p>
+</li>
+<li>
+<p>使用场景：</p>
+<ul>
+<li>系统中存在的类修改功能：增加功能。</li>
+<li>给项目中多个类增加相同的功能。</li>
+<li>给业务方法增加事物，日志输出</li>
+</ul>
+</li>
+<li>
+<p>优点：</p>
+<ul>
+<li>改变接口不会影响代理类，直接通过代理对象带调用想要调用的方法。</li>
+<li>不用写许多代理类，而是通过Proxy中静态方法创建创建代理对象。</li>
+<li>不改变源码的情况下增加功能</li>
+<li>减少代码重复</li>
+<li>解耦合</li>
+<li>专注业务逻辑</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> Coding.Dynamic_Proxy;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">FindJob</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">find</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//目标类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">FindJob</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">find</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hand in resume&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">My_Proxy</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过构造方法传入目标对象</span></span><br><span class="line">    <span class="keyword">private</span> Object object;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">My_Proxy</span><span class="params">(Object object)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.object = object;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">&quot;accept proxy&quot;</span>);</span><br><span class="line">        method.invoke(object,args);</span><br><span class="line">        System.out.println(<span class="string">&quot;proxy answer&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;proxy end&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dynamic_Proxy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Person person = <span class="keyword">new</span> Person();</span><br><span class="line">       InvocationHandler handler = <span class="keyword">new</span> My_Proxy(person);</span><br><span class="line"></span><br><span class="line">        FindJob findJob = (FindJob) Proxy.newProxyInstance(person.getClass().getClassLoader(),person.getClass().getInterfaces(),handler);</span><br><span class="line"></span><br><span class="line">        findJob.find();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>CGLIB动态代理:第三方工具库。无接口的类实现动态代理：通过<strong>继承的方式重写</strong>父类的方法实现代理。因此目标类和方法不能是final。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>AOP：底层使用动态代理，两种动态代理都可以使用。动态代理的规范化，用一种统一的方式，使用动态代理。</p>
+<ul>
+<li><strong>Aspec</strong>t：切面：给<strong>目标类增加的功能</strong>。
+<ul>
+<li>一般是非业务方法。</li>
+<li>常见切面功能：日志，事物，统计信息，参数检查，权限验证。</li>
+</ul>
+</li>
+<li>JoinPoint：连接点，连接业务和和切面的位置。某类中的业务方法。</li>
+<li><strong>Pointcut</strong>：切入点，指多个连接点方法的集合。多个方法。<strong>切面执行的位置</strong></li>
+<li>目标对象：给哪个类增加功能。</li>
+<li><strong>Advice</strong>：通知，表示<strong>切面功能执行的时间</strong></li>
+</ul>
+</li>
+<li>
+<p>AOP的实现：spring框架，在事物处理时使用aop，但是比较笨重。常用的是<strong>aspectJ</strong>：一个开源的aop框架。spring集成了aspectJ的功能：</p>
+<ul>
+<li>
+<p>使用xml方式。</p>
+</li>
+<li>
+<p>使用注解，一般使用注解。</p>
+</li>
+<li>
+<p>切面的执行时间：Advice（通知，增强）</p>
+<ul>
+<li>
+<p>在aspectJ中使用注解表示，也可以使用xml标签。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Before</span>：<span class="comment">//前置通知</span></span><br><span class="line"><span class="meta">@AfterReturning</span></span><br><span class="line"><span class="meta">@Around</span></span><br><span class="line"><span class="meta">@AfterThrowing</span></span><br><span class="line"><span class="meta">@After</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>切面的执行位置：Pointcut使用<strong>切入点表达式</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">execution(modiduers-pattern? ret-type-pattern declaring-type-pattern?name_pattern(param-pattern) <span class="keyword">throws</span>-pattern？)</span><br><span class="line"></span><br><span class="line">modifiers-pattern:访问权限类型</span><br><span class="line">ret-type-pattern: 返回值类型</span><br><span class="line">declaring-type-pattern 包名类型</span><br><span class="line">name-pattern(param-pattern):方法名(参数列表)</span><br><span class="line"><span class="keyword">throws</span>-pattern：抛出异常类型</span><br><span class="line">?：表示可选部分</span><br><span class="line">    </span><br><span class="line">execution(访问权限  方法返回值  包名  方法声明(参数列表) 异常抛出类型)</span><br><span class="line"> 必有得：方法返回值，方法声明。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>模式可以使用通配符：</p>
+<ul>
+<li>
+<p>*0到多个字符</p>
+</li>
+<li>
+<p>…：方法参数中，可变参数</p>
+<p>​		包名之后：当前包及其子包</p>
+</li>
+<li>
+<p>+：类名之后：表示当前类及其子类</p>
+<p>​	 接口之后：表示当前接口及其实现类</p>
+</li>
+</ul>
+</li>
+<li>
+<p>举例：</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">execution(<span class="keyword">public</span> * *(..))<span class="comment">//所有公共方法</span></span><br><span class="line">execution(* set*(..))	<span class="comment">//所有的set方法，省略了权限控制符</span></span><br><span class="line">execution(* com.xyz.service.*.*(..))<span class="comment">//service包中所有类中的所有方法</span></span><br><span class="line">execution(* com.xyz.service..*.*(..))<span class="comment">//service下所有子包的所有类的所有方法</span></span><br><span class="line">execution(* *..service.*.*(..))     <span class="comment">//任意级service包中所有类的所有方法</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>步骤：</p>
+<ul>
+<li>
+<p>加入Aspect依赖</p>
+<ul>
+<li>
+<p>创建目标类和其接口：方法为void类型方法</p>
+</li>
+<li>
+<p>创建切面类：普通类</p>
+<ul>
+<li>
+<p>在类上加入@Aspect</p>
+</li>
+<li>
+<p>类中定义方法，切面的执行功能</p>
+</li>
+<li>
+<p>在方法上面加入aspectj的通知注解有需要指定<strong>切入点表达式</strong>指定需要增强的目标类。</p>
+</li>
+<li>
+<p>：前置通知@Before注解</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">        方法定义要求</span></span><br><span class="line"><span class="comment">        公共方法</span></span><br><span class="line"><span class="comment">        没有返回值</span></span><br><span class="line"><span class="comment">        有参数的话不能自定义：选择参数Joinpoint：代表业务方法，加入切面功能的方法</span></span><br><span class="line"><span class="comment">        			 作用：在通知方法中获取方法执行时的信息，方法名称与实参</span></span><br><span class="line"><span class="comment">        			 有框架赋值，必须是第一个位置的参数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Aspect_1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before(value = &quot;execution(void *..Serviceimp.do*(String,int))&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func_1</span><span class="params">(JoinPoint joinPoint)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;方法的签名：&quot;</span> + joinPoint.getSignature());</span><br><span class="line">        System.out.println(<span class="string">&quot;方法的名称：&quot;</span> + joinPoint.getSignature().getName());</span><br><span class="line"></span><br><span class="line">        Object[] args = joinPoint.getArgs();</span><br><span class="line">        <span class="keyword">for</span>(Object arg:args)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;方法的参数：&quot;</span> + arg);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;在目标类前完成日志：&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;日期：&quot;</span> + <span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>后置通知@AfterReturning注解</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example.Aspect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.After;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.AfterReturning;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Aspect_after</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterReturning(value = &quot;execution(*  *..do_other(String,int))&quot;,returning = &quot;res&quot;)</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        两个属性：</span></span><br><span class="line"><span class="comment">                value：切入点表达式</span></span><br><span class="line"><span class="comment">                returning：自定义变量，用于存放目标方法的返回值</span></span><br><span class="line"><span class="comment">                            变量名必须与下面的通知方法形参名一致。</span></span><br><span class="line"><span class="comment">                            因此可以捕获到方法的返回值，也可以修改</span></span><br><span class="line"><span class="comment">        执行过程：</span></span><br><span class="line"><span class="comment">            Object res = do_other();</span></span><br><span class="line"><span class="comment">            after_func(res);</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">after_func</span><span class="params">(Object res)</span></span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">            此res形参为方法的返回值，与注解中returning 值相同</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        System.out.println(<span class="string">&quot;后置通知执行，获取的返回值为：&quot;</span>+res);</span><br><span class="line"></span><br><span class="line">        res = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>@Around注解：</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example.Aspect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Around;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Aspect_around</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Around(value = &quot;execution( * *..Serviceimp.do_first(..))&quot;)</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        public</span></span><br><span class="line"><span class="comment">        必须有一个返回值</span></span><br><span class="line"><span class="comment">        固定参数ProceedingJoinpoint：用于执行目标方法。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        1. 功能最强的，在前后都执行</span></span><br><span class="line"><span class="comment">        2. 控制目标方法是否被调用执行</span></span><br><span class="line"><span class="comment">        3. 可以修改原来的执行结果</span></span><br><span class="line"><span class="comment">        4. 等价于JDK动态代理：InvocationHandler</span></span><br><span class="line"><span class="comment">        5. 可以直接通过ProceedingJoinPoint(继承于JointPoint接口)获取参数的值</span></span><br><span class="line"><span class="comment">        6. 常做事物，在目标方法前开启事务，目标方法执行完提交事物。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">func_around</span><span class="params">(ProceedingJoinPoint proceedingJoinPoint)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        Object res;</span><br><span class="line">        Object []args = proceedingJoinPoint.getArgs();</span><br><span class="line">        String name =(String) args[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;====目标方法前时间：=====&quot;</span> + <span class="keyword">new</span> Date());</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">&quot;matt&quot;</span>.equals(name)) &#123;</span><br><span class="line">            res = proceedingJoinPoint.proceed();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;====目标方法后提交：=====&quot;</span> + <span class="keyword">new</span> Date());</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;suceess_around&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>异常通知@AtfterThrowing</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example.Aspect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.AfterThrowing;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Aspect_afterthrowing</span> </span>&#123;</span><br><span class="line">    <span class="meta">@AfterThrowing(value = &quot;execution( *  *..*.do_second())&quot;,throwing = &quot;e&quot;)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        value:切入点表达式</span></span><br><span class="line"><span class="comment">        throwing：目标方法抛出的异常对象，于通知方法中异常的参数名相同。</span></span><br><span class="line"><span class="comment">        作用：</span></span><br><span class="line"><span class="comment">            1.做监控程序，监控目标方法是否有异常</span></span><br><span class="line"><span class="comment">            有异常可以做其他事务：邮件，消息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        无返回值</span></span><br><span class="line"><span class="comment">        参数Exception，或者JointPoint</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">atferthrwoing_func</span><span class="params">(Exception e)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;捕获到异常：&quot;</span> + e.getMessage() );</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>最终通知@After</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example.Aspect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.After;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Aspect_After</span> </span>&#123;</span><br><span class="line">    <span class="meta">@After(value = &quot;execution(* *..*.*())&quot;)</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        value:切入点表达式</span></span><br><span class="line"><span class="comment">        特点：总是执行，在目标方法后执行，一般做资源释放工作</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        无参数通知</span></span><br><span class="line"><span class="comment">        参数可为：JoinPoint</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">After_func</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行最终通知&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>辅助注解@Pointcut</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example.Aspect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.JoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.After;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Before;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    @Pointcut：管理多个相同的切入点表达式</span></span><br><span class="line"><span class="comment">    使用：在一个通知方法上面使用@Pointcut注解</span></span><br><span class="line"><span class="comment">        指定value切入点表达式的值，则此通知方法就可以作为切入点表达式的别名。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Aspect_PointCut</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Pointcut(value = &quot;execution(void *..Serviceimp.do*(..))&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">pointcut_1</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@After(value =&quot;pointcut_1()&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">After_func</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行最终通知&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before(value = &quot;pointcut_1()&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforen_func</span><span class="params">(JoinPoint joinPoint)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;方法的签名：&quot;</span> + joinPoint.getSignature());</span><br><span class="line">        System.out.println(<span class="string">&quot;方法的名称：&quot;</span> + joinPoint.getSignature().getName());</span><br><span class="line"></span><br><span class="line">        Object[] args = joinPoint.getArgs();</span><br><span class="line">        <span class="keyword">for</span>(Object arg:args)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;方法的参数：&quot;</span> + arg);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;在目标类前完成日志：&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;日期：&quot;</span> + <span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>配置spring配置文件</p>
+<ul>
+<li>
+<p>声明对象，把对象交给容器管理</p>
+<ul>
+<li>目标对象</li>
+<li>切面对象</li>
+<li>aspectJ框架中的自动代理生成器标签
+<ul>
+<li><strong>自动代理生成器</strong>：完成<strong>代理对象</strong>的自动创建功能</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">&quot;http://www.springframework.org/schema/aop&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="string"><span class="tag">       https://www.springframework.org/schema/aop/spring-aop.xsd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span> = <span class="string">&quot;service_1&quot;</span> <span class="attr">class</span>= <span class="string">&quot;org.example.ServiceImp.Serviceimp&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span> = <span class="string">&quot;aspect_1&quot;</span> <span class="attr">class</span> = <span class="string">&quot;org.example.Aspect.Aspect_1&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>从spring容器中获取目标对象，强转为<strong>接口类型</strong>（多态）。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">	test方法</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">package</span> org.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.assertTrue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.example.Service.Service;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Unit test for simple App.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppTest</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Rigorous Test :-)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test_1</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        String config = <span class="string">&quot;applicationContext.xml&quot;</span>;</span><br><span class="line">        ApplicationContext con = <span class="keyword">new</span> ClassPathXmlApplicationContext(config);</span><br><span class="line">        Service service =(Service) con.getBean(<span class="string">&quot;service_1&quot;</span>);</span><br><span class="line">        System.out.println(service.getClass().getName());</span><br><span class="line">        service.do_service(<span class="string">&quot;matt&quot;</span>,<span class="number">19</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>目标类没有接口：通过CGLIB实现动态代理</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//目标类：</span></span><br><span class="line"><span class="keyword">package</span> org.example.Service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Service_1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CGLIB_func</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;===执行无接口的类方法===&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//切面</span></span><br><span class="line"><span class="keyword">package</span> org.example.Aspect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Around;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Aspect_CGLIB</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Around(value = &quot;execution(* *.*(..))&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">fun_CGLIB</span><span class="params">(ProceedingJoinPoint proceedingJoinPoint)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;通过CGLIB执行动态代理：&quot;</span> );</span><br><span class="line">        proceedingJoinPoint.proceed();</span><br><span class="line">        System.out.println(<span class="string">&quot;完成CGLIB执行动态代理：&quot;</span> );</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>有接口也可以使用CGLIB事项动态代理：在配置文件中指明</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span> <span class="attr">proxy-target-class</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!--可能效率高点--&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Spring集成Mybatis‘</p>
+<ul>
+<li>使用ioc：通过ioc创建Mybatis中的对象，由Spring容器进行管理。</li>
+</ul>
+</li>
+<li>
+<p>Web中使用Spring对象。</p>
+</li>
+<li>
+<p>SpringMVC：基于spring的框架：实际就是spring的一个模块：可以使用AOP和IOC ，可以理解为servlet的一个升级。</p>
+<ul>
+<li>
+<p>三层架构：</p>
+<ul>
+<li>第一层：SpringMVC：界面层：接受请求，显示处理结果</li>
+<li>第二层：Spring，业务层：处理业务逻辑，Spring创建service，dao，工具类等对象。</li>
+<li>第三层：MyBatis，持久层，访问数据库。</li>
+</ul>
+</li>
+<li>
+<p>springmvc容器中放控制器对象，使用@Controller注解创建的是<strong>一个普通的对象</strong>，不是Servlet对象。springMVC赋予了控制器对象额外的功能。</p>
+</li>
+<li>
+<p>web开发底层是servlet，springmvc中有一个对象是Servlet：<strong>DispatherServlet</strong>负责接收用户的所有请求，之后DispatcherServlet把<strong>请求转发</strong>给Controller对象。</p>
+<ul>
+<li>index.jsp--------------&gt;DispatcherServlet(Servlet对象)----------转发，分配---------&gt;Controller对象(@Controller注解创建的对象)。</li>
+</ul>
+</li>
+<li>
+<p>@Controller创建处理器对象，@Service创建业务对象，@Autowired或@Resource在<strong>控制器类</strong>中注入Service，Service类中注入Dao。</p>
+</li>
+<li>
+<p>步骤</p>
+<ol>
+<li>
+<p>加入spring-webmvc依赖，间接加入spring依赖</p>
+</li>
+<li>
+<p>加入servlet依赖以及前端页面jsp等依赖</p>
+</li>
+<li>
+<p>重点：在web.xml中注册springmvc框架的核心对象DispatherServlet</p>
+</li>
+<li>
+<p>DispatherServlet也叫中央调度器，是一个Servlet，继承于HttpServlet</p>
+<ul>
+<li>
+<p>作用</p>
+<ul>
+<li>创建WebApplicationContext对象，指定读取配置spring配置文件，创建控制器对象</li>
+<li>是一个Servlet对象，通过Servlet-Mapping接收用户请求并进行调度</li>
+</ul>
+</li>
+<li>
+<p>也叫前端控制器</p>
+</li>
+<li>
+<p>负责接受用户的请求，调用其他的控制器对象，请求处理结果显示给用户</p>
+</li>
+<li>
+<p>在web.xml中通过Servlet-Mapping配置请求映射，将<strong>不同类的请求</strong>给指定的<strong>中央调度器</strong>，中央调度器通过@Controller对象中@RequestMapping指定的请求方法完成请求并返回数据。</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--web.xml文件--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">version</span>=<span class="string">&quot;4.0&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--声明注册核心对象DispatcherServlet</span></span><br><span class="line"><span class="comment">    在tomcat服务器启动后就创建对象实例。</span></span><br><span class="line"><span class="comment">    在创建DispatcherServlet对象时,会同时创建springmvc容器对象</span></span><br><span class="line"><span class="comment">    读取sprinmvc配置文件，把所有对象都创建好，在请求时就可以直接使用。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    DisapatcherServlet的init()方法：</span></span><br><span class="line"><span class="comment">        创建容器读取配置文件：</span></span><br><span class="line"><span class="comment">        WebApplicationContext cont = new ClassPathXmlApplicationContext(&quot;springmvc.xml&quot;);</span></span><br><span class="line"><span class="comment">        把容器对象放到ServletContext中</span></span><br><span class="line"><span class="comment">        getServlet().setAttribute(key,cont);</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc_controller<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--在启动时，创建Servlet对象</span></span><br><span class="line"><span class="comment">    load-on-starup标签：表示在启动后创建对象的顺序。值为整数，值越小，tomcat创建对象得时间越早。</span></span><br><span class="line"><span class="comment">    默认读取的配置文件位置：/WEB-INF/&lt;servlet-name&gt;-servlet.xml</span></span><br><span class="line"><span class="comment">    自定义mvc读取配置文件的位置L:</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--springmvc配置文件的位置属性:--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--指定自定义文件的位置--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc_controller<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--  两种url -pattern的值</span></span><br><span class="line"><span class="comment">                1.使用扩展名，语法：*.xxx,xxx为自定义扩展名。常用*.do,*.action,*.mvc等</span></span><br><span class="line"><span class="comment">                    如：http://localhsot:8080/springmvc_controller/service.do</span></span><br><span class="line"><span class="comment">                2.使用斜杠&quot;/&quot;</span></span><br><span class="line"><span class="comment">         --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.do<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>创建请求页面：</p>
+<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;%--</span><br><span class="line">  Created by IntelliJ IDEA.</span><br><span class="line">  User: OMEN</span><br><span class="line">  Date: <span class="number">2021</span>/<span class="number">7</span>/<span class="number">20</span></span><br><span class="line">  Time: <span class="number">21</span>:<span class="number">04</span></span><br><span class="line">  To change <span class="keyword">this</span> template use File | Settings | File Templates.</span><br><span class="line">--%&gt;</span><br><span class="line">&lt;%-- 通过&lt;a href&gt;  指定链接请求的地址--%&gt;</span><br><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;p&gt;测试请求&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;&lt;a href=<span class="string">&quot;service.do&quot;</span>&gt;发起service.<span class="keyword">do</span>请求&lt;/a&gt;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>创建控制类</p>
+<ul>
+<li>
+<p>类上加入注解@Controller，<strong>创建对象</strong>，放到springmvc容器中</p>
+</li>
+<li>
+<p>在类中的方法上面加入RequestMapping注解：<strong>请求地址与方法的映射。<strong>类上：指定类中所有方法的模块：</strong>/test/*.do</strong></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    创建控制器对象</span></span><br><span class="line"><span class="comment">    后端控制器(处理器）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">controller_1</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        通过方法处理用户提交的请求，springmvc中使用的是方法来处理</span></span><br><span class="line"><span class="comment">        方法是自定义的，可以有多种返回值，多种参数，方法名自定义</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        @RequestionMapping：请求映射，将一个请求于一个方法绑定在一起</span></span><br><span class="line"><span class="comment">                            一个请求指定一个方法处理</span></span><br><span class="line"><span class="comment">                       属性：1. value：请求得url地址，必须唯一，使用时，推荐地址以“/”开头</span></span><br><span class="line"><span class="comment">       说明：使用@RequestionMapping修饰得方法叫做处理器方法或者控制器方法，可以处理请求，类似于Servlet得doGet，doPost</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        返回值ModelAndView</span></span><br><span class="line"><span class="comment">        Model：数据，请求处理完后显示给用户的数据</span></span><br><span class="line"><span class="comment">        View：视图：比如jsp等等</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/service.do&quot;)</span>      <span class="comment">//处理页面的请求地址</span></span><br><span class="line"><span class="comment">//    @ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">doService</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;进入控制器&quot;</span>);</span><br><span class="line"><span class="comment">//        先简单返回数据</span></span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//添加数据,框架在请求的最后把数据放入request作用域</span></span><br><span class="line">        <span class="comment">//request.setAttribute(&quot;msg&quot;,&quot;返回的图片为：&quot;)</span></span><br><span class="line">        modelAndView.addObject(<span class="string">&quot;msg&quot;</span>,<span class="string">&quot;返回的图片为：&quot;</span>);</span><br><span class="line">        modelAndView.addObject(<span class="string">&quot;func&quot;</span>,<span class="string">&quot;执行的方法：&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//指定视图,视图的完整路径</span></span><br><span class="line">        <span class="comment">//框架对视图执行dorward操作，request.getRequestDispatcher(&quot;/show.jsp&quot;).forward(...)</span></span><br><span class="line">        modelAndView.setViewName(<span class="string">&quot;show.jsp&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;退出控制器&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">        <span class="comment">//后期做setAttribute何forward处理</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>创建结果页面</p>
+</li>
+<li>
+<p>创建springmvc配置文件（spring配置文件）</p>
+<ul>
+<li>
+<p>声明组件扫描器，用于指定**@Controller注解**所在的包名</p>
+</li>
+<li>
+<p>声明视图解析器：处理视图：</p>
+<ul>
+<li>将结果页面放在保护路径中，不可直接访问。用视图解析器：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:mvc</span>=<span class="string">&quot;http://www.springframework.org/schema/mvc&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="string"><span class="tag">       https://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--声明组件扫描器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.example.controller&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--视图解析器：指定视图的文件的路径,prefix:前缀路径，前后都有“/”，suffix：后缀名。--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;prefix&quot;</span> <span class="attr">value</span>=<span class="string">&quot;/WEB-INF/pages/&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;suffix&quot;</span> <span class="attr">value</span>=<span class="string">&quot;.jsp&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">//配置视图解析器后只需要文件名：逻辑名指定页面</span><br><span class="line">modelAndView.setViewName(&quot;show&quot;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>请求处理过程：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://xn--service-s00lg34qox4akf3bfw2ae6c.do">前端页面请求service.do</a></li>
+<li>tomcat，通过web.xml的servlet-mapping给对应的中央调度器</li>
+<li>中央调度器根据配置的spring配置文件中的Controller对象中的RequestMapping指定的方法处理请求。</li>
+<li>Contoller对象经得到的ModelAndView转发给前端进行展示</li>
+</ul>
+</li>
+<li>
+<p>注解开发</p>
+<ul>
+<li>
+<p>@RequestMapping</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/service.do&quot;,method = RequestMethod.GET)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">/*</span><br><span class="line">	属性：method，表示请求的方式。他的值是RequestMethod类枚举类型</span><br><span class="line">	如：RequestMethod.GET,RequestMethodMeThod.POST</span><br><span class="line">	get可用：<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">	post：<span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;&quot;</span>/ <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span>&gt;</span></span><br><span class="line">		  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>接受参数：放在处理器方法中的形式参数，用于接受用户的参数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HttpServletRequest</span><br><span class="line">HttpServletResponse</span><br><span class="line">HttpSession</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>请求中的参数</p>
+<ul>
+<li>
+<p>逐个接受</p>
+<ul>
+<li>
+<p>请求jsp：</p>
+<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;%--</span><br><span class="line">  Created by IntelliJ IDEA.</span><br><span class="line">  User: OMEN</span><br><span class="line">  Date: <span class="number">2021</span>/<span class="number">7</span>/<span class="number">20</span></span><br><span class="line">  Time: <span class="number">21</span>:<span class="number">04</span></span><br><span class="line">  To change <span class="keyword">this</span> template use File | Settings | File Templates.</span><br><span class="line">--%&gt;</span><br><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;p&gt;提交参数&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">    &lt;form action=<span class="string">&quot;picture/first.do&quot;</span> method=<span class="string">&quot;post&quot;</span>&gt;</span><br><span class="line">        姓名：&lt;input type=<span class="string">&quot;text&quot;</span> name = <span class="string">&quot;name&quot;</span>&gt;</span><br><span class="line">        账号：&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;account&quot;</span>&gt;</span><br><span class="line">        密码：&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;psw&quot;</span>&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;提交&quot;</span>&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>控制器接收：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	使用@RequestePara解决请求中参数和处理器方法中形式参数名不相同</span></span><br><span class="line"><span class="comment">		value属性值：为请求中的参数名</span></span><br><span class="line"><span class="comment">		位置放在形式参数定义前</span></span><br><span class="line"><span class="comment">		require属性：默认为true，请求中必须含有西参数，（url中get请求）无参数会报错</span></span><br><span class="line"><span class="comment">					为false，可以为空。</span></span><br><span class="line"><span class="comment">	</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.http.HttpRequest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpSession;</span><br><span class="line"><span class="keyword">import</span> java.net.http.HttpResponse;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/picture&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">controller_1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    	接收参数过程</span></span><br><span class="line"><span class="comment">    	1. 使用Request对象接收</span></span><br><span class="line"><span class="comment">    	String name = request.getParaMeter(&quot;name&quot;);</span></span><br><span class="line"><span class="comment">    	String age = request.getParaMeter(&quot;age&quot;);</span></span><br><span class="line"><span class="comment">    	</span></span><br><span class="line"><span class="comment">    	2.mvc框架通过中央调度器调用Controller对象的doSome方法</span></span><br><span class="line"><span class="comment">    	此时按照请求的参数名与形参名对应进行传值，并进行类型转换。</span></span><br><span class="line"><span class="comment">    	</span></span><br><span class="line"><span class="comment">    	3.如果提交要转换为int数据时填空字符串，字母等，则会发生400错误：客户端异常Integer.valueof(String str)</span></span><br><span class="line"><span class="comment">    	</span></span><br><span class="line"><span class="comment">    		</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/service.do&quot;,method = RequestMethod.GET)</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">doService</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;=====进入控制器=====&quot;</span>);</span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;=====调用的service方法处理图片=====&quot;</span>);</span><br><span class="line">        modelAndView.addObject(<span class="string">&quot;msg&quot;</span>,<span class="string">&quot;返回的图片为：&quot;</span>);</span><br><span class="line">        modelAndView.addObject(<span class="string">&quot;func&quot;</span>,<span class="string">&quot;执行get请求的方法：&quot;</span>);</span><br><span class="line"></span><br><span class="line">        modelAndView.setViewName(<span class="string">&quot;show&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;=====退出控制器=====&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/first.do&quot;,method = RequestMethod.POST)</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">first</span><span class="params">(String name,<span class="keyword">int</span> age,String account,String psw)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;=====进入控制器=====&quot;</span>);</span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;=====调用的service方法处理图片=====&quot;</span>);</span><br><span class="line">        modelAndView.addObject(<span class="string">&quot;name&quot;</span>,name);</span><br><span class="line">        modelAndView.addObject(<span class="string">&quot;age&quot;</span>,age);</span><br><span class="line">        modelAndView.addObject(<span class="string">&quot;account&quot;</span>,account);</span><br><span class="line">        modelAndView.addObject(<span class="string">&quot;psw&quot;</span>,psw);</span><br><span class="line"></span><br><span class="line">        modelAndView.setViewName(<span class="string">&quot;show&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;=====退出控制器=====&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--4.post方式中文乱码：解决</span></span><br><span class="line"><span class="comment">    		设置HtppServletRequest h参数并在控制器代码中指明编码方式</span></span><br><span class="line"><span class="comment">    		h.setCharEncoding(&quot;utf-8&quot;)</span></span><br><span class="line"><span class="comment">    		</span></span><br><span class="line"><span class="comment">    		web.xml文件中设置过滤器：自定义或者自定义 --&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="comment">&lt;!--声明过滤器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>encodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--设置属性参数--&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!--设置HttpServletRequest对象使用的编码值--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>utf-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!--强制使HttpServletRequest对象使用上面编码--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>forceEncoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>encodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--/*表示所有的请求通过过滤器进行过滤--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc_controller<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>对象参数接受：接收多个参数</p>
+<ul>
+<li>
+<p>优点一个对象参数接收多个参数，缺点，名字必须一致，且要有set，get方法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.controller;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    对象接收参数，属性名与请求参数名一致</span></span><br><span class="line"><span class="comment">                set方法与get方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Picture</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    String age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Picture</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;创建picture对象节进行参数接收&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(String age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>处理器方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/receiveObject.do&quot;,method = RequestMethod.POST)</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">first</span><span class="params">(Picture picture)</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;=====进入控制器=====&quot;</span>);</span><br><span class="line">      ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">          </span><br><span class="line">      <span class="keyword">if</span>(<span class="string">&quot;&quot;</span>.equals(picture.name) ||<span class="string">&quot;&quot;</span>.equals(picture.age)  )&#123;</span><br><span class="line">          </span><br><span class="line">          System.out.println(<span class="string">&quot;=====参数为空处理=====&quot;</span>);</span><br><span class="line">          modelAndView.setViewName(<span class="string">&quot;show_400&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> &#123;</span><br><span class="line">          </span><br><span class="line">          System.out.println(<span class="string">&quot;=====调用的service方法处理图片=====&quot;</span>);</span><br><span class="line">          modelAndView.addObject(<span class="string">&quot;name&quot;</span>, picture.name);</span><br><span class="line">          modelAndView.addObject(<span class="string">&quot;age&quot;</span>, picture.age);</span><br><span class="line">          modelAndView.addObject(<span class="string">&quot;picture&quot;</span>,picture);</span><br><span class="line">          </span><br><span class="line">          </span><br><span class="line">          modelAndView.setViewName(<span class="string">&quot;show&quot;</span>);</span><br><span class="line">          </span><br><span class="line">      &#125;</span><br><span class="line">      System.out.println(<span class="string">&quot;=====退出控制器=====&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> modelAndView;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>控制器方法返回值</p>
+<ul>
+<li>
+<p>ModelAndView：Model数据部分(最终在Request作用域里)，View视图进行转发操作。同时用数据和视图</p>
+</li>
+<li>
+<p>String：只进行页面跳转：逻辑名称或完全路径。</p>
+<ul>
+<li>
+<p>可以手动添加数据到Request域：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/jump.do&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">jump</span><span class="params">(HttpServletRequest httpServletRequest,String name,String age)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;=====进入控制器=====&quot;</span>);</span><br><span class="line"></span><br><span class="line">        httpServletRequest.setAttribute(<span class="string">&quot;name&quot;</span>,name);</span><br><span class="line">        httpServletRequest.setAttribute(<span class="string">&quot;age&quot;</span>,age);</span><br><span class="line">        System.out.println(<span class="string">&quot;=====调用的service方法处理图片=====&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;=====退出控制器=====&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;show&quot;</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>void：不能表示数据，也不表示视图。处理ajax，可以使用void，通过HttpServletResponse输出数据，服务器只返回数据，和视图无关。</p>
+</li>
+<li>
+<p>Object：响应Ajax，返回数据与视图无关。</p>
+<ul>
+<li>
+<p>步骤</p>
+<ul>
+<li>
+<p>加入处理json的工具库依赖</p>
+</li>
+<li>
+<p>对象转成json：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在处理器方法上加入@ResponseBody注解：进行输出</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Tomcat可以处理静态资源：html，js，jsp等等，有一个默认Servlet，启动时创建</p>
+<ul>
+<li>
+<p>还可以处理未映射的请求。</p>
+</li>
+<li>
+<p>自己的web.xml文件url-pattern为&quot;/&quot;时会替代tomcat的默认Servlet，中央处理器不会处理静态资源。</p>
+<ul>
+<li>
+<p>需要在springmvc配置文件中添加标签，创建处理静态资源的控制器，最终是转发给tomcat进行处理。** **转发给默认控制器处理。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span>    </span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:default-servlet-handler</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>和RequestMapping有冲突，需要加入注解驱动解决</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>第二种处理静态资源。同样有冲突，加注解驱动</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span>    </span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:default-servlet-handler</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>​</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/VincentVanNF">VincentVan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://vincentvannf.github.io/2021/10/20/Spring/">https://vincentvannf.github.io/2021/10/20/Spring/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://vincentvannf.github.io" target="_blank">VincentVan</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a><a class="post-meta__tags" href="/tags/Spring/">Spring</a></div><div class="post_share"><div class="addthis_inline_share_toolbox"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=null" async="async"></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/Wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/Wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/ZFB.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/ZFB.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/10/20/Python-Json/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://z3.ax1x.com/2021/10/20/5ri5h6.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Python Json</div></div></a></div><div class="next-post pull-right"><a href="/2021/10/20/Java/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/Java.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Java</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/10/20/Java/" title="Java"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/Java.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-20</div><div class="title">Java</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">VincentVan</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/VincentVanNF"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/VincentVanNF" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3080167665@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">每天睡够8小时</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven"><span class="toc-number">1.</span> <span class="toc-text">Maven</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IOC"><span class="toc-number">2.</span> <span class="toc-text">IOC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AOP-%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">AOP:面向切面编程</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/09/03/Pytorch/" title="Basic DL Using Pytorch"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/pytorch.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Basic DL Using Pytorch"/></a><div class="content"><a class="title" href="/2022/09/03/Pytorch/" title="Basic DL Using Pytorch">Basic DL Using Pytorch</a><time datetime="2022-09-02T16:50:00.000Z" title="发表于 2022-09-03 00:50:00">2022-09-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/SAP_Dynatrace/" title="SAP_Dynatrace"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/Dynatrace.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SAP_Dynatrace"/></a><div class="content"><a class="title" href="/2022/08/01/SAP_Dynatrace/" title="SAP_Dynatrace">SAP_Dynatrace</a><time datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/SAP_Git/" title="SAP_Git"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/git.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SAP_Git"/></a><div class="content"><a class="title" href="/2022/08/01/SAP_Git/" title="SAP_Git">SAP_Git</a><time datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/SAP_IBSO_TOOLS_PART2/" title="SAP_IBSO_TOOLS_PART2"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/exercise1_5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SAP_IBSO_TOOLS_PART2"/></a><div class="content"><a class="title" href="/2022/08/01/SAP_IBSO_TOOLS_PART2/" title="SAP_IBSO_TOOLS_PART2">SAP_IBSO_TOOLS_PART2</a><time datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/SAP_IBSO_TOOLS_PART1/" title="SAP_IBSO_TOOLS_PART1"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/IBSO.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SAP_IBSO_TOOLS_PART1"/></a><div class="content"><a class="title" href="/2022/08/01/SAP_IBSO_TOOLS_PART1/" title="SAP_IBSO_TOOLS_PART1">SAP_IBSO_TOOLS_PART1</a><time datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright"><div><b><font color="#00BFFF">&copy;2021 - 2023 By </font></b> <b><a font color="#00BFFF"href=https://vincentvannf.github.io/ style="position: relative; z-index: 10"><font color="#00BFFF">VincentVan</a></font></b></div></div><div class="footer_custom_text"><b><font color="#00BFFF">Hi, Welcom to my blog.</font></b></div></div><div id="footer-wrap" style="iposition:absolute;text-align:cente;inset:20px;"></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '8f42e6f2019939020945',
+      clientSecret: 'e8db6e1f9cc7b4ec40ba8ce4d76250264b125b8c',
+      repo: 'VincentVanNF.github.io',
+      owner: 'VincentVanNF',
+      admin: ['VincentVanNF'],
+      id: '565969df0e860b24ad9a6db9da9a1905',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const findTrueUrl = (array) => {
+    Promise.all(array.map(item =>
+      fetch(item.url).then(resp => resp.json()).then(data => {
+        const urlArray = data.body.match(/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/ig)
+        if (data.user.login === 'utterances-bot') {
+          return urlArray.pop()
+        } else {
+          return urlArray.shift()
+        }
+      })
+    )).then(res => {
+        array = array.map((i,index)=> {
+          return {
+            ...i,
+            url: res[index]
+          }
+        })
+
+        saveToLocal.set('github-newest-comments', JSON.stringify(array), 10/(60*24))
+        generateHtml(array)
+    });
+  }
+
+  const getComment = () => {
+    fetch('https://api.github.com/repos/VincentVanNF/VincentVanNF.github.io/issues/comments?sort=updated&direction=desc&per_page=6&page=1',{
+      "headers": {
+        Accept: 'application/vnd.github.v3.html+json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        const githubArray = data.map(item => {
+          return {
+            'avatar': item.user.avatar_url,
+            'content': changeContent(item.body_html),
+            'nick': item.user.login,
+            'url': item.issue_url,
+            'date': item.updated_at,
+            'githubUrl': item.html_url
+          }
+        })
+        findTrueUrl(githubArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      })
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('github-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><div class="aplayer no-destroy" data-id="7622286806" data-server="netease" data-type="playlist" data-fixed="true" data-mutex="true" data-autoplay="false" > </div><script src="/js/jquery.min.js"></script><script src="/js/fishes.js"></script><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script>(function(d, w, c) {
+    w.ChatraID = 'xKZME3aZENuKqB3Z7';
+    var s = d.createElement('script');
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments);
+    };
+    s.async = true;
+    s.src = 'https://call.chatra.io/chatra.js';
+    if (d.head) d.head.appendChild(s);
+})(document, window, 'Chatra');
+
+if (false) {
+  var chatBtnFn = () => {
+    var chatBtn = document.getElementById("chat_btn")
+    chatBtn.addEventListener("click", function(){
+      Chatra('openChat')
+    });
+  }
+  chatBtnFn()
+} else {
+  if (false) {
+    function chatBtnHide () {
+      Chatra('hide')
+    }
+    function chatBtnShow () {
+      Chatra('show')
+    }
+  }
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'UA-239901416-2', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.4.0" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://www.jsdelivr.com/" style="margin-inline:5px" data-title="本站使用JsDelivr为静态资源提供CDN加速" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/js/runtime.js"></script><!-- hexo injector body_end end --></body></html>

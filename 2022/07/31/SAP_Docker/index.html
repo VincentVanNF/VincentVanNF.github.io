@@ -1,0 +1,1114 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Docker | VincentVan</title><meta name="keywords" content="SAP Devops Docker"><meta name="author" content="VincentVan,3080167665@qq.com"><meta name="copyright" content="VincentVan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="SAP 实习期间学习docker官方文档">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker">
+<meta property="og:url" content="https://vincentvannf.github.io/2022/07/31/SAP_Docker/index.html">
+<meta property="og:site_name" content="VincentVan">
+<meta property="og:description" content="SAP 实习期间学习docker官方文档">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vincentvannf.github.io/img/docker.jpg">
+<meta property="article:published_time" content="2022-07-31T14:50:00.000Z">
+<meta property="article:modified_time" content="2022-08-01T07:25:26.657Z">
+<meta property="article:author" content="VincentVan">
+<meta property="article:tag" content="SAP">
+<meta property="article:tag" content="Devops">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vincentvannf.github.io/img/docker.jpg"><link rel="shortcut icon" href="/img/avatar.jpg"><link rel="canonical" href="https://vincentvannf.github.io/2022/07/31/SAP_Docker/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="SMp-WCh2-15NoyvdKD57wvY3dGBCraogGZOhwy_h9Qk"/><meta name="baidu-site-verification" content="code-dq7TNN1IXf"/><meta name="msvalidate.01" content="EAEAB8A5E519B85254994EF46F15A64C"/><link rel="manifest" href="/img/siteicons/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/siteicons/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/siteicons/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/siteicons/favicon-16x16.png"/><link rel="mask-icon" href="/img/siteicons/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6977b44415e5cb320371eaf48031d71d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-239901416-2"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-239901416-2');
+</script><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "dhcmcg78px");</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"OI6JNF40NR","apiKey":"c21669e336acb106e29d7212316209df","indexName":"hexo","hits":{"per_page":6},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: VincentVan","link":"链接: ","source":"来源: VincentVan","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Docker',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-01 15:25:26'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><style type="text/css">.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body{left:-66px!important}.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover{left:0!important}</style><link rel="stylesheet" href="/css/footer-all-transparent.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/me"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">VincentVan</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/me"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Docker</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-07-31T14:50:00.000Z" title="发表于 2022-07-31 22:50:00">2022-07-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-01T07:25:26.657Z" title="更新于 2022-08-01 15:25:26">2022-08-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/SAP-Devops-Docker/">SAP/Devops/Docker</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">6.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>43分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Docker"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2022/07/31/SAP_Docker/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div><article class="post-content" id="article-container"><h1>Dockerfile</h1>
+<p>I like to call Dockerfile the predecessor of a container image. You build an image from a Dockerfile. A typical Dockerfile contains special build instructions, commands like <code>RUN</code>, <code>ADD</code>, <code>COPY</code>, <code>ENTRYPOINT</code>, etc.</p>
+<h2 id="Usage">Usage</h2>
+<ul>
+<li>
+<p>The <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/build/">docker build</a> command builds an image from a <code>Dockerfile</code> and a <em>context</em>. The build’s context is the set of files at a specified location <code>PATH</code> or <code>URL</code>. The <code>PATH</code> is a directory on your local filesystem. The <code>URL</code> is a Git repository location.</p>
+</li>
+<li>
+<p>To use a file in the build context, the <code>Dockerfile</code> refers to the file specified in an instruction, for example, a <code>COPY</code> instruction. To increase the build’s performance, exclude files and directories by adding a <code>.dockerignore</code> file to the context directory. For information about how to <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/builder/#dockerignore-file">create a <code>.dockerignore</code> file</a> see the documentation on this page.</p>
+</li>
+<li>
+<p>You use the <code>-f</code> flag with <code>docker build</code> to point to a Dockerfile anywhere in your file system.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker build -f /path/to/a/Dockerfile .</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>You can specify a repository and tag at which to save the new image if the build succeeds:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker build -t shykes/myapp .</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Note that each instruction is run independently, and causes a new image to be created - so <code>RUN cd /tmp</code> will not have any effect on the next instructions.</p>
+</li>
+<li>
+<p>Whenever possible, Docker uses a build-cache to accelerate the <code>docker build</code> process significantly. This is indicated by the <code>CACHED</code> message in the console output. (For more information, see the <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/"><code>Dockerfile</code> best practices guide</a>):</p>
+</li>
+</ul>
+<h2 id="BuildKit-Project">BuildKit Project</h2>
+<p>Starting with version 18.09, Docker supports a new backend for executing your builds that is provided by the <a target="_blank" rel="noopener" href="https://github.com/moby/buildkit">moby/buildkit</a> project. The BuildKit backend provides many benefits compared to the old implementation. For example, BuildKit can:</p>
+<ul>
+<li><strong>Detect and skip executing unused build stages</strong></li>
+<li>Parallelize building independent build stages</li>
+<li>Incrementally transfer only the changed files in your build context between builds</li>
+<li><strong>Detect and skip transferring unused files in your build context</strong></li>
+<li>Use external Dockerfile implementations with many new features</li>
+<li>Avoid side-effects with rest of the API (intermediate images and containers)</li>
+<li>Prioritize your build cache for automatic pruning</li>
+</ul>
+<p>To use the BuildKit backend, you need to set an environment variable <code>DOCKER_BUILDKIT=1</code> on the CLI before invoking <code>docker build</code>.</p>
+<p>To learn about the Dockerfile syntax available to BuildKit-based builds <a target="_blank" rel="noopener" href="https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/syntax.md">refer to the documentation in the BuildKit repository</a>.</p>
+<h2 id="Format">Format</h2>
+<ul>
+<li>Docker runs instructions in a <code>Dockerfile</code> in order. A <code>Dockerfile</code> <strong>must begin with a <code>FROM</code> instruction</strong>. This may be after <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/builder/#parser-directives">parser directives</a>, <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/builder/#format">comments</a>, and globally scoped <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/builder/#arg">ARGs</a>. The <code>FROM</code> instruction specifies the <a target="_blank" rel="noopener" href="https://docs.docker.com/glossary/#parent-image"><em>Parent Image</em></a> from which you are building. <code>FROM</code> may only be preceded by one or more instructions<code>ARG</code>, which declare arguments that are used in <code>FROM</code> lines in the <code>Dockerfile</code>.</li>
+</ul>
+<h2 id="Parser-directives">Parser directives</h2>
+<ul>
+<li>
+<p>Parser directives are optional, and affect the way in which subsequent lines in a <code>Dockerfile</code> are handled. Parser directives do not add layers to the build, and will not be shown as a build step. Parser directives are written as a special type of comment in the form <code># directive=value</code>. A single directive may only be used once.</p>
+</li>
+<li>
+<p>Once a comment, empty line or builder instruction has been processed, Docker no longer looks for parser directives. Instead it treats anything formatted as a parser directive as a comment and does not attempt to validate if it might be a parser directive. Therefore, all parser directives must be at the very top of a <code>Dockerfile</code>.</p>
+<p>Parser directives are not case-sensitive. However, convention is for them to be lowercase. Convention is also to include a blank line following any parser directives. Line continuation characters are not supported in parser directives.</p>
+</li>
+<li>
+<p>invalid examples:</p>
+<ul>
+<li>
+<p>Invalid due to line continuation:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># direc \</span></span><br><span class="line">tive=value</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Invalid due to appearing twice:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># directive=value1</span></span><br><span class="line"><span class="comment"># directive=value2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">FROM</span> ImageName</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Treated as a comment due to appearing after a builder instruction:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ImageName</span><br><span class="line"><span class="comment"># directive=value</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Treated as a comment due to appearing after a comment which is not a parser directive:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># About my dockerfile</span></span><br><span class="line"><span class="comment"># directive=value</span></span><br><span class="line"><span class="keyword">FROM</span> ImageName</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>The unknown directive is treated as a comment due to not being recognized. In addition, the known directive is treated as a comment due to appearing after a comment which is not a parser directive.</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># unknowndirective=value</span></span><br><span class="line"><span class="comment"># knowndirective=value</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>The following parser directives are supported:</p>
+<ul>
+<li><code>syntax</code></li>
+<li><code>escape</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>syntax</strong></p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># syntax=[remote image reference]</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>for example</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># syntax=docker/dockerfile:1</span></span><br><span class="line"><span class="comment"># syntax=docker.io/docker/dockerfile:1</span></span><br><span class="line"><span class="comment"># syntax=example.com/user/repo:tag@sha256:abcdef...</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>This feature is only available when using the <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/builder/#buildkit">BuildKit</a> backend, and is ignored when using the classic builder backend.</strong></p>
+<p>The syntax directive defines the location of the Dockerfile syntax that is used to build the Dockerfile. The BuildKit backend allows to seamlessly use external implementations that are distributed as Docker images and execute inside a container sandbox environment.</p>
+</li>
+<li>
+<p>Official releases</p>
+<p>Docker distributes official versions of the images that can be used for building Dockerfiles under <code>docker/dockerfile</code> repository on Docker Hub. There are two channels where new images are released: <code>stable</code> and <code>labs</code>.</p>
+<p><strong>Stable channel</strong> follows <a target="_blank" rel="noopener" href="https://semver.org/">semantic versioning</a>. For example:</p>
+<ul>
+<li><code>docker/dockerfile:1</code> - kept updated with the latest <code>1.x.x</code> minor <em>and</em> patch release</li>
+<li><code>docker/dockerfile:1.2</code> - kept updated with the latest <code>1.2.x</code> patch release, and stops receiving updates once version <code>1.3.0</code> is released.</li>
+<li><code>docker/dockerfile:1.2.1</code> - immutable: never updated</li>
+</ul>
+<p>We recommend using <code>docker/dockerfile:1</code>, which always points to the latest stable release of the version 1 syntax, and receives both “minor” and “patch” updates for the version 1 release cycle. BuildKit automatically checks for updates of the syntax when performing a build, making sure you are using the most current version.</p>
+</li>
+<li>
+<p><strong>labs channel</strong></p>
+<p>The “labs” channel provides early access to Dockerfile features that are not yet available in the stable channel. Labs channel images are released in conjunction with the stable releases, and follow the same versioning with the <code>-labs</code> suffix, for example:</p>
+<ul>
+<li><code>docker/dockerfile:labs</code> - latest release on labs channel</li>
+<li><code>docker/dockerfile:1-labs</code> - same as <code>dockerfile:1</code> in the stable channel, with labs features enabled</li>
+<li><code>docker/dockerfile:1.2-labs</code> - same as <code>dockerfile:1.2</code> in the stable channel, with labs features enabled</li>
+<li><code>docker/dockerfile:1.2.1-labs</code> - immutable: never updated. Same as <code>dockerfile:1.2.1</code> in the stable channel, with labs features enabled</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>escape</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># escape=\ (backslash)</span></span><br></pre></td></tr></table></figure>
+<p>Or</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># escape=` (backtick)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>The <code>escape</code> directive sets the character used to escape characters in a <code>Dockerfile</code>. If not specified, the default escape character is <code>\</code>.</p>
+<p>The escape character is used both to escape characters in a line, and to escape a newline. This allows a <code>Dockerfile</code> instruction to span multiple lines. Note that regardless of whether the <code>escape</code> parser directive is included in a <code>Dockerfile</code>, <em>escaping is not performed in a <code>RUN</code> command, except at the end of a line.</em></p>
+<p>Setting the escape character to <code>is especially useful on `Windows`, where `\` is the directory path separator.</code> is consistent with <a target="_blank" rel="noopener" href="https://technet.microsoft.com/en-us/library/hh847755.aspx">Windows PowerShell</a>.</p>
+</li>
+<li>
+<p>example</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> microsoft/nanoserver</span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> testfile.txt c:\\</span></span><br><span class="line"><span class="bash">RUN dir c:\</span></span><br></pre></td></tr></table></figure>
+<p>result as:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/06/14/IWeiZDthrjSM1m9.png" alt="image-20220614103809280"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Environment-replacement🔗">Environment replacement<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/builder/#environment-replacement">🔗</a></h2>
+<ul>
+<li>Environment variables (declared with <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/builder/#env">the <code>ENV</code> statement</a>) can also be used in certain instructions as variables to be interpreted by the <code>Dockerfile</code>. Escapes are also handled for including variable-like syntax into a statement literally.</li>
+<li>The <code>$&#123;variable_name&#125;</code> syntax also supports a few of the standard <code>bash</code> modifiers as specified below:
+<ul>
+<li><code>$&#123;variable:-word&#125;</code> indicates that if <code>variable</code> is set then the result will be that value. If <code>variable</code> is not set then <code>word</code> will be the result.</li>
+<li><code>$&#123;variable:+word&#125;</code> indicates that if <code>variable</code> is set then <code>word</code> will be the result, otherwise the result is the empty string.</li>
+</ul>
+</li>
+<li>Environment variables are supported by the following list of instructions in the <code>Dockerfile</code>:
+<ul>
+<li><code>ADD</code></li>
+<li><code>COPY</code></li>
+<li><code>ENV</code></li>
+<li><code>EXPOSE</code></li>
+<li><code>FROM</code></li>
+<li><code>LABEL</code></li>
+<li><code>STOPSIGNAL</code></li>
+<li><code>USER</code></li>
+<li><code>VOLUME</code></li>
+<li><code>WORKDIR</code></li>
+<li><code>ONBUILD</code> (when combined with one of the supported instructions above)</li>
+</ul>
+</li>
+</ul>
+<h2 id="dockerignore-file">.dockerignore file</h2>
+<ul>
+<li>Before the docker CLI sends the context to the docker daemon, it looks for a file named <code>.dockerignore</code> in the root directory of the context. If this file exists, the CLI modifies the context to exclude files and directories that match patterns in it. This helps to avoid unnecessarily sending large or sensitive files and directories to the daemon and potentially adding them to images using <code>ADD</code> or <code>COPY</code>.</li>
+</ul>
+<h2 id="FROM">FROM</h2>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> [--platform=&lt;platform&gt;] &lt;image&gt; [AS &lt;name&gt;]</span><br></pre></td></tr></table></figure>
+<p>Or</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> [--platform=&lt;platform&gt;] &lt;image&gt;[:&lt;tag&gt;] [AS &lt;name&gt;]</span><br></pre></td></tr></table></figure>
+<p>Or</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> [--platform=&lt;platform&gt;] &lt;image&gt;[@&lt;digest&gt;] [AS &lt;name&gt;]</span><br></pre></td></tr></table></figure>
+<p>​	The <code>FROM</code> instruction initializes a new build stage and sets the <a target="_blank" rel="noopener" href="https://docs.docker.com/glossary/#base-image"><em>Base Image</em></a> for subsequent instructions. As such, a valid <code>Dockerfile</code> must start with a <code>FROM</code> instruction. The image can be any valid image – it is especially easy to start by <strong>pulling an image</strong> from the <a target="_blank" rel="noopener" href="https://docs.docker.com/docker-hub/repos/"><em>Public Repositories</em></a>.</p>
+<pre><code>- `ARG` is the only instruction that may precede `FROM` in the `Dockerfile`. See [Understand how ARG and FROM interact](https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact).
+</code></pre>
+<ul>
+<li>
+<p><code>FROM</code> can appear multiple times within a single <code>Dockerfile</code> to create multiple images or use one build stage as a dependency for another. Simply make a note of the last image ID output by the commit before each new <code>FROM</code> instruction. Each <code>FROM</code> instruction clears any state created by previous instructions.</p>
+</li>
+<li>
+<p>Optionally a name can be given to a new build stage by adding <code>AS name</code> to the <code>FROM</code> instruction. The name can be used in subsequent <code>FROM</code> and <code>COPY --from=&lt;name&gt;</code> instructions to refer to the image built in this stage.</p>
+</li>
+<li>
+<p>The <code>tag</code> or <code>digest</code> values are optional. If you omit either of them, the builder assumes a <code>latest</code> tag by default. The builder returns an error if it cannot find the <code>tag</code> value.</p>
+</li>
+<li>
+<p>The optional <code>--platform</code> flag can be used to specify the platform of the image in case <code>FROM</code> references a multi-platform image. For example, <code>linux/amd64</code>, <code>linux/arm64</code>, or <code>windows/amd64</code>. By default, the target platform of the build request is used. Global build arguments can be used in the value of this flag, for example <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/builder/#automatic-platform-args-in-the-global-scope">automatic platform ARGs</a> allow you to force a stage to native build platform (), and use it to cross-compile to the target platform inside the stage.<code>--platform=$BUILDPLATFORM</code></p>
+</li>
+</ul>
+<h2 id="RUN">RUN</h2>
+<p>RUN has 2 forms:</p>
+<ul>
+<li>
+<p><code>RUN &lt;command&gt;</code> (<em>shell</em> form, the command is run in a shell, which by default is <code>/bin/sh -c</code> on Linux or <code>cmd /S /C</code> on Windows)</p>
+</li>
+<li>
+<p><code>RUN [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</code> (<em>exec</em> form)</p>
+<ul>
+<li>
+<p>The <em>exec</em> form makes it possible to avoid shell string munging, and to <code>RUN</code> commands using a base image that does not contain the specified shell executable.</p>
+</li>
+<li>
+<p>To use a different shell, other than ‘/bin/sh’, use the <em>exec</em> form passing in the desired shell. For example:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">RUN</span><span class="bash"> [<span class="string">&quot;/bin/bash&quot;</span>, <span class="string">&quot;-c&quot;</span>, <span class="string">&quot;echo hello&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>Note</strong>:The <em>exec</em> form is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘).</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>KWOWN ISSUE</strong></p>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="https://github.com/docker/docker/issues/783">Issue 783</a> is about file permissions problems that can occur when using the AUFS file system. You might notice it during an attempt to <code>rm</code> a file, for example.</p>
+<p>For systems that have recent aufs version (i.e., <code>dirperm1</code> mount option can be set), docker will attempt to fix the issue automatically by mounting the layers with <code>dirperm1</code> option. More details on <code>dirperm1</code> option can be found at <a target="_blank" rel="noopener" href="https://github.com/sfjro/aufs3-linux/tree/aufs3.18/Documentation/filesystems/aufs"><code>aufs</code> man page</a></p>
+<p>If your system doesn’t have support for <code>dirperm1</code>, the issue describes a workaround.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="CMD">CMD</h2>
+<p>The <code>CMD</code> instruction has three forms:</p>
+<ul>
+<li>
+<p><code>CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;]</code> (<em>exec</em> form, this is the preferred form)</p>
+</li>
+<li>
+<p><code>CMD [&quot;param1&quot;,&quot;param2&quot;]</code> (as <em>default parameters to ENTRYPOINT</em>)</p>
+</li>
+<li>
+<p><code>CMD command param1 param2</code> (<em>shell</em> form)</p>
+</li>
+<li>
+<p>There can only be one <code>CMD</code> instruction in a <code>Dockerfile</code>. If you list more than one <code>CMD</code> then only the last <code>CMD</code> will take effect.</p>
+<p><strong>The main purpose of a <code>CMD</code> is to provide defaults for an executing container.</strong> These defaults can include an executable, or they can omit the executable, in which case you must specify an <code>ENTRYPOINT</code> instruction as well.</p>
+<p>If <code>CMD</code> is used to provide default arguments for the <code>ENTRYPOINT</code> instruction, both the <code>CMD</code> and <code>ENTRYPOINT</code> instructions should be specified with the JSON array format.</p>
+</li>
+<li>
+<p><strong>If the user specifies arguments to <code>docker run</code> then they will override the default specified in <code>CMD</code>.</strong></p>
+</li>
+<li>
+<p><strong>Note</strong>：Do not confuse <code>RUN</code> with <code>CMD</code>. <code>RUN</code> actually runs a command and commits the result; <code>CMD</code> does not execute anything at build time, but specifies the intended command for the image.</p>
+</li>
+</ul>
+<h2 id="LABEL">LABEL</h2>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">LABEL</span><span class="bash"> &lt;key&gt;=&lt;value&gt; &lt;key&gt;=&lt;value&gt; &lt;key&gt;=&lt;value&gt; ...</span></span><br></pre></td></tr></table></figure>
+<p>The <code>LABEL</code> instruction adds metadata to an image. A <code>LABEL</code> is a key-value pair. To include spaces within a <code>LABEL</code> value, use quotes and backslashes as you would in command-line parsing. A few usage examples:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">LABEL</span><span class="bash"> <span class="string">&quot;com.example.vendor&quot;</span>=<span class="string">&quot;ACME Incorporated&quot;</span></span></span><br><span class="line"><span class="keyword">LABEL</span><span class="bash"> com.example.label-with-value=<span class="string">&quot;foo&quot;</span></span></span><br><span class="line"><span class="keyword">LABEL</span><span class="bash"> version=<span class="string">&quot;1.0&quot;</span></span></span><br><span class="line"><span class="keyword">LABEL</span><span class="bash"> description=<span class="string">&quot;This text illustrates \</span></span></span><br><span class="line"><span class="string"><span class="bash">that label-values can span multiple lines.&quot;</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>An image can have more than one label. You can specify multiple labels on a single line. Prior to Docker 1.10, this decreased the size of the final image, but this is no longer the case. You may still choose to specify multiple labels in a single instruction, in one of the following two ways:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">LABEL</span><span class="bash"> multi.label1=<span class="string">&quot;value1&quot;</span> multi.label2=<span class="string">&quot;value2&quot;</span> other=<span class="string">&quot;value3&quot;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">LABEL</span><span class="bash"> multi.label1=<span class="string">&quot;value1&quot;</span> \</span></span><br><span class="line"><span class="bash">      multi.label2=<span class="string">&quot;value2&quot;</span> \</span></span><br><span class="line"><span class="bash">      other=<span class="string">&quot;value3&quot;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Labels included in base or parent images (images in the <code>FROM</code> line) are inherited by your image. If a label already exists but with a different value, the most-recently-applied value overrides any previously-set value.</p>
+<p>To view an image’s labels, use the <code>docker image inspect</code> command. You can use the <code>--format</code> option to show just the labels;</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker image inspect --format=<span class="string">&#x27;&#x27;</span> myimage</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="EXPOSE">EXPOSE</h2>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">EXPOSE</span> &lt;port&gt; [&lt;port&gt;/&lt;protocol&gt;...]</span><br></pre></td></tr></table></figure>
+<p>The <code>EXPOSE</code> instruction informs Docker that the container listens on the specified network ports at runtime. You can specify whether the port listens on TCP or UDP, and the default is TCP if the protocol is not specified.</p>
+<p>The <code>EXPOSE</code> instruction does not actually publish the port. It functions as a type of documentation between the person who builds the image and the person who runs the container, about which ports are intended to be published. To actually publish the port when running the container, use the <code>-p</code> flag on <code>docker run</code> to publish and map one or more ports, or the <code>-P</code> flag to publish all exposed ports and map them to high-order ports.</p>
+<p>By default, <code>EXPOSE</code> assumes TCP. You can also specify UDP:</p>
+<p>To expose on both TCP and UDP, include two lines:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span>/tcp</span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span>/udp</span><br></pre></td></tr></table></figure>
+<p>To set up port redirection on the host system, see <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/run/#expose-incoming-ports">using the -P flag</a>. The <code>docker network</code> command supports creating networks for communication among containers without the need to expose or publish specific ports, because the containers connected to the network can communicate with each other over any port. For detailed information, see the <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/userguide/networking/">overview of this feature</a>.</p>
+<h2 id="Dcoker-Network-overview">Dcoker Network overview</h2>
+<h3 id="Network-drivers">Network drivers</h3>
+<ul>
+<li><code>bridge</code>: The default network driver. If you don’t specify a driver, this is the type of network you are creating. <strong>Bridge networks are usually used when your applications run in standalone containers that need to communicate.</strong> See <a target="_blank" rel="noopener" href="https://docs.docker.com/network/bridge/">bridge networks</a>.</li>
+<li><code>host</code>: For standalone containers, remove network isolation between the container and the Docker host, and use the host’s networking directly. See <a target="_blank" rel="noopener" href="https://docs.docker.com/network/host/">use the host network</a>.</li>
+<li><code>overlay</code>: Overlay networks connect multiple Docker daemons together and enable swarm services to communicate with each other. You can also use overlay networks to facilitate communication between a swarm service and a standalone container, or between two standalone containers on different Docker daemons. This strategy removes the need to do OS-level routing between these containers. See <a target="_blank" rel="noopener" href="https://docs.docker.com/network/overlay/">overlay networks</a>.</li>
+<li><code>ipvlan</code>: IPvlan networks give users total control over both IPv4 and IPv6 addressing. The VLAN driver builds on top of that in giving operators complete control of layer 2 VLAN tagging and even IPvlan L3 routing for users interested in underlay network integration. See <a target="_blank" rel="noopener" href="https://docs.docker.com/network/ipvlan/">IPvlan networks</a>.</li>
+<li><code>macvlan</code>: Macvlan networks allow you to assign a MAC address to a container, making it appear as a physical device on your network. The Docker daemon routes traffic to containers by their MAC addresses. Using the <code>macvlan</code> driver is sometimes the best choice when dealing with legacy applications that expect to be directly connected to the physical network, rather than routed through the Docker host’s network stack. See <a target="_blank" rel="noopener" href="https://docs.docker.com/network/macvlan/">Macvlan networks</a>.</li>
+<li><code>none</code>: For this container, disable all networking. Usually used in conjunction with a custom network driver. <code>none</code> is not available for swarm services. See <a target="_blank" rel="noopener" href="https://docs.docker.com/network/none/">disable container networking</a>.</li>
+<li>Network driver summary
+<ul>
+<li><strong>User-defined bridge networks</strong> are best when you need multiple containers to communicate on the same Docker host.</li>
+<li><strong>Host networks</strong> are best when the network stack should not be isolated from the Docker host, but you want other aspects of the container to be isolated.</li>
+<li><strong>Overlay networks</strong> are best when you need containers running on different Docker hosts to communicate, or when multiple applications work together using swarm services.</li>
+<li><strong>Macvlan networks</strong> are best when you are migrating from a VM setup or need your containers to look like physical hosts on your network, each with a unique MAC address.</li>
+<li><strong>Third-party network plugins</strong> allow you to integrate Docker with specialized network stacks.</li>
+</ul>
+</li>
+</ul>
+<h2 id="ENV">ENV</h2>
+<p>Docker automatically sets some environment variables when creating a Linux container. Docker does not set any environment variables when creating a Windows container.</p>
+<p>The following environment variables are set for Linux containers:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Variable</th>
+<th style="text-align:left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>HOME</code></td>
+<td style="text-align:left">Set based on the value of <code>USER</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>HOSTNAME</code></td>
+<td style="text-align:left">The hostname associated with the container</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PATH</code></td>
+<td style="text-align:left">Includes popular directories, such as <code>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TERM</code></td>
+<td style="text-align:left"><code>xterm</code> if the container is allocated a pseudo-TTY</td>
+</tr>
+</tbody>
+</table>
+<p>Additionally, the operator can <strong>set any environment variable</strong> in the container by using one or more <code>-e</code> flags, even overriding those mentioned above, or already defined by the developer with a Dockerfile <code>ENV</code>. If the operator names an environment variable without specifying a value, then the current value of the named variable is propagated into the container’s environment:</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/06/14/e7OApgGqsxCI6k3.png" alt="image-20220614192616254"></p>
+<p>The environment variables set using <code>ENV</code> will persist when a container is run from the resulting image. You can view the values using <code>docker inspect</code>, and change them using <code>docker run --env &lt;key&gt;=&lt;value&gt;</code>.</p>
+<h2 id="ADD-COPY">ADD/COPY</h2>
+<p>ADD/COPY  has two forms:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ADD</span><span class="bash"> [--chown=&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> [--chown=&lt;user&gt;:&lt;group&gt;] [<span class="string">&quot;&lt;src&gt;&quot;</span>,... <span class="string">&quot;&lt;dest&gt;&quot;</span>]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> [--chown=&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> [--chown=&lt;user&gt;:&lt;group&gt;] [<span class="string">&quot;&lt;src&gt;&quot;</span>,... <span class="string">&quot;&lt;dest&gt;&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><strong>Note</strong>:The <code>--chown</code> feature is only supported on Dockerfiles used to build Linux containers, and will not work on Windows containers. Since user and group ownership concepts do not translate between Linux and Windows, the use of <code>/etc/passwd</code> and <code>/etc/group</code> for translating user and group names to IDs restricts this feature to only be viable for Linux OS-based containers.</p>
+</li>
+<li>
+<p>Effect:</p>
+<ul>
+<li>The <code>ADD</code> instruction copies new files, directories or remote file URLs from <code>&lt;src&gt;</code> and adds them to the filesystem of the image at the path <code>&lt;dest&gt;</code>.</li>
+<li>The <code>COPY</code> instruction copies new files or directories from <code>&lt;src&gt;</code> and adds them to the filesystem of the container at the path <code>&lt;dest&gt;</code>.</li>
+</ul>
+</li>
+<li>
+<p>The <code>&lt;dest&gt;</code> is an absolute path, or a path relative to <code>WORKDIR</code>, into which the source will be copied inside the destination container.</p>
+<p>The example below uses a relative path, and adds “test.txt” to <code>&lt;WORKDIR&gt;/relativeDir/</code>:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ADD</span><span class="bash"> test.txt relativeDir/</span></span><br></pre></td></tr></table></figure>
+<p>Whereas this example uses an absolute path, and adds “test.txt” to <code>/absoluteDir/</code></p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ADD</span><span class="bash"> test.txt /absoluteDir/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>All new files and directories are created with a UID and GID of 0, unless the optional <code>--chown</code> flag specifies a given username, groupname, or UID/GID combination to request specific ownership of the content added. If a username or groupname is provided, the container’s root filesystem <code>/etc/passwd</code> and <code>/etc/group</code> files will be used to perform the translation from name to integer UID or GID respectively.The following examples show valid definitions for the <code>--chown</code> flag:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ADD</span><span class="bash"> --chown=55:mygroup files* /somedir/</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> --chown=bin files* /somedir/</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> --chown=1 files* /somedir/</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> --chown=10:11 files* /somedir/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> --chown=55:mygroup files* /somedir/</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> --chown=bin files* /somedir/</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> --chown=1 files* /somedir/</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> --chown=10:11 files* /somedir/</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>If the container root filesystem does not contain either <code>/etc/passwd</code> or <code>/etc/group</code> files and either user or group names are used in the <code>--chown</code> flag, the build will fail on the <code>ADD</code> operation. Using numeric IDs requires no lookup and will not depend on container root filesystem content.</li>
+<li>In the case where <code>&lt;src&gt;</code> is a remote file URL, the destination will have permissions of 600. If the remote file being retrieved has an HTTP <code>Last-Modified</code> header, the timestamp from that header will be used to set the <code>mtime</code> on the destination file. However, like any other file processed during an <code>ADD</code>, <code>mtime</code> will not be included in the determination of whether or not the file has changed and the cache should be updated.</li>
+<li>If your URL files are protected using authentication, you need to use <code>RUN wget</code>, <code>RUN curl</code> or use another tool from within the container as the <code>ADD</code> instruction does not support authentication.</li>
+</ul>
+</li>
+<li>
+<p>Optionally <code>COPY</code> accepts a flag <code>--from=&lt;name&gt;</code> that can be used to set the source location to a previous build stage (created with <code>FROM .. AS &lt;name&gt;</code>) that will be used instead of a build context sent by the user. In case a build stage with a specified name can’t be found an image with the same name is attempted to be used instead.</p>
+</li>
+<li>
+<p><code>ADD</code> obeys the following rules:</p>
+<ul>
+<li>The <code>&lt;src&gt;</code> path must be inside the <em>context</em> of the build; you cannot <code>ADD ../something /something</code>, because the first step of a <code>docker build</code> is to send the context directory (and subdirectories) to the docker daemon.</li>
+<li>If <code>&lt;src&gt;</code> is a URL and <code>&lt;dest&gt;</code> does not end with a trailing slash(/), then a file is downloaded from the URL and copied to <code>&lt;dest&gt;</code>.</li>
+<li>If <code>&lt;src&gt;</code> is a URL and <code>&lt;dest&gt;</code> does end with a trailing slash（/）, then the filename is inferred from the URL and the file is downloaded to <code>&lt;dest&gt;/&lt;filename&gt;</code>. For instance, <code>ADD http://example.com/foobar /</code> would create the file <code>/foobar</code>. The URL must have a nontrivial path so that an appropriate filename can be discovered in this case (<code>http://example.com</code> will not work).</li>
+<li>If <code>&lt;src&gt;</code> is a directory, the entire contents of the directory are copied, including filesystem metadata.</li>
+<li>If <code>&lt;src&gt;</code> is a <em>local</em> tar archive in a recognized compression format (identity, gzip, bzip2 or xz) then it is unpacked as a directory. Resources from <em>remote</em> URLs are <strong>not</strong> decompressed.</li>
+<li>f <code>&lt;src&gt;</code> is any other kind of file, it is copied individually along with its metadata. In this case, if <code>&lt;dest&gt;</code> ends with a trailing slash <code>/</code>, it will be considered a directory and the contents of <code>&lt;src&gt;</code> will be written at <code>&lt;dest&gt;/base(&lt;src&gt;)</code>.</li>
+<li>If multiple <code>&lt;src&gt;</code> resources are specified, either directly or due to the use of a wildcard, then <code>&lt;dest&gt;</code> must be a directory, and it must end with a slash <code>/</code>.</li>
+<li>If <code>&lt;dest&gt;</code> does not end with a trailing slash, it will be considered a regular file and the contents of <code>&lt;src&gt;</code> will be written at <code>&lt;dest&gt;</code>.</li>
+<li>If <code>&lt;dest&gt;</code> doesn’t exist, it is created along with all missing directories in its path.</li>
+</ul>
+</li>
+</ul>
+<h2 id="ENTRYPOINT">ENTRYPOINT</h2>
+<p>The <em>exec</em> form, which is the preferred form:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ENTRYPOINT</span><span class="bash"> [<span class="string">&quot;executable&quot;</span>, <span class="string">&quot;param1&quot;</span>, <span class="string">&quot;param2&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+<p>The <em>shell</em> form:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ENTRYPOINT</span><span class="bash"> <span class="built_in">command</span> param1 param2</span></span><br></pre></td></tr></table></figure>
+<p>​	Command line arguments to <code>docker run &lt;image&gt;</code> will be appended after all elements in an <em>exec</em> form <code>ENTRYPOINT</code>, <strong>and will override all elements specified using <code>CMD</code></strong>. This allows arguments to be passed to the entry point, i.e., <code>docker run &lt;image&gt; -d</code> will pass the <code>-d</code> argument to the entry point. You can override the <code>ENTRYPOINT</code> instruction using the <code>docker run --entrypoint</code> flag.</p>
+<p>​	The <em>shell</em> form prevents any <code>CMD</code> or <code>run</code> command line arguments from being used, but has the disadvantage that your <code>ENTRYPOINT</code> will be started as a subcommand of <code>/bin/sh -c</code>, which does not pass signals. This means that the executable will not be the container’s <code>PID 1</code> - and will <em>not</em> receive Unix signals - so your executable will not receive a <code>SIGTERM</code> from <code>docker stop &lt;container&gt;</code>.</p>
+<p><strong>Only the last <code>ENTRYPOINT</code> instruction in the <code>Dockerfile</code> will have an effect.</strong></p>
+<h3 id="Exec-form-ENTRYPOINT-example">Exec form ENTRYPOINT example</h3>
+<p>You can use the <em>exec</em> form of <code>ENTRYPOINT</code> to set fairly stable default commands and arguments and then use either form of <code>CMD</code> to set additional defaults that are more likely to be changed.</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu</span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="bash"> [<span class="string">&quot;top&quot;</span>, <span class="string">&quot;-b&quot;</span>]</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">&quot;-c&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+<p>When you run the container, you can see that <code>top</code> is the only process:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker run -it --rm --name <span class="built_in">test</span>  top -H</span></span><br></pre></td></tr></table></figure>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/06/19/wnZoraN4AWHURpt.png" alt="image-20220619171309969"></p>
+<p>To examine the result further, you can use <code>docker exec</code>:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">docker exec -it test ps aux</span><br></pre></td></tr></table></figure>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/06/19/Q6v7BwiMEupKHyq.png" alt="image-20220619171328834"></p>
+<p>EXPLAINATION: parameters behind image -H overwrite the parameters in CMD [“-c”]</p>
+<p>And you can gracefully request <code>top</code> to shut down using <code>docker stop test</code>.</p>
+<p>If you need to write a starter script for a single executable, you can ensure that the final executable receives the Unix signals by using <code>exec</code> and <code>gosu</code> commands:</p>
+<ul>
+<li>exec: make sure the new executable process will be the PID 1 not the script process</li>
+<li>gosu: tool used to grant entitlement for the command instead of using sudo</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env bash</span></span><br><span class="line">set -e</span><br><span class="line"></span><br><span class="line">if [ <span class="string">&quot;$1&quot;</span> = <span class="string">&#x27;postgres&#x27;</span> ]; then</span><br><span class="line">    chown -R postgres <span class="string">&quot;$PGDATA&quot;</span></span><br><span class="line"></span><br><span class="line">    if [ -z <span class="string">&quot;$(ls -A &quot;</span>$PGDATA<span class="string">&quot;)&quot;</span> ]; then</span><br><span class="line">        gosu postgres initdb</span><br><span class="line">    fi</span><br><span class="line"></span><br><span class="line">    exec gosu postgres <span class="string">&quot;$@&quot;</span></span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">exec <span class="string">&quot;$@&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Shell-form-ENTRYPOINT-example">Shell form ENTRYPOINT example</h3>
+<p>You can specify a plain string for the <code>ENTRYPOINT</code> and it will execute in <code>/bin/sh -c</code>. This form will use shell processing to substitute shell environment variables, and will ignore any <code>CMD</code> or <code>docker run</code> command line arguments. To ensure that <code>docker stop</code> will signal any long running <code>ENTRYPOINT</code> executable correctly, you need to remember to start it with <code>exec</code>:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu</span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="bash"> <span class="built_in">exec</span> top -b</span></span><br></pre></td></tr></table></figure>
+<h3 id="Understand-how-CMD-and-ENTRYPOINT-interact">Understand how CMD and ENTRYPOINT interact</h3>
+<p>Both <code>CMD</code> and <code>ENTRYPOINT</code> instructions define what command gets executed when running a container. There are few rules that describe their co-operation.</p>
+<ol>
+<li>Dockerfile should specify at least one of <code>CMD</code> or <code>ENTRYPOINT</code> commands.</li>
+<li><code>ENTRYPOINT</code> should be defined when using the container as an executable.</li>
+<li><code>CMD</code> should be used as a way of defining default arguments for an <code>ENTRYPOINT</code> command or for executing an ad-hoc command in a container.</li>
+<li><code>CMD</code> will be overridden when running the container with alternative arguments.</li>
+</ol>
+<p>The table below shows what command is executed for different <code>ENTRYPOINT</code> / <code>CMD</code> combinations:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">No ENTRYPOINT</th>
+<th style="text-align:left">ENTRYPOINT exec_entry p1_entry</th>
+<th style="text-align:left">ENTRYPOINT [“exec_entry”, “p1_entry”]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>No CMD</strong></td>
+<td style="text-align:left"><em>error, not allowed</em></td>
+<td style="text-align:left">/bin/sh -c exec_entry p1_entry</td>
+<td style="text-align:left">exec_entry p1_entry</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>CMD [“exec_cmd”, “p1_cmd”]</strong></td>
+<td style="text-align:left">exec_cmd p1_cmd</td>
+<td style="text-align:left">/bin/sh -c exec_entry p1_entry</td>
+<td style="text-align:left">exec_entry p1_entry exec_cmd p1_cmd</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>CMD [“p1_cmd”, “p2_cmd”]</strong></td>
+<td style="text-align:left">p1_cmd p2_cmd</td>
+<td style="text-align:left">/bin/sh -c exec_entry p1_entry</td>
+<td style="text-align:left">exec_entry p1_entry p1_cmd p2_cmd</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>CMD exec_cmd p1_cmd</strong></td>
+<td style="text-align:left">/bin/sh -c exec_cmd p1_cmd</td>
+<td style="text-align:left">/bin/sh -c exec_entry p1_entry</td>
+<td style="text-align:left">exec_entry p1_entry /bin/sh -c exec_cmd p1_cmd</td>
+</tr>
+</tbody>
+</table>
+<h2 id="VOLUME">VOLUME</h2>
+<h2 id="VOLUME-2">VOLUME</h2>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">VOLUME</span><span class="bash"> [<span class="string">&quot;/data&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+<p>The <code>VOLUME</code> instruction creates a mount point with the specified name and marks it as holding externally mounted volumes from native host or other containers. The value can be a JSON array, <code>VOLUME [&quot;/var/log/&quot;]</code>, or a plain string with multiple arguments, such as <code>VOLUME /var/log</code> or <code>VOLUME /var/log /var/db</code>. For more information/examples and mounting instructions via the Docker client, refer to <a target="_blank" rel="noopener" href="https://docs.docker.com/storage/volumes/"><em>Share Directories via Volumes</em></a> documentation.</p>
+<p>The <code>docker run</code> command initializes the newly created volume with any data that exists at the specified location within the base image. For example, consider the following Dockerfile snippet:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> mkdir /myvol</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">echo</span> <span class="string">&quot;hello world&quot;</span> &gt; /myvol/greeting</span></span><br><span class="line"><span class="keyword">VOLUME</span><span class="bash"> /myvol</span></span><br></pre></td></tr></table></figure>
+<p>This Dockerfile results in an image that causes <code>docker run</code> to create a new mount point at <code>/myvol</code> and copy the <code>greeting</code> file into the newly created volume.</p>
+<ul>
+<li>
+<p>Notes about specifying volumes</p>
+<p>Keep the following things in mind about volumes in the <code>Dockerfile</code>.</p>
+<ul>
+<li><strong>Volumes on Windows-based containers</strong>: When using Windows-based containers, the destination of a volume inside the container must be one of:
+<ul>
+<li>a non-existing or empty directory</li>
+<li>a drive other than <code>C:</code></li>
+</ul>
+</li>
+<li><strong>Changing the volume from within the Dockerfile</strong>: <em><strong>If any build steps change the data within the volume after it has been declared, those changes will be discarded.</strong></em></li>
+<li><strong>JSON formatting</strong>: The list is parsed as a JSON array. You must enclose words with double quotes (<code>&quot;</code>) rather than single quotes (<code>'</code>).</li>
+<li><strong>The host directory is declared at container run-time</strong>: The host directory (the mountpoint) is, by its nature, host-dependent. This is to preserve image portability, since a given host directory can’t be guaranteed to be available on all hosts. For this reason, you can’t mount a host directory from within the Dockerfile. The <code>VOLUME</code> instruction does not support specifying a <code>host-dir</code> parameter. You must specify the mountpoint when you create or run the container.</li>
+</ul>
+</li>
+</ul>
+<h2 id="USER">USER</h2>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">USER</span> &lt;<span class="keyword">user</span>&gt;[:&lt;group&gt;]</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">USER</span> &lt;UID&gt;[:&lt;GID&gt;]</span><br></pre></td></tr></table></figure>
+<p>The <code>USER</code> instruction sets the user name (or UID) and optionally the user group (or GID) to use when running the image and for any <code>RUN</code>, <code>CMD</code> and <code>ENTRYPOINT</code> instructions that follow it in the <code>Dockerfile</code>.</p>
+<h2 id="WORKDIR">WORKDIR</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WORKDIR /path/to/workdir</span><br></pre></td></tr></table></figure>
+<p>The <code>WORKDIR</code> instruction sets the working directory for any <code>RUN</code>, <code>CMD</code>, <code>ENTRYPOINT</code>, <code>COPY</code> and <code>ADD</code> instructions that follow it in the <code>Dockerfile</code>. If the <code>WORKDIR</code> doesn’t exist, it will be created even if it’s not used in any subsequent <code>Dockerfile</code> instruction.</p>
+<p>The <code>WORKDIR</code> instruction can be used multiple times in a <code>Dockerfile</code>. If a relative path is provided, it will be relative to the path of the previous <code>WORKDIR</code> instruction. For example:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /a</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> b</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> c</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">pwd</span></span></span><br></pre></td></tr></table></figure>
+<p>The output of the final <code>pwd</code> command in this <code>Dockerfile</code> would be <code>/a/b/c</code>.</p>
+<h2 id="ARG">ARG</h2>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ARG</span> &lt;name&gt;[=&lt;default value&gt;]</span><br></pre></td></tr></table></figure>
+<p>The <code>ARG</code> instruction defines a variable that users can pass at build-time to the builder with the <code>docker build</code> command using the <code>--build-arg &lt;varname&gt;=&lt;value&gt;</code> flag. If a user specifies a build argument that was not defined in the Dockerfile, the build outputs a warning.</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">[Warning] One or more build-args [foo] were not consumed.</span><br></pre></td></tr></table></figure>
+<p>A Dockerfile may include one or more <code>ARG</code> instructions. For example, the following is a valid Dockerfile:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> busybox</span><br><span class="line"><span class="keyword">ARG</span> user1</span><br><span class="line"><span class="keyword">ARG</span> buildno</span><br><span class="line"><span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
+<p>An <code>ARG</code> instruction goes out of scope at the end of the build stage where it was defined. To use an arg in multiple stages, each stage must include the <code>ARG</code> instruction.</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> busybox</span><br><span class="line"><span class="keyword">ARG</span> SETTINGS</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> ./run/setup <span class="variable">$SETTINGS</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">FROM</span> busybox</span><br><span class="line"><span class="keyword">ARG</span> SETTINGS</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> ./run/other <span class="variable">$SETTINGS</span></span></span><br></pre></td></tr></table></figure>
+<p>You can use an <code>ARG</code> or an <code>ENV</code> instruction to specify variables that are available to the <code>RUN</code> instruction. Environment variables defined using the <code>ENV</code> instruction always override an <code>ARG</code> instruction of the same name. Consider this Dockerfile with an <code>ENV</code> and <code>ARG</code> instruction.</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu</span><br><span class="line"><span class="keyword">ARG</span> CONT_IMG_VER</span><br><span class="line"><span class="keyword">ENV</span> CONT_IMG_VER=v1.<span class="number">0.0</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">echo</span> <span class="variable">$CONT_IMG_VER</span></span></span><br></pre></td></tr></table></figure>
+<p>Then, assume this image is built with this command:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">$ docker build --build-<span class="keyword">arg</span> CONT_IMG_VER=v2.<span class="number">0.1</span> .</span><br></pre></td></tr></table></figure>
+<p>In this case, the <code>RUN</code> instruction uses <code>v1.0.0</code> instead of the <code>ARG</code> setting passed by the user:<code>v2.0.1</code></p>
+<p>Using the example above but a different <code>ENV</code> specification you can create more useful interactions between <code>ARG</code> and <code>ENV</code> instructions:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu</span><br><span class="line"><span class="keyword">ARG</span> CONT_IMG_VER</span><br><span class="line"><span class="keyword">ENV</span> CONT_IMG_VER=$&#123;CONT_IMG_VER:-v1.<span class="number">0.0</span>&#125;</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">echo</span> <span class="variable">$CONT_IMG_VER</span></span></span><br></pre></td></tr></table></figure>
+<p>Unlike an <code>ARG</code> instruction, <code>ENV</code> values are always persisted in the built image. Consider a docker build without the <code>--build-arg</code> flag:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">$ docker build .</span><br></pre></td></tr></table></figure>
+<p>Using this Dockerfile example, <code>CONT_IMG_VER</code> is still persisted in the image but its value would be <code>v1.0.0</code> as it is the default set in line 3 by the <code>ENV</code> instruction.</p>
+<h3 id="Predefined-ARGs">Predefined ARGs</h3>
+<p>Docker has a set of predefined <code>ARG</code> variables that you can use without a corresponding <code>ARG</code> instruction in the Dockerfile.</p>
+<ul>
+<li><code>HTTP_PROXY</code></li>
+<li><code>http_proxy</code></li>
+<li><code>HTTPS_PROXY</code></li>
+<li><code>https_proxy</code></li>
+<li><code>FTP_PROXY</code></li>
+<li><code>ftp_proxy</code></li>
+<li><code>NO_PROXY</code></li>
+<li><code>no_proxy</code></li>
+</ul>
+<p>To use these, pass them on the command line using the <code>--build-arg</code> flag, for example:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">$ docker build --build-<span class="keyword">arg</span> HTTPS_PROXY=https://my-proxy.example.com .</span><br></pre></td></tr></table></figure>
+<p>By default, these pre-defined variables are excluded from the output of <code>docker history</code>. Excluding them reduces the risk of accidentally leaking sensitive authentication information in an <code>HTTP_PROXY</code> variable.</p>
+<h2 id="ONBUILD">ONBUILD</h2>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ONBUILD</span> &lt;INSTRUCTION&gt;</span><br></pre></td></tr></table></figure>
+<p>The <code>ONBUILD</code> instruction adds to the image a <em>trigger</em> instruction to be executed at a later time, when the image is used as the base for another build. The trigger will be executed in the context of the downstream build, <strong>as if it had been inserted immediately after the <code>FROM</code> instruction in the downstream <code>Dockerfile</code>.</strong></p>
+<p><strong>Any build instruction can be registered as a trigger.</strong></p>
+<p>This is useful if you are building an image which will be used as a base to build other images, for example an application build environment or a daemon which may be customized with user-specific configuration.</p>
+<p>For example, if your image is a reusable Python application builder, it will require application source code to be added in a particular directory, and it might require a build script to be called <em>after</em> that. You can’t just call <code>ADD</code> and <code>RUN</code> now, because you don’t yet have access to the application source code, and it will be different for each application build. You could simply provide application developers with a boilerplate to copy-paste into their application<code>Dockerfile</code>, but that is inefficient, error-prone and difficult to update because it mixes with application-specific code.</p>
+<p>Here’s how it works:</p>
+<ol>
+<li>When it encounters an <code>ONBUILD</code> instruction, the builder adds a trigger to the metadata of the image being built. The instruction does not otherwise affect the current build.</li>
+<li>At the end of the build, a list of all triggers is stored in the image manifest, under the key <code>OnBuild</code>. They can be inspected with the <code>docker inspect</code> command.</li>
+<li>Later the image may be used as a base for a new build, using the <code>FROM</code> instruction. As part of processing the <code>FROM</code> instruction, the downstream builder looks for <code>ONBUILD</code> triggers, and executes them in the same order they were registered. If any of the triggers fail, the <code>FROM</code> instruction is aborted which in turn causes the build to fail. If all triggers succeed, the <code>FROM</code> instruction completes and the build continues as usual.</li>
+<li>Triggers are cleared from the final image after being executed. In other words they are not inherited by “grand-children” builds.</li>
+</ol>
+<p>For example you might add something like this:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ONBUILD</span> <span class="keyword">ADD</span><span class="bash"> . /app/src</span></span><br><span class="line"><span class="keyword">ONBUILD</span> <span class="keyword">RUN</span><span class="bash"> /usr/<span class="built_in">local</span>/bin/python-build --dir /app/src</span></span><br></pre></td></tr></table></figure>
+<h2 id="STOPSIGNAL">STOPSIGNAL</h2>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">STOPSIGNAL</span> signal</span><br></pre></td></tr></table></figure>
+<p>The <code>STOPSIGNAL</code> instruction sets the system call signal that will be sent to the container to exit. This signal can be a signal name in the format <code>SIG&lt;NAME&gt;</code>, for instance <code>SIGKILL</code>, or an unsigned number that matches a position in the kernel’s syscall table, for instance <code>9</code>. The default is <code>SIGTERM</code> if not defined.</p>
+<p>The image’s default stopsignal can be overridden per container, using the <code>--stop-signal</code> flag on <code>docker run</code> and <code>docker create</code>.</p>
+<h2 id="HEALTHCHECK">HEALTHCHECK</h2>
+<p>The <code>HEALTHCHECK</code> instruction has two forms:</p>
+<ul>
+<li><code>HEALTHCHECK [OPTIONS] CMD command</code> (check container health by running a command inside the container)</li>
+<li><code>HEALTHCHECK NONE</code> (disable any healthcheck inherited from the base image)</li>
+</ul>
+<p>The <code>HEALTHCHECK</code> instruction tells Docker how to test a container to check that it is still working. This can detect cases such as a web server that is stuck in an infinite loop and unable to handle new connections, even though the server process is still running.</p>
+<p>When a container has a healthcheck specified, it has a <em>health status</em> in addition to its normal status. This status is initially <code>starting</code>. Whenever a health check passes, it becomes <code>healthy</code> (whatever state it was previously in). After a certain number of consecutive failures, it becomes <code>unhealthy</code>.</p>
+<ul>
+<li>
+<p>The options that can appear before <code>CMD</code> are:</p>
+<ul>
+<li>
+<p><code>--interval=DURATION</code> (default: <code>30s</code>)</p>
+</li>
+<li>
+<p><code>--timeout=DURATION</code> (default: <code>30s</code>)</p>
+</li>
+<li>
+<p><code>--start-period=DURATION</code> (default: <code>0s</code>)</p>
+</li>
+<li>
+<p><code>--retries=N</code> (default: <code>3</code>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>EXPLAINATION:</p>
+<ul>
+<li>
+<p>The health check will first run <strong>interval</strong> seconds after the container is started, and then again <strong>interval</strong> seconds after each previous check completes.</p>
+<ul>
+<li>
+<p>If a single run of the check takes longer than <strong>timeout</strong> seconds then the check is considered to have <a target="_blank" rel="noopener" href="http://failed.It">failed.It</a> takes <strong>retries</strong> consecutive failures of the health check for the container to be considered <code>unhealthy</code>.</p>
+</li>
+<li>
+<p><strong>start period</strong> provides initialization time for containers that need time to bootstrap. Probe failure during that period will not be counted towards the maximum number of retries. However, if a health check succeeds during the start period, the container is considered started and all consecutive failures will be counted towards the maximum number of retries.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>There can only be one <code>HEALTHCHECK</code> instruction in a Dockerfile. If you list more than one then only the last <code>HEALTHCHECK</code> will take effect.</strong></p>
+<p>The command’s exit status indicates the health status of the container. The possible values are:</p>
+<ul>
+<li>0: success - the container is healthy and ready for use</li>
+<li>1: unhealthy - the container is not working correctly</li>
+<li>2: reserved - do not use this exit code</li>
+</ul>
+<p>For example, to check every five minutes or so that a web-server is able to serve the site’s main page within three seconds:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">HEALTHCHECK</span><span class="bash"> --interval=5m --timeout=3s \</span></span><br><span class="line"><span class="bash">  CMD curl -f http://localhost/ || <span class="built_in">exit</span> 1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">--health-<span class="keyword">cmd</span><span class="bash">            Command to run to check health</span></span><br><span class="line"> --health-interval       Time between running the check</span><br><span class="line"> --health-retries        Consecutive failures needed to report unhealthy</span><br><span class="line"> --health-timeout        Maximum time to allow one check to <span class="keyword">run</span><span class="bash"></span></span><br><span class="line"><span class="bash"> --health-start-period   Start period <span class="keyword">for</span> the container to initialize before starting health-retries countdown</span></span><br><span class="line"> --no-<span class="keyword">healthcheck</span><span class="bash">        Disable any container-specified HEALTHCHECK</span></span><br></pre></td></tr></table></figure>
+<h2 id="SHELL">SHELL</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SHELL [&quot;executable&quot;, &quot;parameters&quot;]</span><br></pre></td></tr></table></figure>
+<p>The <code>SHELL</code> instruction allows the default shell used for the <em>shell</em> form of commands to be overridden. The default shell on Linux is <code>[&quot;/bin/sh&quot;, &quot;-c&quot;]</code>, and on Windows is <code>[&quot;cmd&quot;, &quot;/S&quot;, &quot;/C&quot;]</code>. The <code>SHELL</code> instruction <em>must</em> be written in JSON form in a Dockerfile.</p>
+<p>The <code>SHELL</code> instruction is particularly useful on Windows where there are two commonly used and quite different native shells: <code>cmd</code> and <code>powershell</code>, as well as alternate shells available including <code>sh</code>.</p>
+<p>The <code>SHELL</code> instruction can appear multiple times. Each <code>SHELL</code> instruction overrides all previous <code>SHELL</code> instructions, and affects all subsequent instructions. For example:</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> microsoft/windowsservercore</span><br><span class="line"></span><br><span class="line"><span class="comment"># Executed as cmd /S /C echo default</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">echo</span> default</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Executed as cmd /S /C powershell -command Write-Host default</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> powershell -<span class="built_in">command</span> Write-Host default</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Executed as powershell -command Write-Host hello</span></span><br><span class="line"><span class="keyword">SHELL</span><span class="bash"> [<span class="string">&quot;powershell&quot;</span>, <span class="string">&quot;-command&quot;</span>]</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> Write-Host hello</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Executed as cmd /S /C echo hello</span></span><br><span class="line"><span class="keyword">SHELL</span><span class="bash"> [<span class="string">&quot;cmd&quot;</span>, <span class="string">&quot;/S&quot;</span>, <span class="string">&quot;/C&quot;</span>]</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">echo</span> hello</span></span><br></pre></td></tr></table></figure>
+<h1>Docker-Compose</h1>
+<h2 id="Compose-specification">Compose specification</h2>
+<p>The Compose file is a <a target="_blank" rel="noopener" href="https://yaml.org/">YAML</a> file defining services, networks, and volumes for a Docker application. The latest and recommended version of the Compose file format is defined by the <a target="_blank" rel="noopener" href="https://github.com/compose-spec/compose-spec/blob/master/spec.md">Compose Specification</a></p>
+<h2 id="The-Compose-application-model">The Compose application model</h2>
+<ul>
+<li>SERVICE
+<ul>
+<li>Computing components of an application are defined as <a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/#services-top-level-element">Services</a>. A Service is an abstract concept implemented on platforms by running the same container image (and configuration) one or more times.</li>
+</ul>
+</li>
+<li>Networks
+<ul>
+<li>Services communicate with each other through <a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/#networks-top-level-element">Networks</a>. In this specification, a Network is a platform capability abstraction to establish an IP route between containers within services connected together.</li>
+</ul>
+</li>
+<li>Volumns
+<ul>
+<li>Services store and share persistent data into <a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/#volumes-top-level-element">Volumes</a>. The specification describes such a persistent data as a high-level filesystem mount with global options.</li>
+</ul>
+</li>
+<li>Configs
+<ul>
+<li>Some services require configuration data that is dependent on the runtime or platform. For this, the specification defines a dedicated concept: <a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/#configs-top-level-element">Configs</a>.</li>
+</ul>
+</li>
+<li>Secret
+<ul>
+<li>A <a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/#secrets-top-level-element">Secret</a> is a specific flavor of configuration data for sensitive data that SHOULD NOT be exposed without security considerations. Secrets are made available to services as files mounted into their containers, but the platform-specific resources to provide sensitive data are specific enough to deserve a distinct concept and definition within the Compose specification.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Compose-file">Compose file</h2>
+<ul>
+<li>The Compose file is a <a target="_blank" rel="noopener" href="http://yaml.org/">YAML</a> file defining <a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/#version-top-level-element">version</a> (DEPRECATED), <a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/#services-top-level-element">services</a> (REQUIRED), <a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/#networks-top-level-element">networks</a>, <a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/#volumes-top-level-element">volumes</a>, <a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/#configs-top-level-element">configs</a> and <a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/#secrets-top-level-element">secrets</a>. The default path for a Compose file is <code>compose.yaml</code> (preferred) or <code>compose.yml</code> in working directory. Compose implementations SHOULD also support <code>docker-compose.yaml</code> and <code>docker-compose.yml</code> for backward compatibility. If both files exist, Compose implementations MUST prefer canonical one.<code>compose.yaml</code></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/VincentVanNF">VincentVan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://vincentvannf.github.io/2022/08/01/SAP_Docker/">https://vincentvannf.github.io/2022/08/01/SAP_Docker/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://vincentvannf.github.io" target="_blank">VincentVan</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SAP/">SAP</a><a class="post-meta__tags" href="/tags/Devops/">Devops</a><a class="post-meta__tags" href="/tags/Docker/">Docker</a></div><div class="post_share"><div class="addthis_inline_share_toolbox"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=null" async="async"></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/Wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/Wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/ZFB.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/ZFB.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/07/31/ML/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/ML.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Machine Learning and Deep Learning</div></div></a></div><div class="next-post pull-right"><a href="/2022/07/31/Socket_Single/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/socket_single.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Socket_Single</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/08/01/SAP_IBSO_TOOLS_PART3/" title="SAP_IBSO_TOOLS_PART3"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/docker_exercise.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-01</div><div class="title">SAP_IBSO_TOOLS_PART3</div></div></a></div><div><a href="/2022/08/01/SAP_Dynatrace/" title="SAP_Dynatrace"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/Dynatrace.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-01</div><div class="title">SAP_Dynatrace</div></div></a></div><div><a href="/2022/08/01/SAP_Git/" title="SAP_Git"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/git.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-01</div><div class="title">SAP_Git</div></div></a></div><div><a href="/2022/08/01/SAP_IBSO_TOOLS_PART2/" title="SAP_IBSO_TOOLS_PART2"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/exercise1_5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-01</div><div class="title">SAP_IBSO_TOOLS_PART2</div></div></a></div><div><a href="/2022/08/01/SAP_IBSO_TOOLS_PART1/" title="SAP_IBSO_TOOLS_PART1"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/IBSO.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-01</div><div class="title">SAP_IBSO_TOOLS_PART1</div></div></a></div><div><a href="/2022/08/01/SAP_PAAS/" title="SAP_Paas"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/paas.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-01</div><div class="title">SAP_Paas</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">VincentVan</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/VincentVanNF"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/VincentVanNF" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3080167665@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">每天睡够8小时</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">Dockerfile</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Usage"><span class="toc-number">1.1.</span> <span class="toc-text">Usage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BuildKit-Project"><span class="toc-number">1.2.</span> <span class="toc-text">BuildKit Project</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Format"><span class="toc-number">1.3.</span> <span class="toc-text">Format</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Parser-directives"><span class="toc-number">1.4.</span> <span class="toc-text">Parser directives</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Environment-replacement%F0%9F%94%97"><span class="toc-number">1.5.</span> <span class="toc-text">Environment replacement🔗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dockerignore-file"><span class="toc-number">1.6.</span> <span class="toc-text">.dockerignore file</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FROM"><span class="toc-number">1.7.</span> <span class="toc-text">FROM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RUN"><span class="toc-number">1.8.</span> <span class="toc-text">RUN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMD"><span class="toc-number">1.9.</span> <span class="toc-text">CMD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LABEL"><span class="toc-number">1.10.</span> <span class="toc-text">LABEL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EXPOSE"><span class="toc-number">1.11.</span> <span class="toc-text">EXPOSE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dcoker-Network-overview"><span class="toc-number">1.12.</span> <span class="toc-text">Dcoker Network overview</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Network-drivers"><span class="toc-number">1.12.1.</span> <span class="toc-text">Network drivers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ENV"><span class="toc-number">1.13.</span> <span class="toc-text">ENV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ADD-COPY"><span class="toc-number">1.14.</span> <span class="toc-text">ADD&#x2F;COPY</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ENTRYPOINT"><span class="toc-number">1.15.</span> <span class="toc-text">ENTRYPOINT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Exec-form-ENTRYPOINT-example"><span class="toc-number">1.15.1.</span> <span class="toc-text">Exec form ENTRYPOINT example</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shell-form-ENTRYPOINT-example"><span class="toc-number">1.15.2.</span> <span class="toc-text">Shell form ENTRYPOINT example</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Understand-how-CMD-and-ENTRYPOINT-interact"><span class="toc-number">1.15.3.</span> <span class="toc-text">Understand how CMD and ENTRYPOINT interact</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VOLUME"><span class="toc-number">1.16.</span> <span class="toc-text">VOLUME</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VOLUME-2"><span class="toc-number">1.17.</span> <span class="toc-text">VOLUME</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#USER"><span class="toc-number">1.18.</span> <span class="toc-text">USER</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WORKDIR"><span class="toc-number">1.19.</span> <span class="toc-text">WORKDIR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ARG"><span class="toc-number">1.20.</span> <span class="toc-text">ARG</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Predefined-ARGs"><span class="toc-number">1.20.1.</span> <span class="toc-text">Predefined ARGs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ONBUILD"><span class="toc-number">1.21.</span> <span class="toc-text">ONBUILD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STOPSIGNAL"><span class="toc-number">1.22.</span> <span class="toc-text">STOPSIGNAL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HEALTHCHECK"><span class="toc-number">1.23.</span> <span class="toc-text">HEALTHCHECK</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SHELL"><span class="toc-number">1.24.</span> <span class="toc-text">SHELL</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">Docker-Compose</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Compose-specification"><span class="toc-number">2.1.</span> <span class="toc-text">Compose specification</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Compose-application-model"><span class="toc-number">2.2.</span> <span class="toc-text">The Compose application model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Compose-file"><span class="toc-number">2.3.</span> <span class="toc-text">Compose file</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/09/03/Pytorch/" title="Basic DL Using Pytorch"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/pytorch.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Basic DL Using Pytorch"/></a><div class="content"><a class="title" href="/2022/09/03/Pytorch/" title="Basic DL Using Pytorch">Basic DL Using Pytorch</a><time datetime="2022-09-02T16:50:00.000Z" title="发表于 2022-09-03 00:50:00">2022-09-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/SAP_Dynatrace/" title="SAP_Dynatrace"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/Dynatrace.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SAP_Dynatrace"/></a><div class="content"><a class="title" href="/2022/08/01/SAP_Dynatrace/" title="SAP_Dynatrace">SAP_Dynatrace</a><time datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/SAP_Git/" title="SAP_Git"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/git.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SAP_Git"/></a><div class="content"><a class="title" href="/2022/08/01/SAP_Git/" title="SAP_Git">SAP_Git</a><time datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/SAP_IBSO_TOOLS_PART2/" title="SAP_IBSO_TOOLS_PART2"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/exercise1_5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SAP_IBSO_TOOLS_PART2"/></a><div class="content"><a class="title" href="/2022/08/01/SAP_IBSO_TOOLS_PART2/" title="SAP_IBSO_TOOLS_PART2">SAP_IBSO_TOOLS_PART2</a><time datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/SAP_IBSO_TOOLS_PART1/" title="SAP_IBSO_TOOLS_PART1"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/IBSO.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SAP_IBSO_TOOLS_PART1"/></a><div class="content"><a class="title" href="/2022/08/01/SAP_IBSO_TOOLS_PART1/" title="SAP_IBSO_TOOLS_PART1">SAP_IBSO_TOOLS_PART1</a><time datetime="2022-08-01T07:00:00.000Z" title="发表于 2022-08-01 15:00:00">2022-08-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright"><div><b><font color="#00BFFF">&copy;2021 - 2023 By </font></b> <b><a font color="#00BFFF"href=https://vincentvannf.github.io/ style="position: relative; z-index: 10"><font color="#00BFFF">VincentVan</a></font></b></div></div><div class="footer_custom_text"><b><font color="#00BFFF">Hi, Welcom to my blog.</font></b></div></div><div id="footer-wrap" style="iposition:absolute;text-align:cente;inset:20px;"></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '8f42e6f2019939020945',
+      clientSecret: 'e8db6e1f9cc7b4ec40ba8ce4d76250264b125b8c',
+      repo: 'VincentVanNF.github.io',
+      owner: 'VincentVanNF',
+      admin: ['VincentVanNF'],
+      id: '6260e881d73d6984992e300d2223e019',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const findTrueUrl = (array) => {
+    Promise.all(array.map(item =>
+      fetch(item.url).then(resp => resp.json()).then(data => {
+        const urlArray = data.body.match(/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/ig)
+        if (data.user.login === 'utterances-bot') {
+          return urlArray.pop()
+        } else {
+          return urlArray.shift()
+        }
+      })
+    )).then(res => {
+        array = array.map((i,index)=> {
+          return {
+            ...i,
+            url: res[index]
+          }
+        })
+
+        saveToLocal.set('github-newest-comments', JSON.stringify(array), 10/(60*24))
+        generateHtml(array)
+    });
+  }
+
+  const getComment = () => {
+    fetch('https://api.github.com/repos/VincentVanNF/VincentVanNF.github.io/issues/comments?sort=updated&direction=desc&per_page=6&page=1',{
+      "headers": {
+        Accept: 'application/vnd.github.v3.html+json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        const githubArray = data.map(item => {
+          return {
+            'avatar': item.user.avatar_url,
+            'content': changeContent(item.body_html),
+            'nick': item.user.login,
+            'url': item.issue_url,
+            'date': item.updated_at,
+            'githubUrl': item.html_url
+          }
+        })
+        findTrueUrl(githubArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      })
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('github-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><div class="aplayer no-destroy" data-id="7622286806" data-server="netease" data-type="playlist" data-fixed="true" data-mutex="true" data-autoplay="false" > </div><script src="/js/jquery.min.js"></script><script src="/js/fishes.js"></script><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script>(function(d, w, c) {
+    w.ChatraID = 'xKZME3aZENuKqB3Z7';
+    var s = d.createElement('script');
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments);
+    };
+    s.async = true;
+    s.src = 'https://call.chatra.io/chatra.js';
+    if (d.head) d.head.appendChild(s);
+})(document, window, 'Chatra');
+
+if (false) {
+  var chatBtnFn = () => {
+    var chatBtn = document.getElementById("chat_btn")
+    chatBtn.addEventListener("click", function(){
+      Chatra('openChat')
+    });
+  }
+  chatBtnFn()
+} else {
+  if (false) {
+    function chatBtnHide () {
+      Chatra('hide')
+    }
+    function chatBtnShow () {
+      Chatra('show')
+    }
+  }
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'UA-239901416-2', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.4.0" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://www.jsdelivr.com/" style="margin-inline:5px" data-title="本站使用JsDelivr为静态资源提供CDN加速" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/js/runtime.js"></script><!-- hexo injector body_end end --></body></html>
